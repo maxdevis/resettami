@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'dart:developer';
 
-//import 'package:dio/dio.dart';
-import 'package:http/http.dart';
+import 'package:dio/dio.dart';
 
-class ApiClient {
-  //final Dio _dio = Dio();
+import '../Models/User.dart';
+//import 'package:http/http.dart';
+
+class HttpService {
+  final Dio _dio = Dio();
   static const urlApi = 'http://humusbe.local/api/';
 
   /*<Response?> registerUser() async {
@@ -16,7 +18,7 @@ class ApiClient {
   /*Future<Response> login(String email, String password) async {
     try {
       Response response = await _dio.post(
-        '${ApiClient.urlApi}/login',
+        '${HttpService.urlApi}/login',
         data: {
           'username': email,
           'password': password
@@ -34,19 +36,17 @@ class ApiClient {
 
   Future<dynamic> test() async {
     try {
-      Response response = await post(
-          Uri.parse('http://humusbe.local/api/loginExt'),
-          body: {
+      Response response = await _dio.post(
+          'http://humusbe.local/api/loginExt',
+          data: {
             'username': 'DVTMSM70B12D883I',
             'password': 'Max12021970!'
           }
       );
 
       if (response.statusCode == 200) {
-        var data = jsonDecode(response.body.toString());
+        UserModel data = UserModel.fromJson(response.data);
         return data;
-        log(data['token']);
-        log('Login successfully');
       } else {
         log('failed');
         return null;

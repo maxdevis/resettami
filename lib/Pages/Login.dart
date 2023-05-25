@@ -3,7 +3,8 @@ import 'package:flutter_app/Pages/Home.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../utils/api_client.dart';
+import '../Models/User.dart';
+import '../utils/HttpService.dart';
 import '../utils/constants.dart';
 
 class LoginPage extends StatefulWidget {
@@ -42,9 +43,9 @@ class _LoginPageState extends State<LoginPage> {
   Future<bool> _onFormSubmit() async {
     if (_formKey.currentState?.validate() ?? false) {
       if (_savePassword) {
-        ApiClient api = ApiClient();
+        HttpService api = HttpService();
         //dynamic res = await api.login(_usernameController.text, _passwordController.text);
-        dynamic res = await api.test();
+        UserModel res = await api.test();
         if(res.op){
           await _storage.write(key: eLogin.KEY_USERNAME.toString(), value: _usernameController.text);
           await _storage.write(key: eLogin.KEY_PASSWORD.toString(), value: _passwordController.text);
