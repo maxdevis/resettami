@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'constants.dart';
 
-Future<void> showMyDialog(BuildContext context, {String title = 'Attenzione', String message = 'utf-8'}) async {
+Future<void> showMyDialog(String message, {String title = 'Attenzione'}) async {
   return showDialog<void>(
-    context: context,
+    context: navigatorKey.currentContext!,
     barrierDismissible: false, // user must tap button!
     builder: (BuildContext context) {
       return AlertDialog(

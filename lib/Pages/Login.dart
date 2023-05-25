@@ -1,10 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Pages/Home.dart';
+import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../Models/User.dart';
 import '../utils/HttpService.dart';
+import '../utils/Uty.dart';
 import '../utils/constants.dart';
 
 class LoginPage extends StatefulWidget {
@@ -33,31 +37,6 @@ class _LoginPageState extends State<LoginPage> {
 
   bool passwordHidden = true;
   bool _savePassword = true;
-
-  // Read values
-  Future<void> _readFromStorage() async {
-    _usernameController.text = await _storage.read(key: eLogin.KEY_USERNAME.toString()) ?? '';
-    _passwordController.text = await _storage.read(key: eLogin.KEY_PASSWORD.toString()) ?? '';
-  }
-
-  Future<bool> _onFormSubmit() async {
-    if (_formKey.currentState?.validate() ?? false) {
-      if (_savePassword) {
-        HttpService api = HttpService();
-        //dynamic res = await api.login(_usernameController.text, _passwordController.text);
-        UserModel res = await api.test();
-        if(res.op){
-          await _storage.write(key: eLogin.KEY_USERNAME.toString(), value: _usernameController.text);
-          await _storage.write(key: eLogin.KEY_PASSWORD.toString(), value: _passwordController.text);
-          return true;
-        }
-        else{
-         //da implementare
-        }
-      }
-    }
-    return false;
-  }
 
   _onForgotPassword() {}
 
@@ -182,7 +161,7 @@ class _LoginPageState extends State<LoginPage> {
                 width: size.width,
                 child: ElevatedButton(
                   onPressed: () async {
-                    if (await _onFormSubmit()) {
+                    if (await _onFormSubmit(context)) {
                       if (context.mounted) {
                         Navigator.push(
                           context,
@@ -242,4 +221,39 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
+  // Read values
+  Future<void> _readFromStorage() async {
+    _usernameController.text = await _storage.read(key: eLogin.KEY_USERNAME.toString()) ?? '';
+    _passwordController.text = await _storage.read(key: eLogin.KEY_PASSWORD.toString()) ?? '';
+  }
+
+  Future<bool> _onFormSubmit(BuildContext context) async {
+    if (_formKey.currentState?.validate() ?? false) {
+      if (_savePassword) {
+        HttpService api = HttpService();
+        //dynamic res = await api.login(_usernameController.text, _passwordController.text);
+        UserModel res = await api.login(_usernameController.text, _passwordController.text);
+        if(res.op){
+          await _storage.write(key: eLogin.KEY_USERNAME.toString(), value: _usernameController.text);
+          await _storage.write(key: eLogin.KEY_PASSWORD.toString(), value: _passwordController.text);
+          return true;
+        }
+        else{
+          showMyDialog('Error Login');
+          /*final result = await FlutterPlatformAlert.showAlert(
+            windowTitle: 'This ia title',
+            text: 'This is body',
+            alertStyle: AlertButtonStyle.yesNoCancel,
+            iconStyle: IconStyle.information,
+          );
+          log(result.toString());*/
+        }
+      }
+    }
+    return false;
+  }
+
+
+
 }

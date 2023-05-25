@@ -4,6 +4,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter_app/Pages/Home.dart';
 import 'package:flutter_app/Pages/Login.dart';
 import 'package:flutter_app/Pages/Second.dart';
+import 'package:flutter_app/utils/constants.dart';
 import 'Pages/Splash.dart';
 
 void main() => runApp(
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
       locale: DevicePreview.locale(context),
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
+      navigatorKey: navigatorKey,
       home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
       initialRoute: '/',

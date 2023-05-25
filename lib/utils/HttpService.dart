@@ -34,10 +34,10 @@ class HttpService {
     }
   }*/
 
-  Future<dynamic> test() async {
+  Future<dynamic> login(String email, String password) async {
     try {
       Response response = await _dio.post(
-          'http://humusbe.local/api/loginExt',
+          '${HttpService.urlApi}/loginExt',
           data: {
             'username': 'DVTMSM70B12D883I',
             'password': 'Max12021970!'
@@ -49,11 +49,11 @@ class HttpService {
         return data;
       } else {
         log('failed');
-        return null;
+        return UserModel(op: false);
       }
-    } catch (e) {
-      log('error');
-      return null;
+    } on DioError catch (e) {
+      //returns the error object if any
+      return UserModel(op: false);
     }
   }
 
