@@ -34,13 +34,13 @@ class HttpService {
     }
   }*/
 
-  Future<dynamic> login(String email, String password) async {
+  Future<dynamic> login(String username, String password) async {
     try {
       Response response = await _dio.post(
           '${HttpService.urlApi}/loginExt',
           data: {
-            'username': 'DVTMSM70B12D883I',
-            'password': 'Max12021970!'
+            'username': username,
+            'password': password
           }
       );
 
