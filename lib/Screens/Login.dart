@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/Screens/Home.dart';
-import 'package:flutter_app/utils/Constants.dart';
+import 'package:resettami_app/Screens/Home.dart';
+import 'package:resettami_app/utils/Constants.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:localization/localization.dart';
 import '../Library/SecureStorage.dart';

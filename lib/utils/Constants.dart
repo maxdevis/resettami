@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/Screens/Home.dart';
-import 'package:flutter_app/Screens/Login.dart';
-import 'package:flutter_app/Screens/Second.dart';
+import 'package:resettami_app/Screens/Home.dart';
+import 'package:resettami_app/Screens/Login.dart';
+import 'package:resettami_app/Screens/Second.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
