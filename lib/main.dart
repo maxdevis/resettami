@@ -5,6 +5,7 @@ import 'package:flutter_app/Pages/Home.dart';
 import 'package:flutter_app/Pages/Login.dart';
 import 'package:flutter_app/Pages/Second.dart';
 import 'package:flutter_app/utils/constants.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'Pages/Splash.dart';
 
 void main() => runApp(
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
       home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
+      builder: EasyLoading.init(),
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
         '/home': (context) => const HomePage(),

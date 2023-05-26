@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Pages/Home.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
@@ -161,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
                 width: size.width,
                 child: ElevatedButton(
                   onPressed: () async {
-                    if (await _onFormSubmit(context)) {
+                    if (await _login(context)) {
                       if (context.mounted) {
                         Navigator.push(
                           context,
@@ -228,9 +229,10 @@ class _LoginPageState extends State<LoginPage> {
     _passwordController.text = await _storage.read(key: eLogin.KEY_PASSWORD.toString()) ?? '';
   }
 
-  Future<bool> _onFormSubmit(BuildContext context) async {
+  Future<bool> _login(BuildContext context) async {
     if (_formKey.currentState?.validate() ?? false) {
       if (_savePassword) {
+        EasyLoading.show(status: "Attendere...");
         HttpService api = HttpService();
         //dynamic res = await api.login(_usernameController.text, _passwordController.text);
         UserModel res = await api.login(_usernameController.text, _passwordController.text);
@@ -240,15 +242,9 @@ class _LoginPageState extends State<LoginPage> {
           return true;
         }
         else{
-          showMyDialog('Error Login');
-          /*final result = await FlutterPlatformAlert.showAlert(
-            windowTitle: 'This ia title',
-            text: 'This is body',
-            alertStyle: AlertButtonStyle.yesNoCancel,
-            iconStyle: IconStyle.information,
-          );
-          log(result.toString());*/
+          EasyLoading.dismiss();
         }
+        showLoading(false);
       }
     }
     return false;
