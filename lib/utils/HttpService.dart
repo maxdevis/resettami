@@ -37,7 +37,7 @@ class HttpService {
   Future<dynamic> login(String username, String password) async {
     try {
       Response response = await _dio.post(
-          '${HttpService.urlApi}/loginExt',
+          'http://humusbe.local/api/loginExt',
           data: {
             'username': username,
             'password': password

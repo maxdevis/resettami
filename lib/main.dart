@@ -4,7 +4,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter_app/Pages/Home.dart';
 import 'package:flutter_app/Pages/Login.dart';
 import 'package:flutter_app/Pages/Second.dart';
-import 'package:flutter_app/utils/constants.dart';
+import 'package:flutter_app/utils/Constants.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'Pages/Splash.dart';
 
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const HomePage(),
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/second': (context) => const SecondPage(title: 'SecondPage'),
-        '/login': (context) => LoginPage(title: 'LoginPage'),
+        '/login': (context) => const LoginPage(title: 'LoginPage'),
       },
     );
   }

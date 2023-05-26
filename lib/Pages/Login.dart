@@ -3,14 +3,11 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Pages/Home.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import '../Library/Auth.dart';
 import '../Models/User.dart';
 import '../utils/HttpService.dart';
 import '../utils/Uty.dart';
-import '../utils/constants.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key, required this.title}) : super(key: key);
@@ -37,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController(text: "");
 
   bool passwordHidden = true;
-  bool _savePassword = true;
+  bool _remember = true;
 
   _onForgotPassword() {}
 
@@ -146,10 +143,10 @@ class _LoginPageState extends State<LoginPage> {
                 height: size.height * .045,
               ),
               CheckboxListTile(
-                value: _savePassword,
+                value: _remember,
                 onChanged: (bool? newValue) {
                   setState(() {
-                    _savePassword = newValue!;
+                    _remember = newValue!;
                   });
                 },
                 title: const Text("Remember me"),
@@ -225,26 +222,30 @@ class _LoginPageState extends State<LoginPage> {
 
   // Read values
   Future<void> _readFromStorage() async {
-    _usernameController.text = await _storage.read(key: eLogin.KEY_USERNAME.toString()) ?? '';
-    _passwordController.text = await _storage.read(key: eLogin.KEY_PASSWORD.toString()) ?? '';
+    _remember = await Auth().getRemeber();
+    _usernameController.text = await Auth().getUsername();
+    _passwordController.text = await Auth().getPassword();
   }
 
   Future<bool> _login(BuildContext context) async {
     if (_formKey.currentState?.validate() ?? false) {
-      if (_savePassword) {
+      if (_remember) {
         EasyLoading.show(status: "Attendere...");
         HttpService api = HttpService();
-        //dynamic res = await api.login(_usernameController.text, _passwordController.text);
         UserModel res = await api.login(_usernameController.text, _passwordController.text);
         if(res.op){
-          await _storage.write(key: eLogin.KEY_USERNAME.toString(), value: _usernameController.text);
-          await _storage.write(key: eLogin.KEY_PASSWORD.toString(), value: _passwordController.text);
+          await Auth().setRemember(_remember.toString());
+          await Auth().setUsername(_usernameController.text);
+          await Auth().setPassword(_passwordController.text);
+          await Auth().setToken(res.token ?? '');
+          await Auth().setTypeAuth(res.type ?? '');
+          EasyLoading.dismiss();
           return true;
         }
         else{
           EasyLoading.dismiss();
+          showMyDialog('Error Login');
         }
-        showLoading(false);
       }
     }
     return false;
