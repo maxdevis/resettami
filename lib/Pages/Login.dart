@@ -1,10 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Pages/Home.dart';
+import 'package:flutter_app/utils/Constants.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import '../Library/Auth.dart';
+import '../Library/SecureStorage.dart';
 import '../Models/User.dart';
 import '../utils/HttpService.dart';
 import '../utils/Uty.dart';
@@ -24,6 +23,7 @@ class _LoginPageState extends State<LoginPage> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final SecureStorage _sessionStorage = SecureStorage();
 
   // Create storage
   final _storage = const FlutterSecureStorage();
@@ -222,23 +222,24 @@ class _LoginPageState extends State<LoginPage> {
 
   // Read values
   Future<void> _readFromStorage() async {
-    _remember = await Auth().getRemeber();
-    _usernameController.text = await Auth().getUsername();
-    _passwordController.text = await Auth().getPassword();
+    _remember = (await _sessionStorage.readData(eLogin.KEY_REMEMBER.toString()) == 'true');
+    _usernameController.text = (await _sessionStorage.readData(eLogin.KEY_USERNAME.toString()))!;
+    _passwordController.text = (await _sessionStorage.readData(eLogin.KEY_PASSWORD.toString()))!;
   }
 
   Future<bool> _login(BuildContext context) async {
     if (_formKey.currentState?.validate() ?? false) {
-      if (_remember) {
         EasyLoading.show(status: "Attendere...");
         HttpService api = HttpService();
         UserModel res = await api.login(_usernameController.text, _passwordController.text);
         if(res.op){
-          await Auth().setRemember(_remember.toString());
-          await Auth().setUsername(_usernameController.text);
-          await Auth().setPassword(_passwordController.text);
-          await Auth().setToken(res.token ?? '');
-          await Auth().setTypeAuth(res.type ?? '');
+          if (_remember) {
+            await _sessionStorage.saveData(eLogin.KEY_REMEMBER.toString(), _remember.toString());
+            await _sessionStorage.saveData(eLogin.KEY_USERNAME.toString(), _usernameController.text);
+            await _sessionStorage.saveData(eLogin.KEY_PASSWORD.toString(), _passwordController.text);
+            await _sessionStorage.saveData(eLogin.KEY_TOKEN.toString(), res.token ?? '');
+            await _sessionStorage.saveData(eLogin.KEY_TYPE_AUTH.toString(), res.type ?? '');
+          }
           EasyLoading.dismiss();
           return true;
         }
@@ -246,7 +247,6 @@ class _LoginPageState extends State<LoginPage> {
           EasyLoading.dismiss();
           showMyDialog('Error Login');
         }
-      }
     }
     return false;
   }
