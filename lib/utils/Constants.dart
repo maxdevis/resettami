@@ -6,7 +6,6 @@ import 'package:flutter_app/Pages/Second.dart';
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 enum eLogin {
-  KEY_REMEMBER,
   KEY_USERNAME,
   KEY_PASSWORD,
   KEY_TOKEN,
@@ -14,7 +13,7 @@ enum eLogin {
 }
 
 final routes = {
-'/home': (context) => const HomePage(),
-'/second': (context) => const SecondPage(title: 'SecondPage'),
-'/login': (context) => const LoginPage(title: 'LoginPage'),
+  '/home': (context) => const HomePage(),
+  '/second': (context) => const SecondPage(title: 'SecondPage'),
+  '/login': (context) => const LoginPage(),
 };

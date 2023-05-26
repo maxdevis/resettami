@@ -10,9 +10,7 @@ import '../utils/HttpService.dart';
 import '../utils/Uty.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -26,8 +24,6 @@ class _LoginPageState extends State<LoginPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final SecureStorage _sessionStorage = SecureStorage();
 
-  // Create storage
-  final _storage = const FlutterSecureStorage();
 
   final TextEditingController _usernameController =
   TextEditingController(text: "");
@@ -223,7 +219,6 @@ class _LoginPageState extends State<LoginPage> {
 
   // Read values
   Future<void> _readFromStorage() async {
-    _remember = (await _sessionStorage.readData(eLogin.KEY_REMEMBER.toString()) == 'true');
     _usernameController.text = (await _sessionStorage.readData(eLogin.KEY_USERNAME.toString()))!;
     _passwordController.text = (await _sessionStorage.readData(eLogin.KEY_PASSWORD.toString()))!;
   }
@@ -235,7 +230,6 @@ class _LoginPageState extends State<LoginPage> {
         UserModel res = await api.login(_usernameController.text, _passwordController.text);
         if(res.op){
           if (_remember) {
-            await _sessionStorage.saveData(eLogin.KEY_REMEMBER.toString(), _remember.toString());
             await _sessionStorage.saveData(eLogin.KEY_USERNAME.toString(), _usernameController.text);
             await _sessionStorage.saveData(eLogin.KEY_PASSWORD.toString(), _passwordController.text);
             await _sessionStorage.saveData(eLogin.KEY_TOKEN.toString(), res.token ?? '');
