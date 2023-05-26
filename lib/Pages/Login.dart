@@ -3,6 +3,7 @@ import 'package:flutter_app/Pages/Home.dart';
 import 'package:flutter_app/utils/Constants.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:localization/localization.dart';
 import '../Library/SecureStorage.dart';
 import '../Models/User.dart';
 import '../utils/HttpService.dart';
@@ -174,7 +175,7 @@ class _LoginPageState extends State<LoginPage> {
                       backgroundColor: primaryColor,
                       textStyle: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)
                   ),
-                  child: const Text("Sign In"),
+                  child: Text("signIn".i18n()),
                 ),
               ),
               SizedBox(
@@ -229,7 +230,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<bool> _login(BuildContext context) async {
     if (_formKey.currentState?.validate() ?? false) {
-        EasyLoading.show(status: "Attendere...");
+        EasyLoading.show(status: 'wait'.i18n());
         HttpService api = HttpService();
         UserModel res = await api.login(_usernameController.text, _passwordController.text);
         if(res.op){

@@ -1,11 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
-import 'package:flutter_app/Pages/Home.dart';
-import 'package:flutter_app/Pages/Login.dart';
-import 'package:flutter_app/Pages/Second.dart';
 import 'package:flutter_app/utils/Constants.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:localization/localization.dart';
 import 'Pages/Splash.dart';
 
 void main() => runApp(
@@ -20,6 +19,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    LocalJsonLocalization.delegate.directories = ['lib/i18n'];
     return MaterialApp(
       locale: DevicePreview.locale(context),
       theme: ThemeData.light(),
@@ -29,13 +29,32 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       builder: EasyLoading.init(),
-      routes: {
+      localizationsDelegates: [
+        // delegate from flutter_localization
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        // delegate from localization package.
+        LocalJsonLocalization.delegate,
+      ],
+      localeResolutionCallback: (locale, supportedLocales) {
+        if (supportedLocales.contains(locale)) {
+          return locale;
+        }
+        if (locale?.languageCode == 'en') {
+          return const Locale('en');
+        }
+        // default language
+        return const Locale('it');
+      },
+      routes: routes
+      /*routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
         '/home': (context) => const HomePage(),
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/second': (context) => const SecondPage(title: 'SecondPage'),
         '/login': (context) => const LoginPage(title: 'LoginPage'),
-      },
+      },*/
     );
   }
 
