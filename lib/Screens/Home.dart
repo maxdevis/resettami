@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:resettami_app/Component/myCard.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
 import 'package:resettami_app/Component/myAppBar.dart';
 import 'package:resettami_app/utils/Constants.dart';
@@ -15,21 +14,22 @@ class SplashScreenState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: const MyAppBar(
-          title: 'MyAppBar',
-        ),
-        //set app bar from appbar.dart
-        // use like this where ever you want
-        drawer: const MyDrawer(title: 'MyDrawer'),
-        //set drawer from app_drawer.dart
-        //set like this where ever you want
-        body: Column(
+      backgroundColor: Colors.white,
+      appBar: const MyAppBar(
+        title: 'Resettami Parkylon',
+      ),
+      //set app bar from appbar.dart
+      // use like this where ever you want
+      drawer: const MyDrawer(title: 'Resettami Parkylon'),
+      //set drawer from app_drawer.dart
+      //set like this where ever you want
+      body: SingleChildScrollView(
+        child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
-            children: listCards
-        ),
+            children: listCards),
+      ),
     );
   }
 }
