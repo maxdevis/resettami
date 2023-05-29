@@ -198,6 +198,7 @@ class _SearchAssistitiPage extends State<SearchAssistitiScreen> {
               ),
               SizedBox(
                 width: size.width,
+                height: size.height * .065,
                 child: ElevatedButton(
                   onPressed: () async {
                     if (await _search(context)) {
@@ -213,8 +214,8 @@ class _SearchAssistitiPage extends State<SearchAssistitiScreen> {
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: primaryColor,
-                      textStyle: const TextStyle(
-                          fontSize: 22, fontWeight: FontWeight.bold)),
+                      textStyle: const TextStyle(fontSize: 18)
+                  ),
                   child: const Text("Ricerca"),
                 ),
               ),

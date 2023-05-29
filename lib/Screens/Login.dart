@@ -168,7 +168,7 @@ class _LoginPageState extends State<LoginPage> {
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: primaryColor,
-                      textStyle: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)
+                      textStyle: const TextStyle(fontSize: 18)
                   ),
                   child: Text("signIn".i18n()),
                 ),
