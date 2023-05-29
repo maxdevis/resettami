@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:resettami_app/Screens/Home.dart';
+import 'package:resettami_app/Screens/SearchAssistiti.dart';
 import 'package:resettami_app/Screens/Splash.dart';
 import 'package:resettami_app/utils/Constants.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData.dark(),
       navigatorKey: navigatorKey,
       //home: const SplashScreen(),
-      home: const HomePage(),
+      home: const SearchAssistitiScreen(),
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       builder: EasyLoading.init(),
