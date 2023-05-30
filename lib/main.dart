@@ -33,11 +33,9 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       builder: EasyLoading.init(),
       localizationsDelegates: [
-        // delegate from flutter_localization
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
-        // delegate from localization package.
         LocalJsonLocalization.delegate,
       ],
       localeResolutionCallback: (locale, supportedLocales) {
@@ -51,13 +49,6 @@ class MyApp extends StatelessWidget {
         return const Locale('it');
       },
       routes: routes
-      /*routes: {
-        // When navigating to the "/" route, build the FirstScreen widget.
-        '/home': (context) => const HomePage(),
-        // When navigating to the "/second" route, build the SecondScreen widget.
-        '/second': (context) => const SecondPage(title: 'SecondPage'),
-        '/login': (context) => const LoginPage(title: 'LoginPage'),
-      },*/
     );
   }
 
