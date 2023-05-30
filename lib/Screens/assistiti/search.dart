@@ -5,6 +5,7 @@ import 'package:resettami_app/Models/Assistito.dart';
 import 'package:resettami_app/Screens/Home.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:localization/localization.dart';
+import 'package:resettami_app/Screens/assistiti/searchList.dart';
 import 'package:resettami_app/Services/Assistiti.dart';
 import '../../Library/SecureStorage.dart';
 import '../../Models/User.dart';
@@ -154,12 +155,12 @@ class _SearchScreen extends State<SearchAssScreen> {
                             text: value.toUpperCase(),
                             selection: _nomeController.selection);
                       },
-                      validator: (value) {
+                      /*validator: (value) {
                         if (value!.isEmpty) {
                           return 'Required field';
                         }
                         return null;
-                      },
+                      },*/
                       textInputAction: TextInputAction.next,
                       textCapitalization: TextCapitalization.none,
                       keyboardType: TextInputType.text,
@@ -183,12 +184,12 @@ class _SearchScreen extends State<SearchAssScreen> {
                             text: value.toUpperCase(),
                             selection: _cognomeController.selection);
                       },
-                      validator: (value) {
+                      /*validator: (value) {
                         if (value!.isEmpty) {
                           return 'Required field';
                         }
                         return null;
-                      },
+                      },*/
                       textInputAction: TextInputAction.next,
                       textCapitalization: TextCapitalization.none,
                       keyboardType: TextInputType.text,
@@ -204,12 +205,13 @@ class _SearchScreen extends State<SearchAssScreen> {
                 height: size.height * .065,
                 child: ElevatedButton(
                   onPressed: () async {
-                    if (await _search(context)) {
+                    Assistito? res = await _search(context);
+                    if (res != null) {
                       if (context.mounted) {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const HomePage(),
+                            builder: (context) => searchListScreen(assistito: res),
                           ),
                         );
                       }
@@ -232,14 +234,15 @@ class _SearchScreen extends State<SearchAssScreen> {
     );
   }
 
-  Future<bool> _search(BuildContext context) async {
+  Future<Assistito?> _search(BuildContext context) async {
     if (_formKey.currentState?.validate() ?? false) {
       EasyLoading.show(status: 'wait'.i18n());
       AssistitiService api = AssistitiService();
-      Assistito res = await api.searchAss(_codfController.text);
+      Assistito res = await api.searchAss(_codfController.text, _cognomeController.text, _nomeController.text);
       EasyLoading.dismiss();
-      return true;
+
+      return res;
     }
-    return false;
+    return null;
   }
 }

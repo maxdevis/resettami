@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:resettami_app/Models/Assistito.dart';
 
 class searchListScreen extends StatelessWidget {
-  const searchListScreen({super.key, required this.model});
+  const searchListScreen({super.key, required this.assistito});
 
-  final List<Assistito> model;
+  final Assistito assistito;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class searchListScreen extends StatelessWidget {
         ),
       ),
       body: ListView.builder(
-        itemCount: model.length,
+        itemCount: assistito.model?.length,
         itemBuilder: (context, index) {
           return Card(
             margin: const EdgeInsets.all(0),
@@ -59,7 +59,7 @@ class searchListScreen extends StatelessWidget {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Text(
-                          '${model[index].cognome} ${model[index].nome}',
+                          '${assistito.model?[index].cognome} ${assistito.model?[index].nome}',
                           textAlign: TextAlign.start,
                           maxLines: 1,
                           overflow: TextOverflow.clip,
@@ -73,7 +73,7 @@ class searchListScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 4, 0, 0),
                           child: Text(
-                            model[index].codiceFiscale,
+                            '${assistito.model?[index].codiceFiscale}',
                             textAlign: TextAlign.start,
                             maxLines: 1,
                             overflow: TextOverflow.clip,

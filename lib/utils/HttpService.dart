@@ -1,16 +1,100 @@
-import 'package:dio/dio.dart';
+import 'dart:convert' as convert;
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:flutter/foundation.dart';
+import 'package:resettami_app/Library/SecureStorage.dart';
+import 'package:resettami_app/utils/Constants.dart';
 
 class HttpService {
-  Dio dio = Dio();
-  static const urlApi = 'http://humusbe.local/api/';
+  final SecureStorage _sessionStorage = SecureStorage();
+  static const urlApi = 'http://humusbe.local/api';
 
-  /*<Response?> registerUser() async {
+  Future<Map<String, String>> getOptions() async {
+    String token =
+        await _sessionStorage.readData(eLogin.KEY_TOKEN.toString()) ?? "";
+    Map<String, String> headers = {
+      "Access-Control-Allow-Methods": "*",
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+      "Authorization": "Bearer $token",
+      "role-id": "2"
+    };
+    return headers;
+  }
+
+  Future<Map<String, dynamic>?> getData(String url, data) async {
+    try {
+      var options = await getOptions();
+      String params = Uri(queryParameters: data).query;
+      String uri = '$urlApi$url?$params';
+
+      final response = await http.get(Uri.parse(uri), headers: options);
+
+      if (response.statusCode == 200) {
+        var data = convert.jsonDecode(response.body) as Map<String, dynamic>;
+        return data;
+      }
+      return null;
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      return null;
+    }
+  }
+
+  Future<Map<String, dynamic>?> postData(String url,  Map<String, dynamic> data) async {
+    try {
+      var options = await getOptions();
+      String uri = '$urlApi$url';
+
+      final response = await http.post(Uri.parse(uri),
+        headers: options,
+        body: jsonEncode(data)
+      );
+
+      if (response.statusCode == 200) {
+        var jsonResponse = convert.jsonDecode(response.body) as Map<String, dynamic>;
+        return jsonResponse;
+      }
+      return null;
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      return null;
+    }
+  }
+
+  String getQueryString(Map params, {String prefix = '&', bool inRecursion = false}) {
+
+    String query = '';
+
+    params.forEach((key, value) {
+
+      if (inRecursion) {
+        key = '[$key]';
+      }
+
+      if (value is String || value is int || value is double || value is bool) {
+        query += '$prefix$key=$value';
+      } else if (value is List || value is Map) {
+        if (value is List) value = value.asMap();
+        value.forEach((k, v) {
+          query += getQueryString({k: v}, prefix: '$prefix$key', inRecursion: true);
+        });
+      }
+    });
+
+    return query;
+  }
+
+/*<Response?> registerUser() async {
     //IMPLEMENT USER REGISTRATION
     return null;
   }*/
 
-
-  /*Future<dynamic> searchAss(String cognome, String nome) async {
+/*Future<dynamic> searchAss(String cognome, String nome) async {
     try {
       Response response = await _dio.get(
           'http://humusbe.local/api/persona/assistito/search',
@@ -33,7 +117,6 @@ class HttpService {
     }
   }*/
 
-
 /*Future<Response?> getUserProfileData() async {
   return null;
 }
@@ -41,5 +124,4 @@ class HttpService {
 Future<Response?> logout() async {
   return null;
 }*/
-
 }
