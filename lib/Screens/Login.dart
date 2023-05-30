@@ -25,9 +25,9 @@ class _LoginPageState extends State<LoginPage> {
 
 
   final TextEditingController _usernameController =
-  TextEditingController(text: "");
+  TextEditingController(text: "DVTMSM70B12D883I");
   final TextEditingController _passwordController =
-  TextEditingController(text: "");
+  TextEditingController(text: "Max12021970!");
 
   bool passwordHidden = true;
   bool _remember = true;
@@ -39,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    _readFromStorage();
+    //_readFromStorage();
   }
 
   @override
