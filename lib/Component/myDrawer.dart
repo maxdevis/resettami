@@ -1,34 +1,41 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:resettami_app/Library/SecureStorage.dart';
+import 'package:resettami_app/utils/Constants.dart';
 
+//ignore: must_be_immutable
 class MyDrawer extends StatelessWidget {
-  const MyDrawer({super.key, required this.title});
+  MyDrawer({super.key, required this.title});
   final String title;
+  final SecureStorage _sessionStorage = SecureStorage();
+  String _emailUser = "";
+  String _nameUser = "";
 
   @override
   Widget build(BuildContext context) {
+    _readFromStorage();
     return Drawer(
       width: MediaQuery.of(context).size.width * 0.5,
       child: ListView(
         // Important: Remove any padding from the ListView.
         padding: EdgeInsets.zero,
         children: [
-          const UserAccountsDrawerHeader(
-            decoration: BoxDecoration(color: Color(0xff00A19B)),
+          UserAccountsDrawerHeader(
+            decoration: const BoxDecoration(color: Color(0xff00A19B)),
             accountName: Text(
-              "Pinkesh Darji",
-              style: TextStyle(
+              _nameUser,
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ),
             accountEmail: Text(
-              "pinkesh.earth@gmail.com",
-              style: TextStyle(
+              _emailUser,
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
               ),
             ),
-            currentAccountPicture: Image(
+            currentAccountPicture: const Image(
               image: AssetImage('assets/images/doctor.png'),
               fit: BoxFit.fitHeight,
             ),
@@ -46,9 +53,9 @@ class MyDrawer extends StatelessWidget {
             leading: const Icon(
               Icons.train,
             ),
-            title: const Text('Second page'),
+            title: const Text('Ricerca Assistiti'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed('/second');
+              Navigator.of(context).pushReplacementNamed('/ricAss');
             },
           ),
           ListTile(
@@ -57,12 +64,18 @@ class MyDrawer extends StatelessWidget {
             ),
             title: const Text('Login'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed('/login');
+              Navigator.of(context).pushReplacementNamed('/logout');
             },
           ),
         ],
       ),
     );
   }
+
+  Future<void> _readFromStorage() async {
+    _nameUser = (await _sessionStorage.readData(eLogin.KEY_USERNAME.toString()))!;
+    _emailUser = (await _sessionStorage.readData(eLogin.KEY_EMAIL.toString()))!;
+  }
+
 
 }

@@ -12,7 +12,7 @@ class SecondPage extends StatelessWidget {
         appBar: const MyAppBar( title: 'MyAppBar',),
         //set app bar from appbar.dart
         // use like this where ever you want
-        drawer: const MyDrawer(title: 'MyDrawer'),
+        drawer: MyDrawer(title: 'MyDrawer'),
         //set drawer from app_drawer.dart
         //set like this where ever you want
         body: const Center(

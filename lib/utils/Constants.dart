@@ -4,21 +4,29 @@ import 'package:resettami_app/Component/myCard.dart';
 import 'package:resettami_app/Component/myCharts.dart';
 import 'package:resettami_app/Screens/Home.dart';
 import 'package:resettami_app/Screens/Login.dart';
-import 'package:resettami_app/Screens/Second.dart';
+import 'package:resettami_app/Screens/assistiti/search.dart';
+
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 enum eLogin {
   KEY_USERNAME,
   KEY_PASSWORD,
+  KEY_EMAIL,
   KEY_TOKEN,
   KEY_TYPE_AUTH
 }
 
+/*enum eRoutes {
+  HOME_SCREEN,
+  RIC_ASS_SCREEN,
+  LOGOUT_SCREEN,
+}*/
+
 final routes = {
   '/home': (context) => const HomePage(),
-  '/second': (context) => const SecondPage(title: 'SecondPage'),
-  '/login': (context) => const LoginPage(),
+  '/ricAss': (context) => const SearchAssScreen(),
+  '/logout': (context) => const LoginPage(),
 };
 
 List<Widget> listCards = [

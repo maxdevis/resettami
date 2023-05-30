@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:resettami_app/Component/myAppBar.dart';
+import 'package:resettami_app/Component/myDrawer.dart';
+import 'package:resettami_app/Models/Assistito.dart';
 import 'package:resettami_app/Screens/Home.dart';
-import 'package:resettami_app/utils/Constants.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:localization/localization.dart';
-import '../Library/SecureStorage.dart';
-import '../Models/User.dart';
-import '../utils/HttpService.dart';
-import '../utils/Uty.dart';
+import '../../Library/SecureStorage.dart';
+import '../../Models/User.dart';
+import '../../utils/HttpService.dart';
+import '../../utils/Uty.dart';
 
-class SearchAssistitiScreen extends StatefulWidget {
-  const SearchAssistitiScreen({super.key});
+class SearchAssScreen extends StatefulWidget {
+  const SearchAssScreen({super.key});
 
   @override
-  State<SearchAssistitiScreen> createState() => _SearchAssistitiPage();
+  State<SearchAssScreen> createState() => _SearchScreen();
 }
 
-class _SearchAssistitiPage extends State<SearchAssistitiScreen> {
+class _SearchScreen extends State<SearchAssScreen> {
   static const Color primaryColor = Color(0xFF13B5A2);
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -48,10 +49,11 @@ class _SearchAssistitiPage extends State<SearchAssistitiScreen> {
     var size = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: const MyAppBar(
         title: 'Resettami Parkylon',
       ),
-      backgroundColor: Colors.white,
+      drawer: MyDrawer(title: 'Resettami Parkylon'),
       key: _scaffoldKey,
       body: SingleChildScrollView(
         child: Container(
@@ -233,16 +235,9 @@ class _SearchAssistitiPage extends State<SearchAssistitiScreen> {
     if (_formKey.currentState?.validate() ?? false) {
       EasyLoading.show(status: 'wait'.i18n());
       HttpService api = HttpService();
-      UserModel res =
-          await api.login(_codfController.text, _cognomeController.text);
-      if (res.op) {
-
-        EasyLoading.dismiss();
-        return true;
-      } else {
-        EasyLoading.dismiss();
-        showMyDialog('Error Login');
-      }
+      Assistito res = await api.login(_codfController.text, _cognomeController.text);
+      EasyLoading.dismiss();
+      return true;
     }
     return false;
   }
