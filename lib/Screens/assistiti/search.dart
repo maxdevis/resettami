@@ -5,6 +5,7 @@ import 'package:resettami_app/Models/Assistito.dart';
 import 'package:resettami_app/Screens/Home.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:localization/localization.dart';
+import 'package:resettami_app/Services/Assistiti.dart';
 import '../../Library/SecureStorage.dart';
 import '../../Models/User.dart';
 import '../../utils/HttpService.dart';
@@ -234,8 +235,8 @@ class _SearchScreen extends State<SearchAssScreen> {
   Future<bool> _search(BuildContext context) async {
     if (_formKey.currentState?.validate() ?? false) {
       EasyLoading.show(status: 'wait'.i18n());
-      HttpService api = HttpService();
-      Assistito res = await api.login(_codfController.text, _cognomeController.text);
+      AssistitiService api = AssistitiService();
+      Assistito res = await api.searchAss(_codfController.text);
       EasyLoading.dismiss();
       return true;
     }

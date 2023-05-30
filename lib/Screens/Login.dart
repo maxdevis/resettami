@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:resettami_app/Screens/Home.dart';
+import 'package:resettami_app/Services/Auth.dart';
 import 'package:resettami_app/utils/Constants.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:localization/localization.dart';
 import '../Library/SecureStorage.dart';
 import '../Models/User.dart';
-import '../utils/HttpService.dart';
 import '../utils/Uty.dart';
 
 class LoginPage extends StatefulWidget {
@@ -225,7 +225,7 @@ class _LoginPageState extends State<LoginPage> {
   Future<bool> _login(BuildContext context) async {
     if (_formKey.currentState?.validate() ?? false) {
         EasyLoading.show(status: 'wait'.i18n());
-        HttpService api = HttpService();
+        AuthService api = AuthService();
         UserModel res = await api.login(_usernameController.text, _passwordController.text);
         if(res.op){
           if (_remember) {
