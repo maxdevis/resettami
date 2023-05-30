@@ -7,10 +7,10 @@ class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  SplashScreenState createState() => SplashScreenState();
+  HomePageState createState() => HomePageState();
 }
 
-class SplashScreenState extends State<HomePage> {
+class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -2,15 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:resettami_app/Component/myAppBar.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
 import 'package:resettami_app/Models/Assistito.dart';
-import 'package:resettami_app/Screens/Home.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:localization/localization.dart';
 import 'package:resettami_app/Screens/assistiti/searchList.dart';
 import 'package:resettami_app/Services/Assistiti.dart';
-import '../../Library/SecureStorage.dart';
-import '../../Models/User.dart';
-import '../../utils/HttpService.dart';
-import '../../utils/Uty.dart';
+import 'package:resettami_app/Library/SecureStorage.dart';
 
 class SearchAssScreen extends StatefulWidget {
   const SearchAssScreen({super.key});

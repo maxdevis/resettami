@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:resettami_app/Models/Assistito.dart';
+import 'package:resettami_app/Screens/assistiti/Anamnesi/main.dart';
 
 class searchListScreen extends StatelessWidget {
   const searchListScreen({super.key, required this.assistito});
@@ -100,12 +101,18 @@ class searchListScreen extends StatelessWidget {
                         size: 24,
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.fromLTRB(10, 8, 8, 8),
-                      child: Icon(
-                        Icons.table_view,
-                        color: Color(0xff212435),
-                        size: 24,
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 8, 8, 8),
+                      child: IconButton(
+                        icon: const Icon(Icons.table_view),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const anamnesiScreen(),
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ],
