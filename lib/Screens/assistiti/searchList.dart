@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:resettami_app/Models/Assistito.dart';
-import 'package:resettami_app/Screens/assistiti/Anamnesi/main.dart';
+import 'package:resettami_app/Screens/assistiti/Anamnesi/anamnesi.dart';
 
 class searchListScreen extends StatelessWidget {
   const searchListScreen({super.key, required this.assistito});

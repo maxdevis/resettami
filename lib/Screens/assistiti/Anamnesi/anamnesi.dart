@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:resettami_app/Component/myAppBar.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
 import 'package:resettami_app/Screens/assistiti/Anamnesi/HealtCheck.dart';
+import 'package:resettami_app/Screens/assistiti/appointments.dart';
 import 'package:resettami_app/utils/Constants.dart';
 
 class anamnesiScreen extends StatefulWidget {
@@ -24,10 +25,7 @@ class _anamensiState extends State<anamnesiScreen> {
       'Index 1: Business',
       style: optionStyle,
     ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
+    AppointmentsPage(),
     HealtCheckScreen()
   ];
 
@@ -41,6 +39,9 @@ class _anamensiState extends State<anamnesiScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
+        /*appBar: const MyAppBar(
+          title: 'Resettami Parkylon',
+        ),*/
         drawer: MyDrawer(title: 'Resettami Parkylon'),
         body: Center(
           child: _widgetOptions.elementAt(_selectedIndex),
@@ -64,7 +65,7 @@ class _anamensiState extends State<anamnesiScreen> {
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.monitor),
-                label: 'School',
+                label: 'Appuntamenti',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.check),
