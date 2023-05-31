@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:resettami_app/Screens/Login.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const MyAppBar({super.key, required this.title});
+  const MyAppBar({super.key, required this.title, this.showBackButton = false});
   final String title;
+  final bool showBackButton;
 
   @override
   Size get preferredSize => const Size.fromHeight(60);
@@ -21,17 +22,26 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           icon: const Icon(Icons.search),
           onPressed: (){
             //action for search icon button
-
           },
-
         ),
-
         IconButton(
           icon: const Icon(Icons.person),
           onPressed: (){
             popupMenuPerson(context);
           },
-        )
+        ),
+        Visibility(
+          maintainSize: true,
+          maintainAnimation: true,
+          maintainState: true,
+          visible: showBackButton,
+          child: IconButton(
+            icon: const Icon(Icons.arrow_back_ios),
+            onPressed: (){
+              Navigator.pop(context);
+            },
+          ),
+        ),
       ],
     );
   }
