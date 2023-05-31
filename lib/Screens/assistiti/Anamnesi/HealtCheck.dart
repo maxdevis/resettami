@@ -14,9 +14,6 @@ class HealtCheckScreenState extends State<HealtCheckScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: const MyAppBar(
-        title: 'Healthcheck',
-      ),
       drawer: MyDrawer(title: 'Resettami Parkylon'),
       //set drawer from app_drawer.dart
       //set like this where ever you want

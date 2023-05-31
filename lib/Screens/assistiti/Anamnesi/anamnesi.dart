@@ -3,7 +3,7 @@ import 'package:resettami_app/Component/myAppBar.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
 import 'package:resettami_app/Screens/assistiti/Anamnesi/HealtCheck.dart';
 import 'package:resettami_app/Screens/assistiti/appointments.dart';
-import 'package:resettami_app/utils/Constants.dart';
+
 
 class anamnesiScreen extends StatefulWidget {
   const anamnesiScreen({super.key});
@@ -39,9 +39,9 @@ class _anamensiState extends State<anamnesiScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        /*appBar: const MyAppBar(
+        appBar: const MyAppBar(
           title: 'Resettami Parkylon',
-        ),*/
+        ),
         drawer: MyDrawer(title: 'Resettami Parkylon'),
         body: Center(
           child: _widgetOptions.elementAt(_selectedIndex),
@@ -64,7 +64,7 @@ class _anamensiState extends State<anamnesiScreen> {
                 label: 'Business',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.monitor),
+                icon: Icon(Icons.calendar_month),
                 label: 'Appuntamenti',
               ),
               BottomNavigationBarItem(

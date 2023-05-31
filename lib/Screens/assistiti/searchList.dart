@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:resettami_app/Component/myAppBar.dart';
+import 'package:resettami_app/Component/myDrawer.dart';
 import 'package:resettami_app/Models/Assistito.dart';
 import 'package:resettami_app/Screens/assistiti/Anamnesi/anamnesi.dart';
+import 'package:resettami_app/Screens/assistiti/SchedaPaziente.dart';
 
 class searchListScreen extends StatelessWidget {
   const searchListScreen({super.key, required this.assistito});
@@ -10,29 +13,10 @@ class searchListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffebebeb),
-      appBar: AppBar(
-        elevation: 4,
-        centerTitle: false,
-        automaticallyImplyLeading: false,
-        backgroundColor: const Color(0xffffffff),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.zero,
-        ),
-        title: const Text(
-          "Listing",
-          style: TextStyle(
-            fontWeight: FontWeight.w700,
-            fontStyle: FontStyle.normal,
-            fontSize: 18,
-            color: Color(0xff000000),
-          ),
-        ),
-        leading: const Icon(
-          Icons.arrow_back,
-          color: Color(0xff212435),
-          size: 24,
-        ),
+      backgroundColor: const Color(0xffffffff),
+      drawer: MyDrawer(title: 'Resettami Parkylon'),
+      appBar: const MyAppBar(
+        title: 'Resettami Parkylon',
       ),
       body: ListView.builder(
         itemCount: assistito.model?.length,
@@ -42,8 +26,8 @@ class searchListScreen extends StatelessWidget {
               width: double.infinity,
               child: Card(
                 margin: const EdgeInsets.all(5),
-                color: const Color(0xffffffff),
-                shadowColor: const Color(0xff000000),
+                color: const Color(0xff00A19B),
+                shadowColor: Colors.white,
                 elevation: 1,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(6.0),
@@ -93,17 +77,25 @@ class searchListScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.fromLTRB(10, 8, 8, 8),
-                      child: Icon(
-                        Icons.supervised_user_circle,
-                        color: Color(0xff212435),
-                        size: 24,
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 8, 8, 8),
+                      child: IconButton(
+                        color: Colors.white,
+                        icon: const Icon(Icons.supervised_user_circle),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const SchedaPaziente(),
+                            ),
+                          );
+                        },
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 8, 8, 8),
                       child: IconButton(
+                        color: Colors.white,
                         icon: const Icon(Icons.table_view),
                         onPressed: () {
                           Navigator.push(
