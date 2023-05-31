@@ -86,7 +86,8 @@ class searchListScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const SchedaPaziente(),
+                              builder: (context) => SchedaPaziente(name: '${assistito.model?[index].cognome} ${assistito.model?[index].nome}',
+                                  codiceFiscale: '${assistito.model?[index].codiceFiscale}'),
                             ),
                           );
                         },

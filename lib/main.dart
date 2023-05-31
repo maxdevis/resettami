@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       navigatorKey: navigatorKey,
-      home: const SchedaPaziente(),
+      home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       builder: EasyLoading.init(),
