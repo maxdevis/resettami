@@ -2,11 +2,12 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:resettami_app/Screens/Login.dart';
+import 'package:resettami_app/utils/Constants.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const MyAppBar({super.key, required this.title, this.showBackButton = false});
+  const MyAppBar({super.key, required this.title, this.route = ''});
   final String title;
-  final bool showBackButton;
+  final String route;
 
   @override
   Size get preferredSize => const Size.fromHeight(60);
@@ -34,11 +35,12 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           maintainSize: true,
           maintainAnimation: true,
           maintainState: true,
-          visible: showBackButton,
+          visible: (route != ''),
           child: IconButton(
             icon: const Icon(Icons.arrow_back_ios),
             onPressed: (){
-              Navigator.pop(context);
+              //Navigator.pop(navigatorKey.currentContext!);
+              Navigator.pushReplacementNamed(context, route);
             },
           ),
         ),

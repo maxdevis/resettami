@@ -17,6 +17,7 @@ class searchListScreen extends StatelessWidget {
       drawer: MyDrawer(title: 'Resettami Parkylon'),
       appBar: const MyAppBar(
         title: 'Resettami Parkylon',
+        route: '/searchAss',
       ),
       body: ListView.builder(
         itemCount: assistito.model?.length,

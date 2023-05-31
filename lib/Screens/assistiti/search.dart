@@ -50,6 +50,7 @@ class _SearchScreen extends State<SearchAssScreen> {
       backgroundColor: Colors.white,
       appBar: const MyAppBar(
         title: 'Resettami Parkylon',
+        route: '/home',
       ),
       drawer: MyDrawer(title: 'Resettami Parkylon'),
       key: _scaffoldKey,

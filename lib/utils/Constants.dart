@@ -27,6 +27,7 @@ final routes = {
   '/home': (context) => const HomePage(),
   '/ricAss': (context) => const SearchAssScreen(),
   '/logout': (context) => const LoginPage(),
+  '/searchAss': (context) => const SearchAssScreen(),
 };
 
 List<Widget> listCards = [
