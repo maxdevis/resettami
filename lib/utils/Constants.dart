@@ -6,7 +6,6 @@ import 'package:resettami_app/Screens/Home.dart';
 import 'package:resettami_app/Screens/Login.dart';
 import 'package:resettami_app/Screens/assistiti/search.dart';
 
-
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 enum eLogin {

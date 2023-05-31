@@ -4,17 +4,27 @@ import 'package:resettami_app/Library/SecureStorage.dart';
 import 'package:resettami_app/Models/User.dart';
 import 'package:resettami_app/utils/Constants.dart';
 
-//ignore: must_be_immutable
-class MyDrawer extends StatelessWidget {
-  MyDrawer({super.key, required this.title});
+class MyDrawer extends StatefulWidget {
+  const MyDrawer({super.key, required this.title});
   final String title;
-  final SecureStorage _sessionStorage = SecureStorage();
-  String _emailUser = "";
-  String _nameUser = "";
+
+  @override
+  State<MyDrawer> createState() => _MyDrawerState();
+
+}
+
+class _MyDrawerState extends State<MyDrawer> {
+  late String nameUser = "";
+  late String emailUser = "";
+
+  @override
+  initState() {
+    super.initState();
+    _readFromStorage();
+  }
 
   @override
   Widget build(BuildContext context) {
-    _readFromStorage();
     return Drawer(
       width: MediaQuery.of(context).size.width * 0.5,
       child: ListView(
@@ -24,14 +34,14 @@ class MyDrawer extends StatelessWidget {
           UserAccountsDrawerHeader(
             decoration: const BoxDecoration(color: Color(0xff00A19B)),
             accountName: Text(
-              _nameUser,
+              nameUser,
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ),
             accountEmail: Text(
-              _emailUser,
+              emailUser,
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
               ),
@@ -74,9 +84,12 @@ class MyDrawer extends StatelessWidget {
   }
 
   Future<void> _readFromStorage() async {
-    var user = User.deserialize(await _sessionStorage.readData(eLogin.KEY_USER.toString()) as String);
-    _nameUser = user.operatore!;
-    _emailUser = user.email!;
+    late SecureStorage sessionStorage = SecureStorage();
+    var user = User.deserialize(
+        await sessionStorage.readData(eLogin.KEY_USER.toString()) as String);
+    nameUser = (user.operatore)!;
+    emailUser = (user.email)!;
+    setState(() {});
   }
 
 
