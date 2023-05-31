@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:resettami_app/Component/myAppBar.dart';
+import 'package:resettami_app/Component/myDrawer.dart';
 
 const darkColor = Color(0xFF49535C);
 
@@ -11,14 +13,18 @@ class SchedaPaziente extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.yellow,
+        backgroundColor: Colors.white,
+        appBar: const MyAppBar(
+          title: 'Scheda Paziente',
+        ),
+        drawer: MyDrawer(title: 'Resettami Parkylon'),
         body: Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               const CircleAvatar(
                 radius: 50,
-                backgroundImage: AssetImage('assets/images/doctor.png'),
+                backgroundImage: AssetImage('assets/images/avatar_man.png'),
               ),
               const SizedBox(
                 height: 10,
