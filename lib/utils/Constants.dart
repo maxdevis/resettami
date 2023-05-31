@@ -10,6 +10,7 @@ import 'package:resettami_app/Screens/assistiti/search.dart';
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 enum eLogin {
+  KEY_USER,
   KEY_USERNAME,
   KEY_PASSWORD,
   KEY_EMAIL,

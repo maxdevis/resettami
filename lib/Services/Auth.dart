@@ -7,22 +7,24 @@ class AuthService extends HttpService {
   Future<dynamic> login(String username, String password) async {
     try {
 
-      Map<String, String> data = {'username': username, 'password': password};
+      Map<String, String> data = {'name': username, 'password': password};
 
       var response = await postData('/loginExt', data);
 
       if (response != null) {
         UserModel data = UserModel.fromJson(response);
-        return data;
-      } else {
-        log('failed');
-        return UserModel(op: false);
+        if(data.op){
+          return data;
+        }
       }
+
+      return null;
+
     } catch (e) {
       if (kDebugMode) {
         print(e);
       }
-      return UserModel(op: false);
+      return null;
     }
   }
 

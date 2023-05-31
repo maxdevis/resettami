@@ -25,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
 
 
   final TextEditingController _usernameController =
-  TextEditingController(text: "DVTMSM70B12D883I");
+  TextEditingController(text: "CCCCCC11C11C111C");
   final TextEditingController _passwordController =
   TextEditingController(text: "Max12021970!");
 
@@ -226,13 +226,14 @@ class _LoginPageState extends State<LoginPage> {
     if (_formKey.currentState?.validate() ?? false) {
         EasyLoading.show(status: 'wait'.i18n());
         AuthService api = AuthService();
-        UserModel res = await api.login(_usernameController.text, _passwordController.text);
-        if(res.op){
+        var res = await api.login(_usernameController.text, _passwordController.text);
+        if(res != null){
+          await _sessionStorage.saveData(eLogin.KEY_TOKEN.toString(), res.token ?? '');
+          await _sessionStorage.saveData(eLogin.KEY_TYPE_AUTH.toString(), res.type ?? '');
+          await _sessionStorage.saveData(eLogin.KEY_USER.toString(), User.serialize(res.user as User));
           if (_remember) {
             await _sessionStorage.saveData(eLogin.KEY_USERNAME.toString(), _usernameController.text);
             await _sessionStorage.saveData(eLogin.KEY_PASSWORD.toString(), _passwordController.text);
-            await _sessionStorage.saveData(eLogin.KEY_TOKEN.toString(), res.token ?? '');
-            await _sessionStorage.saveData(eLogin.KEY_TYPE_AUTH.toString(), res.type ?? '');
           }
           EasyLoading.dismiss();
           return true;

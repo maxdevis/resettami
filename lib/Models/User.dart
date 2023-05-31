@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class UserModel {
   bool op = false;
   User? user;
@@ -27,36 +29,33 @@ class UserModel {
 
 class User {
   String? id;
-  String? userId;
+  String? role_id;
   String? strutturaId;
   String? nome;
   String? cognome;
-  String? username;
-  String? utente;
+  String? operatore;
   String? email;
   String? ruolo;
   String? struttura;
 
   User(
       {this.id,
-        this.userId,
         this.strutturaId,
+        this.role_id,
         this.nome,
         this.cognome,
-        this.username,
-        this.utente,
+        this.operatore,
         this.email,
         this.ruolo,
         this.struttura});
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    userId = json['user_id'];
+    role_id = json['role_id'];
     strutturaId = json['struttura_id'];
     nome = json['nome'];
     cognome = json['cognome'];
-    username = json['username'];
-    utente = json['utente'];
+    operatore = json['operatore'];
     email = json['email'];
     ruolo = json['ruolo'];
     struttura = json['struttura'];
@@ -65,15 +64,35 @@ class User {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
-    data['user_id'] = userId;
+    data['role_id'] = role_id;
     data['struttura_id'] = strutturaId;
     data['nome'] = nome;
     data['cognome'] = cognome;
-    data['username'] = username;
-    data['utente'] = utente;
+    data['operatore'] = operatore;
     data['email'] = email;
     data['ruolo'] = ruolo;
     data['struttura'] = struttura;
     return data;
   }
+
+  static Map<String, dynamic> toMap(User model) =>
+      <String, dynamic> {
+        'id': model.id,
+        'role_id': model.role_id,
+        'struttura_id': model.strutturaId,
+        'nome': model.nome,
+        'cognome': model.cognome,
+        'operatore': model.operatore,
+        'email': model.email,
+        'ruolo': model.ruolo,
+        'struttura': model.struttura,
+      };
+
+  static String serialize(User model) =>
+      json.encode(User.toMap(model));
+
+  static User deserialize(String json) =>
+      User.fromJson(jsonDecode(json));
+
+
 }

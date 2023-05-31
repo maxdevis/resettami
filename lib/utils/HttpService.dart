@@ -7,7 +7,8 @@ import 'package:resettami_app/utils/Constants.dart';
 
 class HttpService {
   final SecureStorage _sessionStorage = SecureStorage();
-  static const urlApi = 'http://humusbe.local/api';
+  static const urlApi = 'http://resettami_tcpi.local/api';
+  static const xdebug = '?XDEBUG_SESSION_START=PHPSTORM';
 
   Future<Map<String, String>> getOptions() async {
     String token =
@@ -16,8 +17,8 @@ class HttpService {
       "Access-Control-Allow-Methods": "*",
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json",
-      "Authorization": "Bearer $token",
-      "role-id": "2"
+      //"Authorization": "Bearer $token",
+      //"role-id": "2"
     };
     return headers;
   }
@@ -46,6 +47,7 @@ class HttpService {
   Future<Map<String, dynamic>?> postData(String url,  Map<String, dynamic> data) async {
     try {
       var options = await getOptions();
+
       String uri = '$urlApi$url';
 
       final response = await http.post(Uri.parse(uri),

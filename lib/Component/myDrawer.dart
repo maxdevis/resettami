@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:resettami_app/Library/SecureStorage.dart';
+import 'package:resettami_app/Models/User.dart';
 import 'package:resettami_app/utils/Constants.dart';
 
 //ignore: must_be_immutable
@@ -73,8 +74,9 @@ class MyDrawer extends StatelessWidget {
   }
 
   Future<void> _readFromStorage() async {
-    _nameUser = (await _sessionStorage.readData(eLogin.KEY_USERNAME.toString()))!;
-    _emailUser = (await _sessionStorage.readData(eLogin.KEY_EMAIL.toString()))!;
+    var user = User.deserialize(await _sessionStorage.readData(eLogin.KEY_USER.toString()) as String);
+    _nameUser = user.operatore!;
+    _emailUser = user.email!;
   }
 
 
