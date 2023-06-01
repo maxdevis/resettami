@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:resettami_app/Component/myAppBar.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
 import 'package:resettami_app/Models/Visite.dart';
-import 'package:resettami_app/Screens/Pazienti/Visite/InfoGenerali/anamnesi.dart';
+import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/updrsMain.dart';
 
 class listaVisiteScreen extends StatelessWidget {
   const listaVisiteScreen({super.key, required this.visite});
@@ -47,7 +47,7 @@ class listaVisiteScreen extends StatelessWidget {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Text(
-                              '${visite.model?[index].id}',
+                              'ID Visita: ${visite.model?[index].id}',
                               textAlign: TextAlign.start,
                               maxLines: 1,
                               overflow: TextOverflow.clip,
@@ -55,13 +55,13 @@ class listaVisiteScreen extends StatelessWidget {
                                 fontWeight: FontWeight.w700,
                                 fontStyle: FontStyle.normal,
                                 fontSize: 16,
-                                color: Color(0xff000000),
+                                color: Color(0xffffffff),
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(5, 4, 0, 0),
+                              padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
                               child: Text(
-                                '${visite.model?[index].dataApertura}',
+                                'Data Visita: ${visite.model?[index].dataApertura}',
                                 textAlign: TextAlign.start,
                                 maxLines: 1,
                                 overflow: TextOverflow.clip,
@@ -81,28 +81,12 @@ class listaVisiteScreen extends StatelessWidget {
                       padding: const EdgeInsets.fromLTRB(10, 8, 8, 8),
                       child: IconButton(
                         color: Colors.white,
-                        icon: const Icon(Icons.supervised_user_circle),
-                        onPressed: () {
-                          /*Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SchedaPaziente(name: '${paziente.model?[index].cognome} ${paziente.model?[index].nome}',
-                                  codiceFiscale: '${paziente.model?[index].codiceFiscale}'),
-                            ),
-                          );*/
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 8, 8, 8),
-                      child: IconButton(
-                        color: Colors.white,
-                        icon: const Icon(Icons.table_view),
+                        icon: const Icon(Icons.medical_information),
                         onPressed: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const anamnesiScreen(),
+                              builder: (context) => const updrsMainScreen(),
                             ),
                           );
                         },
