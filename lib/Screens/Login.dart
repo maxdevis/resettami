@@ -153,6 +153,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SizedBox(
                 width: size.width,
+                height: 50,
                 child: ElevatedButton(
                   onPressed: () async {
                     if (await _login(context)) {
@@ -173,7 +174,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Text("signIn".i18n()),
                 ),
               ),
-              SizedBox(
+              /*SizedBox(
                 height: size.height * .015,
               ),
               Center(
@@ -208,7 +209,7 @@ class _LoginPageState extends State<LoginPage> {
                     textAlign: TextAlign.center,
                   ),
                 ),
-              ),
+              ),*/
             ],
           ),
         ),
@@ -220,6 +221,7 @@ class _LoginPageState extends State<LoginPage> {
   Future<void> _readFromStorage() async {
     _usernameController.text = (await _sessionStorage.readData(eLogin.KEY_USERNAME.toString()))!;
     _passwordController.text = (await _sessionStorage.readData(eLogin.KEY_PASSWORD.toString()))!;
+    setState(() {});
   }
 
   Future<bool> _login(BuildContext context) async {
@@ -242,6 +244,7 @@ class _LoginPageState extends State<LoginPage> {
           EasyLoading.dismiss();
           showMyDialog('Error Login');
         }
+        setState(() {});
     }
     return false;
   }
