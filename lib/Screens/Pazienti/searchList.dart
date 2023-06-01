@@ -60,7 +60,7 @@ class searchListScreen extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(5, 4, 0, 0),
+                              padding: const EdgeInsets.fromLTRB(7, 4, 0, 0),
                               child: Text(
                                 '${assistito.model?[index].codiceFiscale}',
                                 textAlign: TextAlign.start,
@@ -70,7 +70,7 @@ class searchListScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.normal,
                                   fontSize: 12,
-                                  color: Color(0xff7a7a7a),
+                                  color: Color(0xffffffff),
                                 ),
                               ),
                             ),
