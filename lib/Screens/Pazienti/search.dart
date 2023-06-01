@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:resettami_app/Component/myAppBar.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
-import 'package:resettami_app/Models/Assistito.dart';
+import 'package:resettami_app/Models/Paziente.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:localization/localization.dart';
 import 'package:resettami_app/Screens/Pazienti/searchList.dart';
-import 'package:resettami_app/Services/Assistiti.dart';
+import 'package:resettami_app/Services/Pazienti.dart';
 import 'package:resettami_app/Library/SecureStorage.dart';
 
 class SearchAssScreen extends StatefulWidget {
@@ -202,7 +202,7 @@ class _SearchScreen extends State<SearchAssScreen> {
                 height: size.height * .065,
                 child: ElevatedButton(
                   onPressed: () async {
-                    Assistito? res = await _search(context);
+                    Paziente? res = await _search(context);
                     if (res != null) {
                       if (context.mounted) {
                         Navigator.push(
@@ -231,11 +231,11 @@ class _SearchScreen extends State<SearchAssScreen> {
     );
   }
 
-  Future<Assistito?> _search(BuildContext context) async {
+  Future<Paziente?> _search(BuildContext context) async {
     if (_formKey.currentState?.validate() ?? false) {
       EasyLoading.show(status: 'wait'.i18n());
-      AssistitiService api = AssistitiService();
-      Assistito res = await api.searchAss(_codfController.text, _cognomeController.text, _nomeController.text);
+      PazientiService api = PazientiService();
+      Paziente res = await api.search(_codfController.text, _cognomeController.text, _nomeController.text);
       EasyLoading.dismiss();
 
       return res;

@@ -1,17 +1,17 @@
-class Assistito {
+class Paziente {
   bool op = false;
-  List<AssistitoModel>? model;
+  List<PazienteModel>? model;
   String? msg;
   int? code;
 
-  Assistito({required this.op, this.model, this.msg, this.code});
+  Paziente({required this.op, this.model, this.msg, this.code});
 
-  Assistito.fromJson(Map<String, dynamic> json) {
+  Paziente.fromJson(Map<String, dynamic> json) {
     op = json['op'];
     if (json['model'] != null) {
-      model = <AssistitoModel>[];
+      model = <PazienteModel>[];
       json['model'].forEach((v) {
-        model!.add(AssistitoModel.fromJson(v));
+        model!.add(PazienteModel.fromJson(v));
       });
     }
     msg = json['msg'];
@@ -30,7 +30,7 @@ class Assistito {
   }
 }
 
-class AssistitoModel {
+class PazienteModel {
   String? id;
   String? assistitoId;
   String? codiceFiscale;
@@ -41,7 +41,7 @@ class AssistitoModel {
   String? createdAt;
   String? operatore;
 
-  AssistitoModel(
+  PazienteModel(
       {this.id,
         this.assistitoId,
         this.codiceFiscale,
@@ -52,7 +52,7 @@ class AssistitoModel {
         this.createdAt,
         this.operatore});
 
-  AssistitoModel.fromJson(Map<String, dynamic> json) {
+  PazienteModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     assistitoId = json['assistito_id'];
     codiceFiscale = json['codice_fiscale'];

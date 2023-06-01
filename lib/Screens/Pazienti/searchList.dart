@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:resettami_app/Component/myAppBar.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
-import 'package:resettami_app/Models/Assistito.dart';
+import 'package:resettami_app/Models/Paziente.dart';
 import 'package:resettami_app/Screens/Pazienti/SchedaPaziente.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/InfoGenerali/anamnesi.dart';
 
 class searchListScreen extends StatelessWidget {
   const searchListScreen({super.key, required this.assistito});
 
-  final Assistito assistito;
+  final Paziente assistito;
 
   @override
   Widget build(BuildContext context) {
