@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:resettami_app/Component/myAppBar.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
-import 'package:resettami_app/Screens/assistiti/Anamnesi/HealtCheck.dart';
-import 'package:resettami_app/Screens/assistiti/appointments.dart';
+import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/HealtCheck.dart';
+import 'package:resettami_app/Screens/Pazienti/appointments.dart';
+
 
 
 class anamnesiScreen extends StatefulWidget {
@@ -42,7 +43,7 @@ class _anamensiState extends State<anamnesiScreen> {
         appBar: const MyAppBar(
           title: 'Resettami Parkylon',
         ),
-        drawer: MyDrawer(title: 'Resettami Parkylon'),
+        drawer: const MyDrawer(title: 'Resettami Parkylon'),
         body: Center(
           child: _widgetOptions.elementAt(_selectedIndex),
         ),

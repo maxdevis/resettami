@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:resettami_app/Screens/Splash.dart';
-import 'package:resettami_app/Screens/assistiti/SchedaPaziente.dart';
 import 'package:resettami_app/utils/Constants.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';

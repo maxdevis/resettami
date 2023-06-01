@@ -4,7 +4,8 @@ import 'package:resettami_app/Component/myCard.dart';
 import 'package:resettami_app/Component/myCharts.dart';
 import 'package:resettami_app/Screens/Home.dart';
 import 'package:resettami_app/Screens/Login.dart';
-import 'package:resettami_app/Screens/assistiti/search.dart';
+import 'package:resettami_app/Screens/Pazienti/search.dart';
+
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
