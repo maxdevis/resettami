@@ -79,7 +79,7 @@ class searchListScreen extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 8, 8, 8),
+                      padding: const EdgeInsets.fromLTRB(15, 8, 8, 8),
                       child: IconButton(
                         color: Colors.white,
                         icon: const Icon(Icons.supervised_user_circle),
@@ -95,7 +95,7 @@ class searchListScreen extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 8, 8, 8),
+                      padding: const EdgeInsets.fromLTRB(15, 8, 8, 8),
                       child: IconButton(
                         color: Colors.white,
                         icon: const Icon(Icons.table_view),
