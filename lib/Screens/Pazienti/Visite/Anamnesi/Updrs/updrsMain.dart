@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:resettami_app/Component/myAppBar.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
+import 'package:resettami_app/Models/Updrs.dart';
 
 class updrsMainScreen extends StatefulWidget {
-  const updrsMainScreen({super.key});
+  const updrsMainScreen({super.key, required this.updrs});
+
+  final Updrs updrs;
 
   @override
   State<updrsMainScreen> createState() => _updrsMainState();
