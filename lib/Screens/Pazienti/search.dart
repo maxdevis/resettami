@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:resettami_app/Component/myAppBar.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
-import 'package:resettami_app/Models/Paziente/Paziente.dart';
+import 'package:resettami_app/Models/Paziente/Ricerca.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:localization/localization.dart';
 import 'package:resettami_app/Screens/Pazienti/searchList.dart';
 import 'package:resettami_app/Services/Pazienti.dart';
-import 'package:resettami_app/Library/SecureStorage.dart';
+
 
 class SearchAssScreen extends StatefulWidget {
   const SearchAssScreen({super.key});
@@ -20,7 +20,6 @@ class _SearchScreen extends State<SearchAssScreen> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  final SecureStorage _sessionStorage = SecureStorage();
   final TextEditingController _codfController = TextEditingController(text: "");
   final TextEditingController _nomeController = TextEditingController(text: "");
   final TextEditingController _cognomeController = TextEditingController(text: "");
@@ -202,13 +201,13 @@ class _SearchScreen extends State<SearchAssScreen> {
                 height: size.height * .065,
                 child: ElevatedButton(
                   onPressed: () async {
-                    Paziente? res = await _search(context);
+                    RicercaPaziente? res = await _search(context);
                     if (res != null) {
                       if (context.mounted) {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => searchListScreen(assistito: res),
+                            builder: (context) => searchListScreen(ricPaziente: res),
                           ),
                         );
                       }
@@ -231,11 +230,11 @@ class _SearchScreen extends State<SearchAssScreen> {
     );
   }
 
-  Future<Paziente?> _search(BuildContext context) async {
+  Future<RicercaPaziente?> _search(BuildContext context) async {
     if (_formKey.currentState?.validate() ?? false) {
       EasyLoading.show(status: 'wait'.i18n());
       PazientiService api = PazientiService();
-      Paziente res = await api.search(_codfController.text, _cognomeController.text, _nomeController.text);
+      RicercaPaziente res = await api.search(_codfController.text, _cognomeController.text, _nomeController.text);
       EasyLoading.dismiss();
 
       return res;

@@ -17,7 +17,7 @@ class RicercaPaziente {
 class Data {
   bool? op;
   String? msg;
-  List<Model>? model;
+  List<PazienteModel>? model;
 
   Data({op, msg, model});
 
@@ -25,9 +25,9 @@ class Data {
     op = json['op'];
     msg = json['msg'];
     if (json['model'] != null) {
-      model = <Model>[];
+      model = <PazienteModel>[];
       json['model'].forEach((v) {
-        model!.add(Model.fromJson(v));
+        model!.add(PazienteModel.fromJson(v));
       });
     }
   }
@@ -43,7 +43,7 @@ class Data {
   }
 }
 
-class Model {
+class PazienteModel {
   String? id;
   String? strutturaId;
   String? sessoId;
@@ -69,7 +69,7 @@ class Model {
   String? provRes;
   String? visitaOpen;
 
-  Model(
+  PazienteModel(
       {id,
         strutturaId,
         sessoId,
@@ -95,7 +95,7 @@ class Model {
         provRes,
         visitaOpen});
 
-  Model.fromJson(Map<String, dynamic> json) {
+  PazienteModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     strutturaId = json['struttura_id'];
     sessoId = json['sesso_id'];

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:resettami_app/Component/myAppBar.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
-import 'package:resettami_app/Models/Paziente/Paziente.dart';
+import 'package:resettami_app/Models/Paziente/Ricerca.dart';
 import 'package:resettami_app/Screens/Pazienti/SchedaPaziente.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/InfoGenerali/anamnesi.dart';
 
 class searchListScreen extends StatelessWidget {
-  const searchListScreen({super.key, required this.assistito});
+  const searchListScreen({super.key, required this.ricPaziente});
 
-  final Paziente assistito;
+  final RicercaPaziente ricPaziente;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class searchListScreen extends StatelessWidget {
         route: '/searchAss',
       ),
       body: ListView.builder(
-        itemCount: assistito.model?.length,
+        itemCount: ricPaziente.data?.model?.length,
         itemBuilder: (context, index) {
           return SizedBox(
               height: 80,
@@ -48,7 +48,7 @@ class searchListScreen extends StatelessWidget {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Text(
-                              '${assistito.model?[index].cognome} ${assistito.model?[index].nome}',
+                              '${ricPaziente.data?.model?[index].cognome} ${ricPaziente.data?.model?[index].nome}',
                               textAlign: TextAlign.start,
                               maxLines: 1,
                               overflow: TextOverflow.clip,
@@ -62,7 +62,7 @@ class searchListScreen extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.fromLTRB(7, 4, 0, 0),
                               child: Text(
-                                '${assistito.model?[index].codiceFiscale}',
+                                '${ricPaziente.data?.model?[index].codiceFiscale}',
                                 textAlign: TextAlign.start,
                                 maxLines: 1,
                                 overflow: TextOverflow.clip,
@@ -87,8 +87,8 @@ class searchListScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => SchedaPaziente(name: '${assistito.model?[index].cognome} ${assistito.model?[index].nome}',
-                                  codiceFiscale: '${assistito.model?[index].codiceFiscale}'),
+                              builder: (context) => SchedaPaziente(name: '${ricPaziente.data?.model?[index].cognome} ${ricPaziente.data?.model?[index].nome}',
+                                  codiceFiscale: '${ricPaziente.data?.model?[index].codiceFiscale}'),
                             ),
                           );
                         },
