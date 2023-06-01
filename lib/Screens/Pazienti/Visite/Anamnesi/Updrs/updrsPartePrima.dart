@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
+import 'package:resettami_app/Models/Updrs.dart';
 
 class updrsPartePrimaScreen extends StatefulWidget {
-  const updrsPartePrimaScreen({super.key});
+  const updrsPartePrimaScreen({super.key, required this.updrs});
+
+  final Updrs updrs;
 
   @override
   _updrsPartePrimaState createState() => _updrsPartePrimaState();

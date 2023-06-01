@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:resettami_app/Component/myAppBar.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
 import 'package:resettami_app/Models/Updrs.dart';
+import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/updrsPartePrima.dart';
 
 class updrsMainScreen extends StatefulWidget {
   const updrsMainScreen({super.key, required this.updrs});
@@ -14,24 +15,23 @@ class updrsMainScreen extends StatefulWidget {
 
 class _updrsMainState extends State<updrsMainScreen> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Parte I',
-      style: optionStyle,
-    ),
-    Text(
+  late final Updrs _updrs;
+
+  /*static const TextStyle optionStyle =
+  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);*/
+  static final List<Widget> _widgetOptions = <Widget>[
+    updrsPartePrimaScreen(updrs: _updrs),
+    const Text(
       'Parte II',
-      style: optionStyle,
+      //style: optionStyle,
     ),
-    Text(
+    const Text(
       'Parte III',
-      style: optionStyle,
+      //style: optionStyle,
     ),
-    Text(
+    const Text(
       'Parte IV',
-      style: optionStyle,
+      //style: optionStyle,
     ),
   ];
 
