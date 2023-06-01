@@ -8,7 +8,7 @@ import 'package:resettami_app/utils/Constants.dart';
 class HttpService {
   final SecureStorage _sessionStorage = SecureStorage();
   static const urlApi = 'http://resettami_tcpi.local/api';
-  static const xdebug = '?XDEBUG_SESSION_START=PHPSTORM';
+  static const xdebug = 'XDEBUG_SESSION_START=PHPSTORM';
 
   Future<Map<String, String>> getOptions() async {
     String token =
@@ -25,7 +25,7 @@ class HttpService {
     try {
       var options = await getOptions();
       String params = Uri(queryParameters: data).query;
-      String uri = '$urlApi$url?$params&XDEBUG_SESSION_START=PHPSTORM';
+      String uri = '$urlApi$url?$params&$xdebug';
 
       final response = await http.get(Uri.parse(uri), headers: options);
 
@@ -46,7 +46,7 @@ class HttpService {
     try {
       var options = await getOptions();
 
-      String uri = '$urlApi$url?XDEBUG_SESSION_START=PHPSTORM';
+      String uri = '$urlApi$url?$xdebug';
 
       final response = await http.post(Uri.parse(uri),
         headers: options,

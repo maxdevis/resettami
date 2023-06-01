@@ -28,7 +28,7 @@ class Paziente {
 }
 
 class Model {
-  String? id;
+  String id = '0';
   String? strutturaId;
   String? sessoId;
   String? operatoreId;

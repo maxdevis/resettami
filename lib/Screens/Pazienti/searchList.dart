@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:localization/localization.dart';
 import 'package:resettami_app/Component/myAppBar.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
 import 'package:resettami_app/Models/Paziente.dart';
+import 'package:resettami_app/Models/Visite.dart';
 import 'package:resettami_app/Screens/Pazienti/SchedaPaziente.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/InfoGenerali/anamnesi.dart';
+import 'package:resettami_app/Screens/Pazienti/Visite/lista.dart';
+import 'package:resettami_app/Services/Visite.dart';
+import 'package:resettami_app/utils/Uty.dart';
 
 class searchListScreen extends StatelessWidget {
   const searchListScreen({super.key, required this.paziente});
@@ -99,13 +105,16 @@ class searchListScreen extends StatelessWidget {
                       child: IconButton(
                         color: Colors.white,
                         icon: const Icon(Icons.table_view),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const anamnesiScreen(),
-                            ),
-                          );
+                        onPressed: () async {
+                          List<Visite>? ret = await _getVisite(paziente.model![index].id);
+                          if(ret != null && context.mounted){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => listaVisiteScreen(visite: ret,),
+                              ),
+                            );
+                          }
                         },
                       ),
                     ),
@@ -116,4 +125,17 @@ class searchListScreen extends StatelessWidget {
       ),
     );
   }
+
+  Future<List<Visite>?> _getVisite(String id) async {
+    EasyLoading.show(status: 'wait'.i18n());
+    VisiteService api = VisiteService();
+    var res = await api.getVisite(id);
+    EasyLoading.dismiss();
+    if(res == null){
+      showMyDialog('Errore caricamento dati');
+    }
+
+    return res;
+  }
+
 }

@@ -1,29 +1,25 @@
 import 'package:flutter/foundation.dart';
 import 'package:resettami_app/Models/Paziente.dart';
+import 'package:resettami_app/Models/Visite.dart';
 import 'package:resettami_app/utils/HttpService.dart';
 
-class PazientiService extends HttpService {
+class VisiteService extends HttpService {
 
 
-  Future<dynamic> search(String? codice, String? codiceFiscale, String? cognome, String? nome) async {
+  Future<dynamic> getVisite(String pazienteId) async {
     try {
 
-      const url = '/app/searchPazienti';
+      const url = '/app/getVisite';
 
       Map<String, dynamic> data = {
-        'id': codice,
-        /*'codice_fiscale': codiceFiscale,
-        'cognome': cognome,
-        'nome': nome,*/
+        'paziente_id': pazienteId,
       };
 
       var response = await getData(url, data);
 
       if(response != null) {
-        Paziente data = Paziente.fromJson(response);
-        if(data.op){
-          return data;
-        }
+        Visite data = Visite.fromJson(response);
+        return data;
       }
 
       return null;
