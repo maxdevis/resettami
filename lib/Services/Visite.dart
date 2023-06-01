@@ -19,9 +19,10 @@ class VisiteService extends HttpService {
 
       if(response != null) {
         Visite data = Visite.fromJson(response);
-        return data;
+        if(data.op) {
+          return data;
+        }
       }
-
       return null;
 
     } catch (e) {

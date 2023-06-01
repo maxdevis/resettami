@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:resettami_app/Component/myAppBar.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
 import 'package:resettami_app/Models/Visite.dart';
-import 'package:resettami_app/Screens/Pazienti/SchedaPaziente.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/InfoGenerali/anamnesi.dart';
 
 class listaVisiteScreen extends StatelessWidget {
   const listaVisiteScreen({super.key, required this.visite});
 
-  final List<Visite> visite;
+  final Visite visite;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class listaVisiteScreen extends StatelessWidget {
         route: '/searchAss',
       ),
       body: ListView.builder(
-        itemCount: visite.length,
+        itemCount: visite.model?.length,
         itemBuilder: (context, index) {
           return SizedBox(
               height: 80,
@@ -48,7 +47,7 @@ class listaVisiteScreen extends StatelessWidget {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Text(
-                              '${visite?[index].id}',
+                              '${visite.model?[index].id}',
                               textAlign: TextAlign.start,
                               maxLines: 1,
                               overflow: TextOverflow.clip,
@@ -62,7 +61,7 @@ class listaVisiteScreen extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.fromLTRB(5, 4, 0, 0),
                               child: Text(
-                                '${visite?[index].dataApertura}',
+                                '${visite.model?[index].dataApertura}',
                                 textAlign: TextAlign.start,
                                 maxLines: 1,
                                 overflow: TextOverflow.clip,

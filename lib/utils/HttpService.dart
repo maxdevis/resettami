@@ -21,7 +21,7 @@ class HttpService {
     return headers;
   }
 
-  Future<Map<String, dynamic>?> getData(String url, data) async {
+  Future<dynamic> getData(String url, data) async {
     try {
       var options = await getOptions();
       String params = Uri(queryParameters: data).query;
@@ -30,7 +30,7 @@ class HttpService {
       final response = await http.get(Uri.parse(uri), headers: options);
 
       if (response.statusCode == 200) {
-        var data = convert.jsonDecode(response.body) as Map<String, dynamic>;
+        var data = convert.jsonDecode(response.body);
         return data;
       }
       return null;
@@ -42,7 +42,7 @@ class HttpService {
     }
   }
 
-  Future<Map<String, dynamic>?> postData(String url,  Map<String, dynamic> data) async {
+  Future<dynamic> postData(String url,  Map<String, dynamic> data) async {
     try {
       var options = await getOptions();
 
@@ -54,7 +54,7 @@ class HttpService {
       );
 
       if (response.statusCode == 200) {
-        var jsonResponse = convert.jsonDecode(response.body) as Map<String, dynamic>;
+        var jsonResponse = convert.jsonDecode(response.body);
         return jsonResponse;
       }
       return null;

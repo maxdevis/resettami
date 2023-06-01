@@ -106,7 +106,7 @@ class searchListScreen extends StatelessWidget {
                         color: Colors.white,
                         icon: const Icon(Icons.table_view),
                         onPressed: () async {
-                          List<Visite>? ret = await _getVisite(paziente.model![index].id);
+                          var ret = await _getVisite(paziente.model![index].id);
                           if(ret != null && context.mounted){
                             Navigator.push(
                               context,
@@ -126,7 +126,7 @@ class searchListScreen extends StatelessWidget {
     );
   }
 
-  Future<List<Visite>?> _getVisite(String id) async {
+  Future<dynamic> _getVisite(String id) async {
     EasyLoading.show(status: 'wait'.i18n());
     VisiteService api = VisiteService();
     var res = await api.getVisite(id);

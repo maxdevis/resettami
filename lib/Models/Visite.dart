@@ -1,4 +1,30 @@
 class Visite {
+  bool op = false;
+  List<Model>? model;
+
+  Visite({op, model});
+
+  Visite.fromJson(Map<String, dynamic> json) {
+    op = json['op'];
+    if (json['model'] != null) {
+      model = <Model>[];
+      json['model'].forEach((v) {
+        model!.add(Model.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['op'] = op;
+    if (model != null) {
+      data['model'] = model!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Model {
   String? id;
   String? pazienteId;
   String? strutturaId;
@@ -12,7 +38,7 @@ class Visite {
   String? fCondiviso;
   String? evento;
 
-  Visite(
+  Model(
       {id,
         pazienteId,
         strutturaId,
@@ -24,9 +50,10 @@ class Visite {
         dataChiusura,
         struttura,
         fCondiviso,
-        evento});
+        evento
+        });
 
-  Visite.fromJson(Map<String, dynamic> json) {
+  Model.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     pazienteId = json['paziente_id'];
     strutturaId = json['struttura_id'];
@@ -58,3 +85,4 @@ class Visite {
     return data;
   }
 }
+
