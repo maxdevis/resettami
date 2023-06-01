@@ -1,6 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/foundation.dart';
-import 'package:resettami_app/Models/Paziente.dart';
+import 'package:resettami_app/Models/Paziente/Paziente.dart';
 import 'package:resettami_app/utils/HttpService.dart';
 
 class PazientiService extends HttpService {
