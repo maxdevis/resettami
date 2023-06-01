@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:resettami_app/Component/myAppBar.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
-import 'package:resettami_app/Models/Paziente/Ricerca.dart';
+import 'package:resettami_app/Models/Paziente.dart';
 import 'package:resettami_app/Screens/Pazienti/SchedaPaziente.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/InfoGenerali/anamnesi.dart';
 
 class searchListScreen extends StatelessWidget {
-  const searchListScreen({super.key, required this.ricPaziente});
+  const searchListScreen({super.key, required this.paziente});
 
-  final RicercaPaziente ricPaziente;
+  final Paziente paziente;
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +16,11 @@ class searchListScreen extends StatelessWidget {
       backgroundColor: const Color(0xffffffff),
       drawer: const MyDrawer(title: 'Resettami Parkylon'),
       appBar: const MyAppBar(
-        title: 'Resettami Parkylon',
+        title: 'Ricerca Paziente',
         route: '/searchAss',
       ),
       body: ListView.builder(
-        itemCount: ricPaziente.data?.model?.length,
+        itemCount: paziente.model?.length,
         itemBuilder: (context, index) {
           return SizedBox(
               height: 80,
@@ -48,7 +48,7 @@ class searchListScreen extends StatelessWidget {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Text(
-                              '${ricPaziente.data?.model?[index].cognome} ${ricPaziente.data?.model?[index].nome}',
+                              'Codice: ${paziente.model?[index].id}',
                               textAlign: TextAlign.start,
                               maxLines: 1,
                               overflow: TextOverflow.clip,
@@ -56,13 +56,13 @@ class searchListScreen extends StatelessWidget {
                                 fontWeight: FontWeight.w700,
                                 fontStyle: FontStyle.normal,
                                 fontSize: 16,
-                                color: Color(0xff000000),
+                                color: Color(0xffffffff),
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(7, 4, 0, 0),
+                              padding: const EdgeInsets.fromLTRB(5, 10, 0, 0),
                               child: Text(
-                                '${ricPaziente.data?.model?[index].codiceFiscale}',
+                                '${paziente.model?[index].cognome} ${paziente.model?[index].nome}',
                                 textAlign: TextAlign.start,
                                 maxLines: 1,
                                 overflow: TextOverflow.clip,
@@ -87,8 +87,8 @@ class searchListScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => SchedaPaziente(name: '${ricPaziente.data?.model?[index].cognome} ${ricPaziente.data?.model?[index].nome}',
-                                  codiceFiscale: '${ricPaziente.data?.model?[index].codiceFiscale}'),
+                              builder: (context) => SchedaPaziente(name: '${paziente.model?[index].cognome} ${paziente.model?[index].nome}',
+                                  codiceFiscale: '${paziente.model?[index].codiceFiscale}'),
                             ),
                           );
                         },

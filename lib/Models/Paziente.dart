@@ -1,33 +1,17 @@
-class RicercaPaziente {
-  Data? data;
-
-  RicercaPaziente({data});
-
-  RicercaPaziente.fromJson(Map<String, dynamic> json) {
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['data'] = data;
-    return data;
-  }
-}
-
-class Data {
-  bool? op;
+class Paziente {
+  bool op = false;
   String? msg;
-  List<PazienteModel>? model;
+  List<Model>? model;
 
-  Data({op, msg, model});
+  Paziente({op, msg, model});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  Paziente.fromJson(Map<String, dynamic> json) {
     op = json['op'];
     msg = json['msg'];
     if (json['model'] != null) {
-      model = <PazienteModel>[];
+      model = <Model>[];
       json['model'].forEach((v) {
-        model!.add(PazienteModel.fromJson(v));
+        model!.add(Model.fromJson(v));
       });
     }
   }
@@ -43,7 +27,7 @@ class Data {
   }
 }
 
-class PazienteModel {
+class Model {
   String? id;
   String? strutturaId;
   String? sessoId;
@@ -69,7 +53,7 @@ class PazienteModel {
   String? provRes;
   String? visitaOpen;
 
-  PazienteModel(
+  Model(
       {id,
         strutturaId,
         sessoId,
@@ -95,7 +79,7 @@ class PazienteModel {
         provRes,
         visitaOpen});
 
-  PazienteModel.fromJson(Map<String, dynamic> json) {
+  Model.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     strutturaId = json['struttura_id'];
     sessoId = json['sesso_id'];

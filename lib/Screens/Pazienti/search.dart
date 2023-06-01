@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:resettami_app/Component/myAppBar.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
-import 'package:resettami_app/Models/Paziente/Ricerca.dart';
+import 'package:resettami_app/Models/Paziente.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:localization/localization.dart';
 import 'package:resettami_app/Screens/Pazienti/searchList.dart';
 import 'package:resettami_app/Services/Pazienti.dart';
-
+import 'package:resettami_app/utils/Uty.dart';
 
 class SearchAssScreen extends StatefulWidget {
   const SearchAssScreen({super.key});
@@ -22,12 +23,10 @@ class _SearchScreen extends State<SearchAssScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final TextEditingController _codfController = TextEditingController(text: "");
   final TextEditingController _nomeController = TextEditingController(text: "");
-  final TextEditingController _cognomeController = TextEditingController(text: "");
-  String _dropdownValue = "";
-
-  _onForgotPassword() {}
-
-  _onSignUp() {}
+  final TextEditingController _cognomeController =
+      TextEditingController(text: "");
+  final TextEditingController _codiceController =
+      TextEditingController(text: "");
 
   @override
   void initState() {
@@ -71,9 +70,9 @@ class _SearchScreen extends State<SearchAssScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    DropdownButtonFormField<String>(
+                    TextFormField(
                       decoration: InputDecoration(
-                        labelText: "Tipo Ricerca",
+                        labelText: "Codice Paziente",
                         labelStyle: const TextStyle(color: primaryColor),
                         focusedBorder: UnderlineInputBorder(
                           borderRadius: BorderRadius.circular(0),
@@ -81,114 +80,119 @@ class _SearchScreen extends State<SearchAssScreen> {
                               const BorderSide(color: primaryColor, width: 2),
                         ),
                       ),
-                      items: <String>['Codice Fiscale', 'Cognome/Nome']
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(
-                            value,
-                            style: const TextStyle(fontSize: 15),
+                      controller: _codiceController,
+                      onChanged: (value) {
+                        _codiceController.value = TextEditingValue(
+                            text: value,
+                            selection: _codiceController.selection);
+                      },
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Required field';
+                        }
+                        return null;
+                      },
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.number,
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.digitsOnly
+                      ], // Only numbers can be entered
+                    ),
+                    /*SizedBox(
+                      height: size.height * .03,
+                    ),*/
+                    Visibility(
+                      visible: false,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          labelText: "Codice Fiscale",
+                          labelStyle: const TextStyle(color: primaryColor),
+                          focusedBorder: UnderlineInputBorder(
+                            borderRadius: BorderRadius.circular(0),
+                            borderSide:
+                                const BorderSide(color: primaryColor, width: 2),
                           ),
-                        );
-                      }).toList(),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Required field';
-                        }
-                        return null;
-                      },
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          _dropdownValue = newValue!;
-                        });
-                      },
-                    ),
-                    SizedBox(
-                      height: size.height * .03,
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        labelText: "Codice Fiscale",
-                        labelStyle: const TextStyle(color: primaryColor),
-                        focusedBorder: UnderlineInputBorder(
-                          borderRadius: BorderRadius.circular(0),
-                          borderSide:
-                              const BorderSide(color: primaryColor, width: 2),
                         ),
+                        controller: _codfController,
+                        onChanged: (value) {
+                          _codfController.value = TextEditingValue(
+                              text: value.toUpperCase(),
+                              selection: _codfController.selection);
+                        },
+                        /*validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Required field';
+                          }
+                          return null;
+                        },*/
+                        textInputAction: TextInputAction.next,
+                        textCapitalization: TextCapitalization.sentences,
+                        keyboardType: TextInputType.text,
                       ),
-                      controller: _codfController,
-                      onChanged: (value) {
-                        _codfController.value = TextEditingValue(
-                            text: value.toUpperCase(),
-                            selection: _codfController.selection);
-                      },
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Required field';
-                        }
-                        return null;
-                      },
-                      textInputAction: TextInputAction.next,
-                      textCapitalization: TextCapitalization.sentences,
-                      keyboardType: TextInputType.text,
                     ),
-                    SizedBox(
+                    /*SizedBox(
                       height: size.height * .03,
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        labelText: "Nome",
-                        labelStyle: const TextStyle(color: primaryColor),
-                        focusedBorder: UnderlineInputBorder(
-                          borderRadius: BorderRadius.circular(0),
-                          borderSide:
-                          const BorderSide(color: primaryColor, width: 2),
+                    ),*/
+                    Visibility(
+                      visible: false,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          labelText: "Nome",
+                          labelStyle: const TextStyle(color: primaryColor),
+                          focusedBorder: UnderlineInputBorder(
+                            borderRadius: BorderRadius.circular(0),
+                            borderSide:
+                                const BorderSide(color: primaryColor, width: 2),
+                          ),
                         ),
-                      ),
-                      controller: _nomeController,
-                      onChanged: (value) {
-                        _nomeController.value = TextEditingValue(
-                            text: value.toUpperCase(),
-                            selection: _nomeController.selection);
-                      },
-                      /*validator: (value) {
+                        controller: _nomeController,
+                        onChanged: (value) {
+                          _nomeController.value = TextEditingValue(
+                              text: value.toUpperCase(),
+                              selection: _nomeController.selection);
+                        },
+                        /*validator: (value) {
                         if (value!.isEmpty) {
                           return 'Required field';
                         }
                         return null;
                       },*/
-                      textInputAction: TextInputAction.next,
-                      textCapitalization: TextCapitalization.none,
-                      keyboardType: TextInputType.text,
-                    ),
-                    SizedBox(
-                      height: size.height * .03,
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        labelText: "Cognome",
-                        labelStyle: const TextStyle(color: primaryColor),
-                        focusedBorder: UnderlineInputBorder(
-                          borderRadius: BorderRadius.circular(0),
-                          borderSide:
-                              const BorderSide(color: primaryColor, width: 2),
-                        ),
+                        textInputAction: TextInputAction.next,
+                        textCapitalization: TextCapitalization.none,
+                        keyboardType: TextInputType.text,
                       ),
-                      controller: _cognomeController,
-                      onChanged: (value) {
-                        _cognomeController.value = TextEditingValue(
-                            text: value.toUpperCase(),
-                            selection: _cognomeController.selection);
-                      },
-                      /*validator: (value) {
+                    ),
+                    /*SizedBox(
+                      height: size.height * .03,
+                    ),*/
+                    Visibility(
+                      visible: false,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          labelText: "Cognome",
+                          labelStyle: const TextStyle(color: primaryColor),
+                          focusedBorder: UnderlineInputBorder(
+                            borderRadius: BorderRadius.circular(0),
+                            borderSide:
+                                const BorderSide(color: primaryColor, width: 2),
+                          ),
+                        ),
+                        controller: _cognomeController,
+                        onChanged: (value) {
+                          _cognomeController.value = TextEditingValue(
+                              text: value.toUpperCase(),
+                              selection: _cognomeController.selection);
+                        },
+                        /*validator: (value) {
                         if (value!.isEmpty) {
                           return 'Required field';
                         }
                         return null;
                       },*/
-                      textInputAction: TextInputAction.next,
-                      textCapitalization: TextCapitalization.none,
-                      keyboardType: TextInputType.text,
+                        textInputAction: TextInputAction.next,
+                        textCapitalization: TextCapitalization.none,
+                        keyboardType: TextInputType.text,
+                      ),
                     ),
                   ],
                 ),
@@ -201,13 +205,14 @@ class _SearchScreen extends State<SearchAssScreen> {
                 height: size.height * .065,
                 child: ElevatedButton(
                   onPressed: () async {
-                    RicercaPaziente? res = await _search(context);
+                    Paziente? res = await _search(context);
                     if (res != null) {
                       if (context.mounted) {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => searchListScreen(ricPaziente: res),
+                            builder: (context) =>
+                                searchListScreen(paziente: res),
                           ),
                         );
                       }
@@ -215,8 +220,7 @@ class _SearchScreen extends State<SearchAssScreen> {
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: primaryColor,
-                      textStyle: const TextStyle(fontSize: 18)
-                  ),
+                      textStyle: const TextStyle(fontSize: 18)),
                   child: const Text("Ricerca"),
                 ),
               ),
@@ -230,12 +234,16 @@ class _SearchScreen extends State<SearchAssScreen> {
     );
   }
 
-  Future<RicercaPaziente?> _search(BuildContext context) async {
+  Future<dynamic> _search(BuildContext context) async {
     if (_formKey.currentState?.validate() ?? false) {
       EasyLoading.show(status: 'wait'.i18n());
       PazientiService api = PazientiService();
-      RicercaPaziente res = await api.search(_codfController.text, _cognomeController.text, _nomeController.text);
+      var res = await api.search(_codiceController.text,
+          _codfController.text, _cognomeController.text, _nomeController.text);
       EasyLoading.dismiss();
+      if(res == null){
+        showMyDialog('Errore caricamento dati');
+      }
 
       return res;
     }

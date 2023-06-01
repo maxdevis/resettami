@@ -14,11 +14,9 @@ class HttpService {
     String token =
         await _sessionStorage.readData(eLogin.KEY_TOKEN.toString()) ?? "";
     Map<String, String> headers = {
-      "Access-Control-Allow-Methods": "*",
-      "Access-Control-Allow-Origin": "*",
-      "Content-Type": "application/json",
-      //"Authorization": "Bearer $token",
-      //"role-id": "2"
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
     };
     return headers;
   }
@@ -27,7 +25,7 @@ class HttpService {
     try {
       var options = await getOptions();
       String params = Uri(queryParameters: data).query;
-      String uri = '$urlApi$url?$params';
+      String uri = '$urlApi$url?$params&XDEBUG_SESSION_START=PHPSTORM';
 
       final response = await http.get(Uri.parse(uri), headers: options);
 
@@ -48,7 +46,7 @@ class HttpService {
     try {
       var options = await getOptions();
 
-      String uri = '$urlApi$url';
+      String uri = '$urlApi$url?XDEBUG_SESSION_START=PHPSTORM';
 
       final response = await http.post(Uri.parse(uri),
         headers: options,

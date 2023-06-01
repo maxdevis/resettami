@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:resettami_app/Component/myAppBar.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
-import 'package:resettami_app/Models/Paziente/Ricerca.dart';
+import 'package:resettami_app/Models/Paziente.dart';
 import 'package:resettami_app/Screens/Pazienti/SchedaPaziente.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/InfoGenerali/anamnesi.dart';
 
 class listaVisiteScreen extends StatelessWidget {
-  const listaVisiteScreen({super.key, required this.ricPaziente});
+  const listaVisiteScreen({super.key, required this.paziente});
 
-  final RicercaPaziente ricPaziente;
+  final Paziente paziente;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class listaVisiteScreen extends StatelessWidget {
         route: '/searchAss',
       ),
       body: ListView.builder(
-        itemCount: ricPaziente.data?.model?.length,
+        itemCount: paziente.model?.length,
         itemBuilder: (context, index) {
           return SizedBox(
               height: 80,
@@ -48,7 +48,7 @@ class listaVisiteScreen extends StatelessWidget {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Text(
-                              '${ricPaziente.data?.model?[index].cognome} ${ricPaziente.data?.model?[index].nome}',
+                              '${paziente.model?[index].cognome} ${paziente.model?[index].nome}',
                               textAlign: TextAlign.start,
                               maxLines: 1,
                               overflow: TextOverflow.clip,
@@ -62,7 +62,7 @@ class listaVisiteScreen extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.fromLTRB(5, 4, 0, 0),
                               child: Text(
-                                '${ricPaziente.data?.model?[index].codiceFiscale}',
+                                '${paziente.model?[index].codiceFiscale}',
                                 textAlign: TextAlign.start,
                                 maxLines: 1,
                                 overflow: TextOverflow.clip,
@@ -87,8 +87,8 @@ class listaVisiteScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => SchedaPaziente(name: '${ricPaziente.data?.model?[index].cognome} ${ricPaziente.data?.model?[index].nome}',
-                                  codiceFiscale: '${ricPaziente.data?.model?[index].codiceFiscale}'),
+                              builder: (context) => SchedaPaziente(name: '${paziente.model?[index].cognome} ${paziente.model?[index].nome}',
+                                  codiceFiscale: '${paziente.model?[index].codiceFiscale}'),
                             ),
                           );
                         },
