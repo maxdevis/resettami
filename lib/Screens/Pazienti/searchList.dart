@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:resettami_app/Component/myAppBar.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
 import 'package:resettami_app/Models/Assistito.dart';
-import 'package:resettami_app/Screens/assistiti/Anamnesi/anamnesi.dart';
-import 'package:resettami_app/Screens/assistiti/SchedaPaziente.dart';
+import 'package:resettami_app/Screens/Pazienti/SchedaPaziente.dart';
+import 'package:resettami_app/Screens/Pazienti/Visite/InfoGenerali/anamnesi.dart';
 
 class searchListScreen extends StatelessWidget {
   const searchListScreen({super.key, required this.assistito});
@@ -14,7 +14,7 @@ class searchListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
-      drawer: MyDrawer(title: 'Resettami Parkylon'),
+      drawer: const MyDrawer(title: 'Resettami Parkylon'),
       appBar: const MyAppBar(
         title: 'Resettami Parkylon',
         route: '/searchAss',

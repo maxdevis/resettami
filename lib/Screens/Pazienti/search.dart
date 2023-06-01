@@ -4,7 +4,7 @@ import 'package:resettami_app/Component/myDrawer.dart';
 import 'package:resettami_app/Models/Assistito.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:localization/localization.dart';
-import 'package:resettami_app/Screens/assistiti/searchList.dart';
+import 'package:resettami_app/Screens/Pazienti/searchList.dart';
 import 'package:resettami_app/Services/Assistiti.dart';
 import 'package:resettami_app/Library/SecureStorage.dart';
 
@@ -52,7 +52,7 @@ class _SearchScreen extends State<SearchAssScreen> {
         title: 'Resettami Parkylon',
         route: '/home',
       ),
-      drawer: MyDrawer(title: 'Resettami Parkylon'),
+      drawer: const MyDrawer(title: 'Resettami Parkylon'),
       key: _scaffoldKey,
       body: SingleChildScrollView(
         child: Container(

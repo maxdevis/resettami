@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:resettami_app/Component/myAppBar.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
-import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/HealtCheck.dart';
+import 'package:resettami_app/Screens/Pazienti/Visite/InfoGenerali/HealtCheck.dart';
 import 'package:resettami_app/Screens/Pazienti/appointments.dart';
 
 
