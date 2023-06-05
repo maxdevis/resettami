@@ -47,8 +47,11 @@ class _updrsPartePrimaState extends State<updrsPartePrimaScreen> {
           children: <Widget>[
             Card(
               child: Container(
-                color: Colors.white,
-                height: 100,
+                height: 50,
+                decoration: BoxDecoration(
+                    color: const Color(0xff00A19B),
+                    border: Border.all(color: Colors.white)
+                ),
                 child: Center(
                   child: Text(getTitle()),
                 ),
@@ -59,7 +62,7 @@ class _updrsPartePrimaState extends State<updrsPartePrimaScreen> {
                 itemCount: valori.length,
                 itemBuilder: (context, index) {
                   return SizedBox(
-                    height: 50,
+                    height: 80,
                     width: double.infinity,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -95,7 +98,7 @@ class _updrsPartePrimaState extends State<updrsPartePrimaScreen> {
     String ret = "";
     if (widget.updrs.modelParte1!.isNotEmpty) {
       DateTime dt = DateTime.parse(widget.updrs.modelParte1![0].dataComp ?? "");
-      ret = 'Data: ${DateFormat('dd-MM-yyyy').format(dt)}';
+      ret = 'Data Comp.: ${DateFormat('dd-MM-yyyy').format(dt)}';
       ret += ' - Tot.: ${widget.updrs.modelParte1?[0].totale1}';
 
       return ret;
