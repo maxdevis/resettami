@@ -515,7 +515,7 @@ class ModelParte1 {
     c111 = json['c111'];
     c112 = json['c112'];
     c113 = json['c113'];
-    totale1 = json['totale1'];
+    totale1 = json['totale_1'];
 
   }
 
@@ -538,7 +538,7 @@ class ModelParte1 {
     data['c111'] = c111;
     data['c112'] = c112;
     data['c113'] = c113;
-    data['totale1'] = totale1;
+    data['totale_1'] = totale1;
 
     return data;
   }

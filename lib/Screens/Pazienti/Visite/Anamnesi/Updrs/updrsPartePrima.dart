@@ -14,7 +14,6 @@ class updrsPartePrimaScreen extends StatefulWidget {
 }
 
 class _updrsPartePrimaState extends State<updrsPartePrimaScreen> {
-
   Map valori = {
     'c101': 'Compromissione cognitiva',
     'c102': 'Allucinazioni e psicosi',
@@ -38,44 +37,58 @@ class _updrsPartePrimaState extends State<updrsPartePrimaScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery
-        .of(context)
-        .size;
+    var size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.white,
-      drawer: MyDrawer(title: getTitle()),
-      //set drawer from app_drawer.dart
-      //set like this where ever you want
-      body: ListView.builder(
-        itemCount: valori.length,
-        itemBuilder: (context, index) {
-          return SizedBox(
-            height: 80,
-            width: double.infinity,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Card(
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 15, vertical: 15),
-                    color: getColor(index),
-                    shadowColor: Colors.blueGrey,
-                    elevation: 10,
-                    child: ListTile(
-                      leading: Icon(
-                        getIcon(index), color: getColorIcon(index),),
-                      title: Text(getDescription(index)),
-                    ),
-                  ),
+        backgroundColor: Colors.white,
+        drawer: MyDrawer(title: getTitle()),
+        //set drawer from app_drawer.dart
+        //set like this where ever you want
+        body: Column(
+          children: <Widget>[
+            Card(
+              child: Container(
+                color: Colors.white,
+                height: 100,
+                child: Center(
+                  child: Text(getTitle()),
                 ),
-              ],
+              ),
             ),
-          );
-        },
-      ),
-    );
+            Expanded(
+              child: ListView.builder(
+                itemCount: valori.length,
+                itemBuilder: (context, index) {
+                  return SizedBox(
+                    height: 50,
+                    width: double.infinity,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Card(
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 15),
+                            color: getColor(index),
+                            shadowColor: Colors.blueGrey,
+                            elevation: 10,
+                            child: ListTile(
+                              leading: Icon(
+                                getIcon(index),
+                                color: getColorIcon(index),
+                              ),
+                              title: Text(getDescription(index)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ));
   }
 
   String getTitle() {
@@ -89,7 +102,6 @@ class _updrsPartePrimaState extends State<updrsPartePrimaScreen> {
     }
     return "";
   }
-
 
   String getDescription(int index) {
     final keyVal = valori.keys.elementAt(index);
