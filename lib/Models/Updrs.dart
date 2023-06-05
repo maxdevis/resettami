@@ -1,6 +1,7 @@
 class Updrs {
   bool op = false;
   List<Model>? model;
+  List<ModelParte1>? modelParte1;
 
   Updrs({op, model});
 
@@ -8,8 +9,10 @@ class Updrs {
     op = json['op'];
     if (json['model'] != null) {
       model = <Model>[];
+      modelParte1 = <ModelParte1>[];
       json['model'].forEach((v) {
         model!.add(Model.fromJson(v));
+        modelParte1!.add(ModelParte1.fromJson(v));
       });
     }
   }
@@ -19,6 +22,9 @@ class Updrs {
     data['op'] = op;
     if (model != null) {
       data['model'] = model!.map((v) => v.toJson()).toList();
+    }
+    if (modelParte1 != null) {
+      data['modelParte1'] = modelParte1!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -445,6 +451,95 @@ class Model {
     data['np4dystnnum'] = np4dystnnum;
     data['np4dystnden'] = np4dystnden;
     data['np4dystnpct'] = np4dystnpct;
+    return data;
+  }
+}
+
+class ModelParte1 {
+  String? id;
+  String? servizioId;
+  String? pazienteId;
+  String? dataComp;
+  String? c101;
+  String? c102;
+  String? c103;
+  String? c104;
+  String? c105;
+  String? c106;
+  String? c107;
+  String? c108;
+  String? c109;
+  String? c110;
+  String? c111;
+  String? c112;
+  String? c113;
+  String? totale1;
+
+
+  ModelParte1(
+      {id,
+        servizioId,
+        pazienteId,
+        dataComp,
+        c101,
+        c102,
+        c103,
+        c104,
+        c105,
+        c106,
+        c107,
+        c108,
+        c109,
+        c110,
+        c111,
+        c112,
+        c113,
+        totale1
+        });
+
+  ModelParte1.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    servizioId = json['servizio_id'];
+    pazienteId = json['paziente_id'];
+    dataComp = json['data_comp'];
+    c101 = json['c101'];
+    c102 = json['c102'];
+    c103 = json['c103'];
+    c104 = json['c104'];
+    c105 = json['c105'];
+    c106 = json['c106'];
+    c107 = json['c107'];
+    c108 = json['c108'];
+    c109 = json['c109'];
+    c110 = json['c110'];
+    c111 = json['c111'];
+    c112 = json['c112'];
+    c113 = json['c113'];
+    totale1 = json['totale1'];
+
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['servizio_id'] = servizioId;
+    data['paziente_id'] = pazienteId;
+    data['data_comp'] = dataComp;
+    data['c101'] = c101;
+    data['c102'] = c102;
+    data['c103'] = c103;
+    data['c104'] = c104;
+    data['c105'] = c105;
+    data['c106'] = c106;
+    data['c107'] = c107;
+    data['c108'] = c108;
+    data['c109'] = c109;
+    data['c110'] = c110;
+    data['c111'] = c111;
+    data['c112'] = c112;
+    data['c113'] = c113;
+    data['totale1'] = totale1;
+
     return data;
   }
 }

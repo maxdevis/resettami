@@ -17,9 +17,15 @@ class _updrsMainState extends State<updrsMainScreen> {
   int _selectedIndex = 0;
   late final Updrs _updrs;
 
+  @override
+  void initState() {
+    super.initState();
+    _updrs = widget.updrs;
+  }
+
   /*static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);*/
-  static final List<Widget> _widgetOptions = <Widget>[
+  late final List<Widget> _widgetOptions = <Widget>[
     updrsPartePrimaScreen(updrs: _updrs),
     const Text(
       'Parte II',
@@ -47,6 +53,7 @@ class _updrsMainState extends State<updrsMainScreen> {
         backgroundColor: Colors.white,
         appBar: const MyAppBar(
           title: 'Resettami Parkylon',
+          route: '*',
         ),
         drawer: const MyDrawer(title: 'Resettami Parkylon'),
         body: Center(

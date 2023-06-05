@@ -5,13 +5,13 @@ import 'package:resettami_app/utils/HttpService.dart';
 class UpdrsService extends HttpService {
 
 
-  Future<dynamic> getUpdrs(String id) async {
+  Future<dynamic> getUpdrs(String servizio_id) async {
     try {
 
       const url = '/app/getDataUpdrs';
 
       Map<String, dynamic> data = {
-        'id': id,
+        'servizio_id': servizio_id,
       };
 
       var response = await getData(url, data);

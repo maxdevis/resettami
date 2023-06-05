@@ -35,12 +35,17 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           maintainSize: true,
           maintainAnimation: true,
           maintainState: true,
-          visible: (route != ''),
+          visible: (route != '' || route == '*'),
           child: IconButton(
             icon: const Icon(Icons.arrow_back_ios),
             onPressed: (){
               //Navigator.pop(navigatorKey.currentContext!);
-              Navigator.pushReplacementNamed(context, route);
+              if(route != '' && route != '*'){
+                Navigator.pushReplacementNamed(context, route);
+              }
+              else{
+                Navigator.of(context).pop();
+              }
             },
           ),
         ),

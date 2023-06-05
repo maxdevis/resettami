@@ -3,7 +3,6 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:localization/localization.dart';
 import 'package:resettami_app/Component/myAppBar.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
-import 'package:resettami_app/Models/Updrs.dart';
 import 'package:resettami_app/Models/Visite.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/updrsMain.dart';
 import 'package:resettami_app/Services/Updrs.dart';
@@ -20,8 +19,7 @@ class listaVisiteScreen extends StatelessWidget {
       backgroundColor: const Color(0xffffffff),
       drawer: const MyDrawer(title: 'Resettami Parkylon'),
       appBar: const MyAppBar(
-        title: 'Resettami Parkylon',
-        route: '/searchAss',
+        title: 'Resettami Parkylon', route: '*',
       ),
       body: ListView.builder(
         itemCount: visite.model?.length,

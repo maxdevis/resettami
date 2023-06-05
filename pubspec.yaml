@@ -48,6 +48,8 @@ dependencies:
   flutter_svg: ^2.0.6
   fl_chart: ^0.62.0
   syncfusion_flutter_calendar: ^21.2.8
+  intl: ^0.18.0
+  sticky_headers: ^0.3.0+2
 
 dev_dependencies:
   flutter_test:
