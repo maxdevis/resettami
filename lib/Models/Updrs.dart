@@ -543,3 +543,274 @@ class ModelParte1 {
     return data;
   }
 }
+
+class ModelParte2 {
+  String? id;
+  String? servizioId;
+  String? pazienteId;
+  String? dataComp;
+  String? c201;
+  String? c202;
+  String? c203;
+  String? c204;
+  String? c205;
+  String? c206;
+  String? c207;
+  String? c208;
+  String? c209;
+  String? c210;
+  String? c211;
+  String? c212;
+  String? c213;
+  String? totale2;
+
+
+  ModelParte2(
+      {id,
+        servizioId,
+        pazienteId,
+        dataComp,
+        c201,
+        c202,
+        c203,
+        c204,
+        c205,
+        c206,
+        c207,
+        c208,
+        c209,
+        c210,
+        c211,
+        c212,
+        c213,
+        totale2
+      });
+
+  ModelParte2.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    servizioId = json['servizio_id'];
+    pazienteId = json['paziente_id'];
+    dataComp = json['data_comp'];
+    c201 = json['c201'];
+    c202 = json['c202'];
+    c203 = json['c203'];
+    c204 = json['c204'];
+    c205 = json['c205'];
+    c206 = json['c206'];
+    c207 = json['c207'];
+    c208 = json['c208'];
+    c209 = json['c209'];
+    c210 = json['c210'];
+    c211 = json['c211'];
+    c212 = json['c212'];
+    c213 = json['c213'];
+    totale2 = json['totale_2'];
+
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['servizio_id'] = servizioId;
+    data['paziente_id'] = pazienteId;
+    data['data_comp'] = dataComp;
+    data['c201'] = c201;
+    data['c202'] = c202;
+    data['c203'] = c203;
+    data['c204'] = c204;
+    data['c205'] = c205;
+    data['c206'] = c206;
+    data['c207'] = c207;
+    data['c208'] = c208;
+    data['c209'] = c209;
+    data['c210'] = c210;
+    data['c211'] = c211;
+    data['c212'] = c212;
+    data['c213'] = c213;
+    data['totale_2'] = totale2;
+
+    return data;
+  }
+}
+
+class ModelParte3 {
+  String? id;
+  String? servizioId;
+  String? pazienteId;
+  String? dataComp;
+  String? c201;
+  String? c202;
+  String? c203;
+  String? c204;
+  String? c205;
+  String? c206;
+  String? c207;
+  String? c208;
+  String? c209;
+  String? c210;
+  String? c211;
+  String? c212;
+  String? c213;
+  String? totale2;
+
+
+  ModelParte3(
+      {id,
+        servizioId,
+        pazienteId,
+        dataComp,
+        c201,
+        c202,
+        c203,
+        c204,
+        c205,
+        c206,
+        c207,
+        c208,
+        c209,
+        c210,
+        c211,
+        c212,
+        c213,
+        totale2
+      });
+
+  ModelParte3.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    servizioId = json['servizio_id'];
+    pazienteId = json['paziente_id'];
+    dataComp = json['data_comp'];
+    c201 = json['c201'];
+    c202 = json['c202'];
+    c203 = json['c203'];
+    c204 = json['c204'];
+    c205 = json['c205'];
+    c206 = json['c206'];
+    c207 = json['c207'];
+    c208 = json['c208'];
+    c209 = json['c209'];
+    c210 = json['c210'];
+    c211 = json['c211'];
+    c212 = json['c212'];
+    c213 = json['c213'];
+    totale2 = json['totale_2'];
+
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['servizio_id'] = servizioId;
+    data['paziente_id'] = pazienteId;
+    data['data_comp'] = dataComp;
+    data['c201'] = c201;
+    data['c202'] = c202;
+    data['c203'] = c203;
+    data['c204'] = c204;
+    data['c205'] = c205;
+    data['c206'] = c206;
+    data['c207'] = c207;
+    data['c208'] = c208;
+    data['c209'] = c209;
+    data['c210'] = c210;
+    data['c211'] = c211;
+    data['c212'] = c212;
+    data['c213'] = c213;
+    data['totale_2'] = totale2;
+
+    return data;
+  }
+}
+
+class ModelParte4 {
+  String? id;
+  String? servizioId;
+  String? pazienteId;
+  String? dataComp;
+  String? c401;
+  String? c402;
+  String? c403;
+  String? c404;
+  String? c405;
+  String? c406;
+  String? np4wdysknum;
+  String? np4wdyskden;
+  String? np4wdyskpct;
+  String? np4offnum;
+  String? np4offden;
+  String? np4offpct;
+  String? np4dystnnum;
+  String? np4dystnden;
+  String? np4dystnpct;
+  String? totale4;
+
+
+  ModelParte4(
+      {id,
+        servizioId,
+        pazienteId,
+        dataComp,
+        c401,
+        c402,
+        c403,
+        c404,
+        c405,
+        c406,
+        np4wdysknum,
+        np4wdyskden,
+        np4wdyskpct,
+        np4offnum,
+        np4offden,
+        np4offpct,
+        np4dystnnum,
+        np4dystnden,
+        np4dystnpct,
+        totale4,
+      });
+
+  ModelParte4.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    servizioId = json['servizio_id'];
+    pazienteId = json['paziente_id'];
+    dataComp = json['data_comp'];
+    c401 = json['c401'];
+    c402 = json['c402'];
+    c403 = json['c403'];
+    c404 = json['c404'];
+    c405 = json['c405'];
+    c406 = json['c406'];
+    np4wdysknum = json['np4wdysknum'];
+    np4wdyskden = json['np4wdyskden'];
+    np4wdyskpct = json['np4wdyskpct'];
+    np4offden = json['np4offden'];
+    np4dystnnum = json['np4dystnnum'];
+    np4dystnden = json['np4dystnden'];
+    np4dystnpct = json['np4dystnpct'];
+    totale4 = json['totale_4'];
+
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['servizio_id'] = servizioId;
+    data['paziente_id'] = pazienteId;
+    data['data_comp'] = dataComp;
+    data['c401'] = c401;
+    data['c402'] = c402;
+    data['c403'] = c403;
+    data['c404'] = c404;
+    data['c405'] = c405;
+    data['c406'] = c406;
+    data['c207'] = np4wdysknum;
+    data['c208'] = np4wdyskden;
+    data['c209'] = np4wdyskpct;
+    data['c210'] = np4offden;
+    data['c211'] = np4dystnnum;
+    data['c212'] = np4dystnden;
+    data['c213'] = np4dystnpct;
+    data['totale_4'] = totale4;
+
+    return data;
+  }
+}
