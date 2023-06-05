@@ -2,6 +2,9 @@ class Updrs {
   bool op = false;
   List<Model>? model;
   List<ModelParte1>? modelParte1;
+  List<ModelParte2>? modelParte2;
+  List<ModelParte3>? modelParte3;
+  List<ModelParte4>? modelParte4;
 
   Updrs({op, model});
 
@@ -10,9 +13,15 @@ class Updrs {
     if (json['model'] != null) {
       model = <Model>[];
       modelParte1 = <ModelParte1>[];
+      modelParte2 = <ModelParte2>[];
+      modelParte3 = <ModelParte3>[];
+      modelParte4 = <ModelParte4>[];
       json['model'].forEach((v) {
         model!.add(Model.fromJson(v));
         modelParte1!.add(ModelParte1.fromJson(v));
+        modelParte2!.add(ModelParte2.fromJson(v));
+        modelParte3!.add(ModelParte3.fromJson(v));
+        modelParte4!.add(ModelParte4.fromJson(v));
       });
     }
   }
@@ -26,6 +35,16 @@ class Updrs {
     if (modelParte1 != null) {
       data['modelParte1'] = modelParte1!.map((v) => v.toJson()).toList();
     }
+    if (modelParte2 != null) {
+      data['modelParte2'] = modelParte2!.map((v) => v.toJson()).toList();
+    }
+    if (modelParte3 != null) {
+      data['modelParte3'] = modelParte3!.map((v) => v.toJson()).toList();
+    }
+    if (modelParte4 != null) {
+      data['modelParte4'] = modelParte4!.map((v) => v.toJson()).toList();
+    }
+
     return data;
   }
 }
