@@ -33,7 +33,7 @@ class sezione2 extends StatelessWidget {
             width: double.infinity,
             child: Center(
               child: Card(
-                color: com.getColor(5, updrs),
+                color: com.getColor(5, updrs, valori),
                 shadowColor: Colors.blueGrey,
                 elevation: 10,
                 child: ListTile(
