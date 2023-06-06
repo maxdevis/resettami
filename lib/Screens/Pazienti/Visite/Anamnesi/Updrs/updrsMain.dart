@@ -3,6 +3,7 @@ import 'package:resettami_app/Component/myAppBar.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
 import 'package:resettami_app/Models/Updrs.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/updrsPartePrima.dart';
+import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/updrsParteQuarta.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/updrsParteSeconda.dart';
 
 class updrsMainScreen extends StatefulWidget {
@@ -33,10 +34,7 @@ class _updrsMainState extends State<updrsMainScreen> {
       'Parte III',
       //style: optionStyle,
     ),
-    const Text(
-      'Parte IV',
-      //style: optionStyle,
-    ),
+    updrsParteQuartaScreen(updrs: _updrs),
   ];
 
   void _onItemTapped(int index) {

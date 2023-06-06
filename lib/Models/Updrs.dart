@@ -821,13 +821,13 @@ class ModelParte4 {
     data['c404'] = c404;
     data['c405'] = c405;
     data['c406'] = c406;
-    data['c207'] = np4wdysknum;
-    data['c208'] = np4wdyskden;
-    data['c209'] = np4wdyskpct;
-    data['c210'] = np4offden;
-    data['c211'] = np4dystnnum;
-    data['c212'] = np4dystnden;
-    data['c213'] = np4dystnpct;
+    data['np4wdysknum'] = np4wdysknum;
+    data['np4wdyskden'] = np4wdyskden;
+    data['np4wdyskpct'] = np4wdyskpct;
+    data['np4offden'] = np4offden;
+    data['np4dystnnum'] = np4dystnnum;
+    data['np4dystnden'] = np4dystnden;
+    data['np4dystnpct'] = np4dystnpct;
     data['totale_4'] = totale4;
 
     return data;

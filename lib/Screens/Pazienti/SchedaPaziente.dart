@@ -17,58 +17,56 @@ class SchedaPaziente extends StatelessWidget {
         appBar: const MyAppBar(
           title: 'Scheda Paziente',
         ),
-        drawer: MyDrawer(title: 'Resettami Parkylon'),
-        body: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const CircleAvatar(
-                radius: 50,
-                backgroundImage: AssetImage('assets/images/avatar_man.png'),
+        drawer: const MyDrawer(title: 'Resettami Parkylon'),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const CircleAvatar(
+              radius: 50,
+              backgroundImage: AssetImage('assets/images/avatar_man.png'),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              name,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
-              const SizedBox(
-                height: 10,
+            ),
+            const SizedBox(
+              height: 2,
+            ),
+            Text(
+              codiceFiscale,
+              style: const TextStyle(fontSize: 15),
+            ),
+            const SizedBox(
+              height: 10,
+              width: 150,
+              child: Divider(
+                thickness: 1,
+                color: Colors.black,
               ),
-              Text(
-                name,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+            ),
+            const Card(
+              margin: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+              color: Colors.grey,
+              child: ListTile(
+                leading: Icon(Icons.phone),
+                title: Text('+44 4745121545451'),
               ),
-              const SizedBox(
-                height: 2,
+            ),
+            const Card(
+              margin: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+              color: Colors.grey,
+              child: ListTile(
+                leading: Icon(Icons.mail),
+                title: Text('abc@gmail.com'),
               ),
-              Text(
-                codiceFiscale,
-                style: const TextStyle(fontSize: 15),
-              ),
-              const SizedBox(
-                height: 10,
-                width: 150,
-                child: Divider(
-                  thickness: 1,
-                  color: Colors.black,
-                ),
-              ),
-              const Card(
-                margin: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                color: Colors.grey,
-                child: ListTile(
-                  leading: Icon(Icons.phone),
-                  title: Text('+44 4745121545451'),
-                ),
-              ),
-              const Card(
-                margin: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                color: Colors.grey,
-                child: ListTile(
-                  leading: Icon(Icons.mail),
-                  title: Text('abc@gmail.com'),
-                ),
-              )
-            ],
-          ),
+            )
+          ],
         ));
   }
 }

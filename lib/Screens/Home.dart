@@ -18,7 +18,7 @@ class HomePageState extends State<HomePage> {
       appBar: const MyAppBar(
         title: 'Resettami Parkylon',
       ),
-      drawer: MyDrawer(title: 'Resettami Parkylon'),
+      drawer: const MyDrawer(title: 'Resettami Parkylon'),
       //set drawer from app_drawer.dart
       //set like this where ever you want
       body: SingleChildScrollView(
