@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:resettami_app/Models/Updrs.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/Common.dart';
 
-class sezione1 extends StatelessWidget {
-  sezione1({super.key, required this.updrs, required this.valori});
+class sezioniParteQuarta extends StatelessWidget {
+  sezioniParteQuarta({super.key, required this.updrs, required this.valori, required this.title});
 
   final Updrs updrs;
   final Map valori;
+  final String title;
   late Common com = const Common();
 
   @override
@@ -23,12 +24,12 @@ class sezione1 extends StatelessWidget {
                 //border: Border.all(color: const Color(0xff00A19B)),
                 //borderRadius: const BorderRadius.all(Radius.circular(10))
               ),
-              child: const Center(
-                child: Text("Sezione 4.1",
-                    style: TextStyle(color: Colors.white)),
+              child: Center(
+                child: Text(title,
+                    style: const TextStyle(color: Colors.white)),
               )),
         ),
-        for (int i = 0; i < 3; i++) ...[
+        for (int i = 0; i < valori.length; i++) ...[
           SizedBox(
               height: 70,
               width: double.infinity,

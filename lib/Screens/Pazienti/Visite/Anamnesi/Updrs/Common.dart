@@ -101,15 +101,8 @@ class Common {
   }
 
   String getDescription(int index, Updrs updrs, Map valori) {
-    final keyVal = valori.keys.elementAt(index);
     final desc = valori.values.elementAt(index);
-    final json = updrs.model!.map((v) => v.toJson()).toList();
-    final ret = json[0].containsKey(keyVal);
-
-    if (ret) {
-      return desc;
-    }
-    return "";
+    return desc;
   }
 
 }
