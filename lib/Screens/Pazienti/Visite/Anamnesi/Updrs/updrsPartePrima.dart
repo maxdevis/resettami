@@ -56,7 +56,7 @@ class _updrsPartePrimaState extends State<updrsPartePrimaScreen> {
                     border: Border.all(color: Colors.white)
                 ),
                 child: Center(
-                  child: Text(com.getTitle(widget.updrs)),
+                  child: Text(com.getTitle(widget.updrs), style: const TextStyle(color: Colors.white),),
                 ),
               ),
             ),
