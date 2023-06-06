@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
 import 'package:resettami_app/Models/Updrs.dart';
+import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/Common.dart';
 
 class updrsPartePrimaScreen extends StatefulWidget {
   const updrsPartePrimaScreen({super.key, required this.updrs});
@@ -14,7 +15,10 @@ class updrsPartePrimaScreen extends StatefulWidget {
 }
 
 class _updrsPartePrimaState extends State<updrsPartePrimaScreen> {
-  Map valori = {
+
+  late Common com = const Common();
+
+  late Map valori = {
     'c101': 'Compromissione cognitiva',
     'c102': 'Allucinazioni e psicosi',
     'c103': 'Umore depresso',
@@ -37,10 +41,9 @@ class _updrsPartePrimaState extends State<updrsPartePrimaScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return Scaffold(
         backgroundColor: Colors.white,
-        drawer: MyDrawer(title: getTitle()),
+        drawer: const MyDrawer(title: 'Resettami Parkylon'),
         //set drawer from app_drawer.dart
         //set like this where ever you want
         body: Column(
@@ -53,7 +56,7 @@ class _updrsPartePrimaState extends State<updrsPartePrimaScreen> {
                     border: Border.all(color: Colors.white)
                 ),
                 child: Center(
-                  child: Text(getTitle()),
+                  child: Text(com.getTitle(widget.updrs)),
                 ),
               ),
             ),
@@ -72,15 +75,15 @@ class _updrsPartePrimaState extends State<updrsPartePrimaScreen> {
                           child: Card(
                             margin: const EdgeInsets.symmetric(
                                 horizontal: 15, vertical: 15),
-                            color: getColor(index),
+                            color: com.getColor(index, widget.updrs, valori),
                             shadowColor: Colors.blueGrey,
                             elevation: 10,
                             child: ListTile(
                               leading: Icon(
-                                getIcon(index),
-                                color: getColorIcon(index),
+                                com.getIcon(index, widget.updrs, valori),
+                                color: com.getColorIcon(index, widget.updrs, valori),
                               ),
-                              title: Text(getDescription(index)),
+                              title: Text(com.getDescription(index, widget.updrs, valori)),
                             ),
                           ),
                         ),
@@ -94,95 +97,4 @@ class _updrsPartePrimaState extends State<updrsPartePrimaScreen> {
         ));
   }
 
-  String getTitle() {
-    String ret = "";
-    if (widget.updrs.modelParte1!.isNotEmpty) {
-      DateTime dt = DateTime.parse(widget.updrs.modelParte1![0].dataComp ?? "");
-      ret = 'Data Comp.: ${DateFormat('dd-MM-yyyy').format(dt)}';
-      ret += ' - Tot.: ${widget.updrs.modelParte1?[0].totale1}';
-
-      return ret;
-    }
-    return "";
-  }
-
-  String getDescription(int index) {
-    final keyVal = valori.keys.elementAt(index);
-    final desc = valori.values.elementAt(index);
-    final json = widget.updrs.modelParte1!.map((v) => v.toJson()).toList();
-    final ret = json[0].containsKey(keyVal);
-
-    if (ret) {
-      return desc;
-    }
-    return "";
-  }
-
-  Color getColor(int index) {
-    final keyVal = valori.keys.elementAt(index);
-    final json = widget.updrs.modelParte1!.map((v) => v.toJson()).toList();
-    final ret = json[0].containsKey(keyVal);
-
-    if (ret) {
-      var t = json[0][keyVal];
-      switch (t) {
-        case '0':
-          return Colors.white;
-        case '1':
-          return Colors.green;
-        case '2':
-          return Colors.amber;
-        case '3':
-          return Colors.orange;
-        case '4':
-          return Colors.red;
-        default:
-          return Colors.white;
-      }
-    }
-    return Colors.white;
-  }
-
-  Color getColorIcon(int index) {
-    final keyVal = valori.keys.elementAt(index);
-    final json = widget.updrs.modelParte1!.map((v) => v.toJson()).toList();
-    final ret = json[0].containsKey(keyVal);
-
-    if (ret) {
-      var t = json[0][keyVal];
-      switch (t) {
-        case '0':
-          return Colors.black;
-        default:
-          return Colors.white;
-      }
-    }
-    return Colors.black;
-  }
-
-  IconData getIcon(int index) {
-    final keyVal = valori.keys.elementAt(index);
-    final json = widget.updrs.modelParte1!.map((v) => v.toJson()).toList();
-    final ret = json[0].containsKey(keyVal);
-
-    if (ret) {
-      var t = json[0][keyVal];
-      switch (t) {
-        case '0':
-          return Icons.exposure_zero;
-        case '1':
-          return Icons.looks_one_rounded;
-        case '2':
-          return Icons.looks_two_rounded;
-        case '3':
-          return Icons.looks_3_rounded;
-        case '4':
-          return Icons.looks_4_rounded;
-        default:
-          return Icons.looks_5_rounded;
-      }
-    }
-
-    return Icons.exposure_zero;
-  }
 }

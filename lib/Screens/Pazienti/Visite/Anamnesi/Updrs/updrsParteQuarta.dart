@@ -15,7 +15,7 @@ class updrsParteQuartaScreen extends StatefulWidget {
 
 class _updrsParteQuartaState extends State<updrsParteQuartaScreen> {
 
-  late Common com;
+  late Common com = const Common();
 
   late Map valori = {
     'c401': 'Tempo trascorso con discinesie',
@@ -44,7 +44,7 @@ class _updrsParteQuartaState extends State<updrsParteQuartaScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        drawer: const MyDrawer(title: ""),
+        drawer: const MyDrawer(title: 'Resettami Parkylon'),
         body: Column(
           children: <Widget>[
             Card(
