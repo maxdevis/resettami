@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:resettami_app/Models/Updrs.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/Common.dart';
 
-class sezione1 extends StatelessWidget {
-  sezione1({super.key, required this.updrs, required this.valori});
+class sezione2 extends StatelessWidget {
+  sezione2({super.key, required this.updrs, required this.valori});
 
   final Updrs updrs;
   final Map valori;
-  late Common com;
+  late Common com = const Common();
 
   @override
   Widget build(BuildContext context) {
@@ -24,26 +24,25 @@ class sezione1 extends StatelessWidget {
                 //borderRadius: const BorderRadius.all(Radius.circular(10))
               ),
               child: const Center(
-                child: Text("Sezione 4.1",
+                child: Text("Sezione 4.2",
                     style: TextStyle(color: Colors.white)),
               )),
         ),
-        for (int i = 0; i < 3; i++) ...[
-          SizedBox(
-              height: 70,
-              width: double.infinity,
-              child: Center(
-                child: Card(
-                  color:  i == 0 ? com.getColor(i, updrs, valori) : Colors.white,
-                  shadowColor: Colors.blueGrey,
-                  elevation: 10,
-                  child: ListTile(
-                    title: Text('[${com.getValue(i, updrs, valori)}] - ${com.getDescription(i, updrs, valori)}'),
-                  ),
+        SizedBox(
+            height: 70,
+            width: double.infinity,
+            child: Center(
+              child: Card(
+                color: com.getColor(5, updrs, valori),
+                shadowColor: Colors.blueGrey,
+                elevation: 10,
+                child: ListTile(
+                  title: Text('[${com.getValue(5, updrs, valori)}] - ${com.getDescription(5, updrs, valori)}'),
                 ),
-              ))
-        ]
+              ),
+            ))
       ],
     );
   }
+
 }

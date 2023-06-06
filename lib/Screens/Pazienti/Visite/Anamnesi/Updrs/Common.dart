@@ -9,7 +9,7 @@ class Common {
 
   Color getColor(int index, Updrs updrs, Map valori) {
     final keyVal = valori.keys.elementAt(index);
-    final json = updrs.modelParte4!.map((v) => v.toJson()).toList();
+    final json = updrs.model!.map((v) => v.toJson()).toList();
     final ret = json[0].containsKey(keyVal);
 
     if (ret) {
@@ -34,7 +34,7 @@ class Common {
 
   Color getColorIcon(int index, Updrs updrs, Map valori) {
     final keyVal = valori.keys.elementAt(index);
-    final json = updrs.modelParte4!.map((v) => v.toJson()).toList();
+    final json = updrs.model!.map((v) => v.toJson()).toList();
     final ret = json[0].containsKey(keyVal);
 
     if (ret) {
@@ -51,14 +51,14 @@ class Common {
 
   IconData getIcon(int index, Updrs updrs, Map valori) {
     final keyVal = valori.keys.elementAt(index);
-    final json = updrs.modelParte4!.map((v) => v.toJson()).toList();
+    final json = updrs.model!.map((v) => v.toJson()).toList();
     final ret = json[0].containsKey(keyVal);
 
     if (ret) {
       var t = json[0][keyVal];
       switch (t) {
         case '0':
-          return Icons.looks;
+          return Icons.exposure_zero;
         case '1':
           return Icons.looks_one_rounded;
         case '2':
@@ -79,7 +79,7 @@ class Common {
 
   String getValue(int index, Updrs updrs, Map valori) {
     final keyVal = valori.keys.elementAt(index);
-    final json = updrs.modelParte4!.map((v) => v.toJson()).toList();
+    final json = updrs.model!.map((v) => v.toJson()).toList();
     final ret = json[0].containsKey(keyVal);
 
     if (ret) {
@@ -90,10 +90,10 @@ class Common {
 
   String getTitle(Updrs updrs) {
     String ret = "";
-    if (updrs.modelParte4!.isNotEmpty) {
-      DateTime dt = DateTime.parse(updrs.modelParte4![0].dataComp ?? "");
+    if (updrs.model!.isNotEmpty) {
+      DateTime dt = DateTime.parse(updrs.model![0].dataComp ?? "");
       ret = 'Data Comp.: ${DateFormat('dd-MM-yyyy').format(dt)}';
-      ret += ' - Tot.: ${updrs.modelParte4?[0].totale4}';
+      ret += ' - Tot.: ${updrs.model?[0].totale4}';
 
       return ret;
     }
@@ -103,7 +103,7 @@ class Common {
   String getDescription(int index, Updrs updrs, Map valori) {
     final keyVal = valori.keys.elementAt(index);
     final desc = valori.values.elementAt(index);
-    final json = updrs.modelParte4!.map((v) => v.toJson()).toList();
+    final json = updrs.model!.map((v) => v.toJson()).toList();
     final ret = json[0].containsKey(keyVal);
 
     if (ret) {

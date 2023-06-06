@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
 import 'package:resettami_app/Models/Updrs.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/Common.dart';
-import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/Partials/sezione1.dart';
-import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/Partials/sezione2.dart';
+import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/Partials/parte4/sezione1.dart';
+import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/Partials/parte4/sezione2.dart';
 
 class updrsParteQuartaScreen extends StatefulWidget {
   const updrsParteQuartaScreen({super.key, required this.updrs});
