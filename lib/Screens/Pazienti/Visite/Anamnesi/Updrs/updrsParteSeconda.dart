@@ -4,30 +4,30 @@ import 'package:intl/intl.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
 import 'package:resettami_app/Models/Updrs.dart';
 
-class updrsPartePrimaScreen extends StatefulWidget {
-  const updrsPartePrimaScreen({super.key, required this.updrs});
+class updrsParteSecondaScreen extends StatefulWidget {
+  const updrsParteSecondaScreen({super.key, required this.updrs});
 
   final Updrs updrs;
 
   @override
-  _updrsPartePrimaState createState() => _updrsPartePrimaState();
+  _updrsParteSecondaState createState() => _updrsParteSecondaState();
 }
 
-class _updrsPartePrimaState extends State<updrsPartePrimaScreen> {
+class _updrsParteSecondaState extends State<updrsParteSecondaScreen> {
   Map valori = {
-    'c101': 'Compromissione cognitiva',
-    'c102': 'Allucinazioni e psicosi',
-    'c103': 'Umore depresso',
-    'c104': 'Umore ansioso',
-    'c105': 'Apatia',
-    'c106': 'Caratteristiche della sindrome DDS',
-    'c107': 'Disturbi del sonno',
-    'c108': 'Sonnolenza diurna',
-    'c109': 'Dolore e altre sensazioni',
-    'c110': 'Problemi urinari',
-    'c111': 'Problemi di costipazione',
-    'c112': 'Sensazione di mancamento nell\'assumere la posizione eretta',
-    'c113': 'Affaticabilità',
+    'c201': 'Eloquio',
+    'c202': 'Salivazione e perdita di saliva',
+    'c203': 'Masticazione e deglutizione',
+    'c204': 'Attività correlate al mangiare',
+    'c205': 'Vestirsi',
+    'c206': 'Igiene personale',
+    'c207': 'Scrittura',
+    'c208': 'Passatempi e altre attività',
+    'c209': 'Girarsi nel letto',
+    'c210': 'Tremore',
+    'c211': 'Uscire dal letto, dall\'auto, da una poltrona',
+    'c212': 'Camminare ed equilibrio',
+    'c213': 'Blocco motorio (Freezing)',
   };
 
   @override
@@ -96,10 +96,10 @@ class _updrsPartePrimaState extends State<updrsPartePrimaScreen> {
 
   String getTitle() {
     String ret = "";
-    if (widget.updrs.modelParte1!.isNotEmpty) {
-      DateTime dt = DateTime.parse(widget.updrs.modelParte1![0].dataComp ?? "");
+    if (widget.updrs.modelParte2!.isNotEmpty) {
+      DateTime dt = DateTime.parse(widget.updrs.modelParte2![0].dataComp ?? "");
       ret = 'Data Comp.: ${DateFormat('dd-MM-yyyy').format(dt)}';
-      ret += ' - Tot.: ${widget.updrs.modelParte1?[0].totale1}';
+      ret += ' - Tot.: ${widget.updrs.modelParte2?[0].totale2}';
 
       return ret;
     }
@@ -109,7 +109,7 @@ class _updrsPartePrimaState extends State<updrsPartePrimaScreen> {
   String getDescription(int index) {
     final keyVal = valori.keys.elementAt(index);
     final desc = valori.values.elementAt(index);
-    final json = widget.updrs.modelParte1!.map((v) => v.toJson()).toList();
+    final json = widget.updrs.modelParte2!.map((v) => v.toJson()).toList();
     final ret = json[0].containsKey(keyVal);
 
     if (ret) {
@@ -120,7 +120,7 @@ class _updrsPartePrimaState extends State<updrsPartePrimaScreen> {
 
   Color getColor(int index) {
     final keyVal = valori.keys.elementAt(index);
-    final json = widget.updrs.modelParte1!.map((v) => v.toJson()).toList();
+    final json = widget.updrs.modelParte2!.map((v) => v.toJson()).toList();
     final ret = json[0].containsKey(keyVal);
 
     if (ret) {
@@ -145,7 +145,7 @@ class _updrsPartePrimaState extends State<updrsPartePrimaScreen> {
 
   Color getColorIcon(int index) {
     final keyVal = valori.keys.elementAt(index);
-    final json = widget.updrs.modelParte1!.map((v) => v.toJson()).toList();
+    final json = widget.updrs.modelParte2!.map((v) => v.toJson()).toList();
     final ret = json[0].containsKey(keyVal);
 
     if (ret) {
@@ -162,7 +162,7 @@ class _updrsPartePrimaState extends State<updrsPartePrimaScreen> {
 
   IconData getIcon(int index) {
     final keyVal = valori.keys.elementAt(index);
-    final json = widget.updrs.modelParte1!.map((v) => v.toJson()).toList();
+    final json = widget.updrs.modelParte2!.map((v) => v.toJson()).toList();
     final ret = json[0].containsKey(keyVal);
 
     if (ret) {
