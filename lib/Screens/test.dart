@@ -27,9 +27,9 @@ class test extends StatelessWidget {
                 margin: const EdgeInsets.all(5),
                 color: Colors.white,
                 shadowColor: const Color(0xff00A19B),
-                elevation: 1,
+                elevation: 10,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(6.0),
+                  borderRadius: BorderRadius.circular(6),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -41,7 +41,7 @@ class test extends StatelessWidget {
                       child: Container(
                           height: 30,
                           width: 30,
-                          margin: const EdgeInsets.only(top: 10, left: 5, right: 5),
+                          margin: const EdgeInsets.only(top: 10, left: 5),
                           decoration: BoxDecoration(
                               color: Colors.white,
                               border: Border.all(
@@ -60,7 +60,6 @@ class test extends StatelessWidget {
                       flex: 9,
                       child: Container(
                           height: 50,
-                          color: Colors.yellow,
                           child: const Center(
                               child: Text('xxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
                           )

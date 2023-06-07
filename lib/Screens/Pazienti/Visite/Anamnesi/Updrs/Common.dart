@@ -7,12 +7,13 @@ class Common {
 
 
 
-  Color getColor(int index, Updrs updrs, Map valori) {
+  Color getColor(int index, Updrs updrs, Map valori, [List<String>? listExlude]) {
     final keyVal = valori.keys.elementAt(index);
     final json = updrs.model!.map((v) => v.toJson()).toList();
     final ret = json[0].containsKey(keyVal);
+    final exlude = listExlude?.contains(keyVal);
 
-    if (ret) {
+    if (ret && !exlude!) {
       var t = json[0][keyVal];
       switch (t) {
         case '0':

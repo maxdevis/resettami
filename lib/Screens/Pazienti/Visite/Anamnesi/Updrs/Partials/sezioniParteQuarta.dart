@@ -7,11 +7,12 @@ class sezioniParteQuarta extends StatelessWidget {
       {super.key,
       required this.updrs,
       required this.valori,
-      required this.title});
+      required this.title, this.exlude});
 
   final Updrs updrs;
   final Map valori;
   final String title;
+  final List<String>? exlude;
   late Common com = const Common();
 
   @override
@@ -45,7 +46,7 @@ class sezioniParteQuarta extends StatelessWidget {
                   side: BorderSide(
                     color: com.getColor(i, updrs, valori),
                   ),
-                  borderRadius: BorderRadius.circular(6.0),
+                  borderRadius: BorderRadius.circular(6),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -58,7 +59,7 @@ class sezioniParteQuarta extends StatelessWidget {
                           height: 30,
                           width: 30,
                           margin:
-                              const EdgeInsets.only(top: 10, left: 5, right: 5),
+                              const EdgeInsets.only(top: 10, left: 5),
                           decoration: BoxDecoration(
                               color: Colors.white,
                               border: Border.all(
@@ -77,7 +78,14 @@ class sezioniParteQuarta extends StatelessWidget {
                       flex: 9,
                       child: Container(
                           height: 50,
-                          color: com.getColor(i, updrs, valori),
+                          decoration: BoxDecoration(
+                              color: valori.keys.elementAt(i) == '' ? com.getColor(i, updrs, valori) : Colors.white,
+                              border: Border.all(
+                                width: 2,
+                                color: com.getColor(i, updrs, valori),
+                              ),
+                              borderRadius:
+                              const BorderRadius.all(Radius.circular(5))),
                           child: Center(
                               child: Text(com.getDescription(i, updrs, valori)))),
                     ),
@@ -88,4 +96,7 @@ class sezioniParteQuarta extends StatelessWidget {
       ],
     );
   }
+
+
+
 }
