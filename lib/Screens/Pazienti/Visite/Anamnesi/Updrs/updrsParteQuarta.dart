@@ -15,6 +15,9 @@ class updrsParteQuartaScreen extends StatefulWidget {
 class _updrsParteQuartaState extends State<updrsParteQuartaScreen> {
 
   late Common com = const Common();
+  late List<String> exSez1 = ['np4wdysknum', 'np4wdyskden', 'np4wdyskpct'];
+  late List<String> exSez3 = ['np4offnum', 'np4offden', 'np4offpct'];
+  late List<String> exSez6 = ['np4dystnnum', 'np4dystnden', 'np4dystnpct'];
 
   late Map sez1 = {
     'c401': 'Tempo trascorso con discinesie',
@@ -22,6 +25,8 @@ class _updrsParteQuartaState extends State<updrsParteQuartaScreen> {
     'np4wdyskden': 'Denominatore (Numero ore sveglio)',
     'np4wdyskpct': '% Punteggio',
   };
+
+
 
   late Map sez2 = {
     'c402': 'Impatto funzionale delle discinesie',
@@ -33,6 +38,7 @@ class _updrsParteQuartaState extends State<updrsParteQuartaScreen> {
     'np4offden': 'Denominatore (Numero ore sveglio)',
     'np4offpct': 'Camminare ed equilibrio',
   };
+
 
   late Map sez4 = {
     'c404': 'Impatto funzionale delle fluttuazioni motorie',
@@ -85,7 +91,7 @@ class _updrsParteQuartaState extends State<updrsParteQuartaScreen> {
                   ),
                   child: Column(
                     children: <Widget>[
-                      sezioniParteQuarta(updrs: widget.updrs, valori: sez1, title: 'Sezione 4.1'),
+                      sezioniParteQuarta(updrs: widget.updrs, valori: sez1, title: 'Sezione 4.1', exlude: exSez1),
                     ],
                   )),
               Card(
@@ -111,7 +117,7 @@ class _updrsParteQuartaState extends State<updrsParteQuartaScreen> {
                   ),
                   child: Column(
                     children: <Widget>[
-                      sezioniParteQuarta(updrs: widget.updrs, valori: sez3, title: 'Sezione 4.3'),
+                      sezioniParteQuarta(updrs: widget.updrs, valori: sez3, title: 'Sezione 4.3', exlude: exSez3),
                     ],
                   )),
               Card(
@@ -150,7 +156,7 @@ class _updrsParteQuartaState extends State<updrsParteQuartaScreen> {
                   ),
                   child: Column(
                     children: <Widget>[
-                      sezioniParteQuarta(updrs: widget.updrs, valori: sez6, title: 'Sezione 4.6'),
+                      sezioniParteQuarta(updrs: widget.updrs, valori: sez6, title: 'Sezione 4.6', exlude: exSez6),
                     ],
                   ))
             ],

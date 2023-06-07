@@ -39,12 +39,12 @@ class sezioniParteQuarta extends StatelessWidget {
               width: double.infinity,
               child: Card(
                 margin: const EdgeInsets.all(5),
-                color: com.getColor(i, updrs, valori),
+                color: com.getColor(i, updrs, valori, exlude),
                 shadowColor: const Color(0xff00A19B),
                 elevation: 10,
                 shape: RoundedRectangleBorder(
                   side: BorderSide(
-                    color: com.getColor(i, updrs, valori),
+                    color: com.getColor(i, updrs, valori, exlude),
                   ),
                   borderRadius: BorderRadius.circular(6),
                 ),
@@ -79,10 +79,10 @@ class sezioniParteQuarta extends StatelessWidget {
                       child: Container(
                           height: 50,
                           decoration: BoxDecoration(
-                              color: valori.keys.elementAt(i) == '' ? com.getColor(i, updrs, valori) : Colors.white,
+                              color: com.getColor(i, updrs, valori, exlude),
                               border: Border.all(
                                 width: 2,
-                                color: com.getColor(i, updrs, valori),
+                                color: com.getColor(i, updrs, valori, exlude),
                               ),
                               borderRadius:
                               const BorderRadius.all(Radius.circular(5))),

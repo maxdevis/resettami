@@ -13,7 +13,7 @@ class Common {
     final ret = json[0].containsKey(keyVal);
     final exlude = listExlude?.contains(keyVal);
 
-    if (ret && !exlude!) {
+    if (ret && (exlude == null || !exlude)) {
       var t = json[0][keyVal];
       switch (t) {
         case '0':
