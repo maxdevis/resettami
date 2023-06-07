@@ -139,6 +139,19 @@ class _updrsParteQuartaState extends State<updrsParteQuartaScreen> {
                     children: <Widget>[
                       sezioniParteQuarta(updrs: widget.updrs, valori: sez5, title: 'Sezione 4.5'),
                     ],
+                  )),
+              Card(
+                  elevation: 10,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                    side: const BorderSide(
+                      color: Color(0xff00A19B),
+                    ),
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      sezioniParteQuarta(updrs: widget.updrs, valori: sez6, title: 'Sezione 4.6'),
+                    ],
                   ))
             ],
           )
