@@ -52,7 +52,8 @@ class _updrsPartePrimaState extends State<updrsPartePrimaScreen> {
                 height: 50,
                 decoration: BoxDecoration(
                     color: const Color(0xff00A19B),
-                    border: Border.all(color: Colors.white)),
+                    border: Border.all(color: Colors.white),
+                    borderRadius: const BorderRadius.all(Radius.circular(5))),
                 child: Center(
                   child: Text(
                     com.getTitle(widget.updrs),
@@ -89,8 +90,8 @@ class _updrsPartePrimaState extends State<updrsPartePrimaScreen> {
                               child: Container(
                                   height: 30,
                                   width: 30,
-                                  margin: const EdgeInsets.only(
-                                      top: 10, left: 5),
+                                  margin:
+                                      const EdgeInsets.only(top: 10, left: 5),
                                   decoration: BoxDecoration(
                                       color: Colors.white,
                                       border: Border.all(
@@ -113,13 +114,15 @@ class _updrsPartePrimaState extends State<updrsPartePrimaScreen> {
                               child: Container(
                                   height: 50,
                                   decoration: BoxDecoration(
-                                      color: com.getColor(index, widget.updrs, valori),
+                                      color: com.getColor(
+                                          index, widget.updrs, valori),
                                       border: Border.all(
                                         width: 2,
-                                        color: com.getColor(index, widget.updrs, valori),
+                                        color: com.getColor(
+                                            index, widget.updrs, valori),
                                       ),
-                                      borderRadius:
-                                      const BorderRadius.all(Radius.circular(5))),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(5))),
                                   child: Center(
                                       child: Text(com.getDescription(
                                           index, widget.updrs, valori)))),

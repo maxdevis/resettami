@@ -51,7 +51,8 @@ class _updrsParteSecondaState extends State<updrsParteSecondaScreen> {
                 height: 50,
                 decoration: BoxDecoration(
                     color: const Color(0xff00A19B),
-                    border: Border.all(color: Colors.white)
+                    border: Border.all(color: Colors.white),
+                    borderRadius: const BorderRadius.all(Radius.circular(5))
                 ),
                 child: Center(
                   child: Text(com.getTitle(widget.updrs), style: const TextStyle(color: Colors.white),),
