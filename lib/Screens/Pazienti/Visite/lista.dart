@@ -114,6 +114,7 @@ class listaVisiteScreen extends StatelessWidget {
       if (res == null) {
         showMyDialog('Errore caricamento dati');
       }
+
       return res;
     }
     else{

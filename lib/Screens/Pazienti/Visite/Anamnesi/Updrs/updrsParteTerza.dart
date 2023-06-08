@@ -331,7 +331,8 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                                 subSezioniUpdrs(
                                     updrs: widget.updrs,
                                     valori: sezAmpTremRip,
-                                    title: '3.17 Ampiezza del tremore a riposo'),
+                                    title:
+                                        '3.17 Ampiezza del tremore a riposo'),
                               ],
                             )),
                         Card(
@@ -347,7 +348,8 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                                 subSezioniUpdrs(
                                     updrs: widget.updrs,
                                     valori: sezContTremRip,
-                                    title: '3.18 Continuità del tremore a riposo'),
+                                    title:
+                                        '3.18 Continuità del tremore a riposo'),
                               ],
                             ))
                       ],

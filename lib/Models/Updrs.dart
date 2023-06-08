@@ -128,6 +128,7 @@ class Model {
   String? np4dystnnum;
   String? np4dystnden;
   String? np4dystnpct;
+  int countOnOff = 0;
 
   Model(
       {id,
@@ -232,7 +233,7 @@ class Model {
         np4offpct,
         np4dystnnum,
         np4dystnden,
-        np4dystnpct});
+        np4dystnpct, countOnOff});
 
   Model.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -338,6 +339,7 @@ class Model {
     np4dystnnum = json['np4dystnnum'];
     np4dystnden = json['np4dystnden'];
     np4dystnpct = json['np4dystnpct'];
+    countOnOff = int.parse(json['count_onoff']);
   }
 
   Map<String, dynamic> toJson() {
@@ -445,6 +447,7 @@ class Model {
     data['np4dystnnum'] = np4dystnnum;
     data['np4dystnden'] = np4dystnden;
     data['np4dystnpct'] = np4dystnpct;
+    data['count_onoff'] = countOnOff;
     return data;
   }
 }

@@ -19,7 +19,9 @@ class UpdrsService extends HttpService {
       if(response != null) {
         Updrs data = Updrs.fromJson(response);
         if(data.op) {
-          return data;
+          if(data.model!.isNotEmpty){
+            return data;
+          }
         }
       }
       return null;
