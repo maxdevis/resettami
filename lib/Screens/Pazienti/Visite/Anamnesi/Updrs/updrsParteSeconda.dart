@@ -56,7 +56,7 @@ class _updrsParteSecondaState extends State<updrsParteSecondaScreen> {
                     borderRadius: const BorderRadius.all(Radius.circular(5))),
                 child: Center(
                   child: Text(
-                    com.getTitle(widget.updrs),
+                    com.getTitle(widget.updrs, 2),
                     style: const TextStyle(color: Colors.white),
                   ),
                 ),

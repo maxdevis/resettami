@@ -364,7 +364,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                       border: Border.all(color: Colors.white),
                       borderRadius: const BorderRadius.all(Radius.circular(5))),
                   child: Center(
-                    child: Text(com.getTitle(widget.updrs),
+                    child: Text(com.getTitle(widget.updrs, 3),
                         style: const TextStyle(color: Colors.white)),
                   ),
                 ),

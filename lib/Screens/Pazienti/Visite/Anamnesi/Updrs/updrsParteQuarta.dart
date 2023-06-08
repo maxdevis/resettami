@@ -186,7 +186,7 @@ class _updrsParteQuartaState extends State<updrsParteQuartaScreen> {
                         borderRadius:
                         const BorderRadius.all(Radius.circular(5))),
                     child: Center(
-                      child: Text(com.getTitle(widget.updrs),
+                      child: Text(com.getTitle(widget.updrs, 4),
                           style: const TextStyle(color: Colors.white)),
                     ),
                   ),

@@ -109,7 +109,7 @@ class listaVisiteScreen extends StatelessWidget {
     if(int.parse(id) > 0) {
       EasyLoading.show(status: 'wait'.i18n());
       UpdrsService api = UpdrsService();
-      var res = await api.getUpdrs(id);
+      var res = await api.getUpdrsOff(id);
       EasyLoading.dismiss();
       if (res == null) {
         showMyDialog('Errore caricamento dati');

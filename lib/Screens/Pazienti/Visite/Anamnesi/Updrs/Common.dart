@@ -97,15 +97,29 @@ class Common {
     }
   }
 
-  String getTitle(Updrs updrs) {
+  String getTitle(Updrs updrs, int sezione) {
     String ret = "";
     if (updrs.model!.isNotEmpty) {
       DateTime dt = DateTime.parse(updrs.model![0].dataComp ?? "");
       ret = 'Data Comp.: ${DateFormat('dd-MM-yyyy').format(dt)}';
-      ret += ' - Tot.: ${updrs.model?[0].totale4}';
+      switch(sezione){
+        case 1:
+          ret += ' - Tot.: ${updrs.model?[0].totale1}';
+          break;
+        case 2:
+          ret += ' - Tot.: ${updrs.model?[0].totale2}';
+          break;
+        case 3:
+          ret += ' - Tot.: ${updrs.model?[0].totale3}';
+          break;
+        case 4:
+          ret += ' - Tot.: ${updrs.model?[0].totale4}';
+          break;
+      }
 
       return ret;
     }
+
     return "";
   }
 
