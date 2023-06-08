@@ -72,7 +72,7 @@ class listaVisiteScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.normal,
                                   fontSize: 12,
-                                  color: Color(0xff7a7a7a),
+                                  color: Colors.white,
                                 ),
                               ),
                             ),
