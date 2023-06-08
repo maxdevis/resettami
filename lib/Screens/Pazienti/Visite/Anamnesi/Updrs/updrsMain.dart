@@ -5,6 +5,7 @@ import 'package:resettami_app/Models/Updrs.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/updrsPartePrima.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/updrsParteQuarta.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/updrsParteSeconda.dart';
+import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/updrsParteTerza.dart';
 
 class updrsMainScreen extends StatefulWidget {
   const updrsMainScreen({super.key, required this.updrs});
@@ -30,10 +31,7 @@ class _updrsMainState extends State<updrsMainScreen> {
   late final List<Widget> _widgetOptions = <Widget>[
     updrsPartePrimaScreen(updrs: _updrs),
     updrsParteSecondaScreen(updrs: _updrs),
-    const Text(
-      'Parte III',
-      //style: optionStyle,
-    ),
+    updrsParteTerzaScreen(updrs: _updrs),
     updrsParteQuartaScreen(updrs: _updrs),
   ];
 
