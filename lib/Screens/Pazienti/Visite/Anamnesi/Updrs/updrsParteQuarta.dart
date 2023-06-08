@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
 import 'package:resettami_app/Models/Updrs.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/Common.dart';
-import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/Partials/sezioniParteQuarta.dart';
+import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/Partials/subSezioniUpdrs.dart';
+
 
 class updrsParteQuartaScreen extends StatefulWidget {
   const updrsParteQuartaScreen({super.key, required this.updrs});
@@ -82,7 +83,7 @@ class _updrsParteQuartaState extends State<updrsParteQuartaScreen> {
                             ),
                             child: Column(
                               children: <Widget>[
-                                sezioniParteQuarta(
+                                subSezioniUpdrs(
                                     updrs: widget.updrs,
                                     valori: sez1,
                                     title: 'Sezione 4.1',
@@ -99,7 +100,7 @@ class _updrsParteQuartaState extends State<updrsParteQuartaScreen> {
                             ),
                             child: Column(
                               children: <Widget>[
-                                sezioniParteQuarta(
+                                subSezioniUpdrs(
                                     updrs: widget.updrs,
                                     valori: sez2,
                                     title: 'Sezione 4.2'),
@@ -115,7 +116,7 @@ class _updrsParteQuartaState extends State<updrsParteQuartaScreen> {
                             ),
                             child: Column(
                               children: <Widget>[
-                                sezioniParteQuarta(
+                                subSezioniUpdrs(
                                     updrs: widget.updrs,
                                     valori: sez3,
                                     title: 'Sezione 4.3',
@@ -132,7 +133,7 @@ class _updrsParteQuartaState extends State<updrsParteQuartaScreen> {
                             ),
                             child: Column(
                               children: <Widget>[
-                                sezioniParteQuarta(
+                                subSezioniUpdrs(
                                     updrs: widget.updrs,
                                     valori: sez4,
                                     title: 'Sezione 4.4'),
@@ -148,7 +149,7 @@ class _updrsParteQuartaState extends State<updrsParteQuartaScreen> {
                             ),
                             child: Column(
                               children: <Widget>[
-                                sezioniParteQuarta(
+                                subSezioniUpdrs(
                                     updrs: widget.updrs,
                                     valori: sez5,
                                     title: 'Sezione 4.5'),
@@ -164,7 +165,7 @@ class _updrsParteQuartaState extends State<updrsParteQuartaScreen> {
                             ),
                             child: Column(
                               children: <Widget>[
-                                sezioniParteQuarta(
+                                subSezioniUpdrs(
                                     updrs: widget.updrs,
                                     valori: sez6,
                                     title: 'Sezione 4.6',

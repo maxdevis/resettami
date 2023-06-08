@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
 import 'package:resettami_app/Models/Updrs.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/Common.dart';
-import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/Partials/sezioniParteQuarta.dart';
+import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/Partials/subSezioniUpdrs.dart';
 
 class updrsParteTerzaScreen extends StatefulWidget {
   const updrsParteTerzaScreen({super.key, required this.updrs});
@@ -151,7 +151,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             ),
                             child: Column(
                               children: <Widget>[
-                                sezioniParteQuarta(
+                                subSezioniUpdrs(
                                     updrs: widget.updrs,
                                     valori: sezMain,
                                     title: 'Info Principali',
@@ -168,7 +168,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             ),
                             child: Column(
                               children: <Widget>[
-                                sezioniParteQuarta(
+                                subSezioniUpdrs(
                                     updrs: widget.updrs,
                                     valori: sezEloquio,
                                     title: 'Eloquio/Mimica facciale'),
@@ -184,7 +184,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             ),
                             child: Column(
                               children: <Widget>[
-                                sezioniParteQuarta(
+                                subSezioniUpdrs(
                                     updrs: widget.updrs,
                                     valori: sezRegidita,
                                     title: 'Rigidità'),
@@ -200,7 +200,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             ),
                             child: Column(
                               children: <Widget>[
-                                sezioniParteQuarta(
+                                subSezioniUpdrs(
                                     updrs: widget.updrs,
                                     valori: sezMovRipMano,
                                     title: '3.4 Movimenti ripetuti dita mano'),
@@ -216,7 +216,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             ),
                             child: Column(
                               children: <Widget>[
-                                sezioniParteQuarta(
+                                subSezioniUpdrs(
                                     updrs: widget.updrs,
                                     valori: sezMovMano,
                                     title: '3.5 Movimenti della mano'),
@@ -232,7 +232,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             ),
                             child: Column(
                               children: <Widget>[
-                                sezioniParteQuarta(
+                                subSezioniUpdrs(
                                     updrs: widget.updrs,
                                     valori: sezPronoSup,
                                     title: '3.6 Movimenti prono-supinazione'),
@@ -248,7 +248,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             ),
                             child: Column(
                               children: <Widget>[
-                                sezioniParteQuarta(
+                                subSezioniUpdrs(
                                     updrs: widget.updrs,
                                     valori: sezMovRipPiede,
                                     title: '3.7 Movimenti ripetuti dita piede'),
@@ -264,7 +264,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             ),
                             child: Column(
                               children: <Widget>[
-                                sezioniParteQuarta(
+                                subSezioniUpdrs(
                                     updrs: widget.updrs,
                                     valori: sezAgGamba,
                                     title: '3.8 Agilità gamba'),
@@ -280,7 +280,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             ),
                             child: Column(
                               children: <Widget>[
-                                sezioniParteQuarta(
+                                subSezioniUpdrs(
                                     updrs: widget.updrs,
                                     valori: sezAltro,
                                     title: 'Altro'),
@@ -296,7 +296,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             ),
                             child: Column(
                               children: <Widget>[
-                                sezioniParteQuarta(
+                                subSezioniUpdrs(
                                     updrs: widget.updrs,
                                     valori: sezTremPostMani,
                                     title: '3.15 Tremore posturale delle mani'),
@@ -312,7 +312,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             ),
                             child: Column(
                               children: <Widget>[
-                                sezioniParteQuarta(
+                                subSezioniUpdrs(
                                     updrs: widget.updrs,
                                     valori: sezTremCineticoMani,
                                     title: '3.16 Tremore cinetico delle mani'),
@@ -328,7 +328,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             ),
                             child: Column(
                               children: <Widget>[
-                                sezioniParteQuarta(
+                                subSezioniUpdrs(
                                     updrs: widget.updrs,
                                     valori: sezAmpTremRip,
                                     title: '3.17 Ampiezza del tremore a riposo'),
@@ -344,7 +344,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             ),
                             child: Column(
                               children: <Widget>[
-                                sezioniParteQuarta(
+                                subSezioniUpdrs(
                                     updrs: widget.updrs,
                                     valori: sezContTremRip,
                                     title: '3.18 Continuità del tremore a riposo'),

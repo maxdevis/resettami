@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:resettami_app/Models/Updrs.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/Common.dart';
+import 'package:resettami_app/utils/Uty.dart';
 
-class sezioniParteQuarta extends StatelessWidget {
-  sezioniParteQuarta(
+class subSezioniUpdrs extends StatelessWidget {
+  subSezioniUpdrs(
       {super.key,
       required this.updrs,
       required this.valori,
@@ -56,7 +57,7 @@ class sezioniParteQuarta extends StatelessWidget {
                     Expanded(
                       flex: 1,
                       child: Visibility(
-                        visible: (com.getValue(i, updrs, valori) != ""),
+                        visible: (showText1(i)),
                         child:  Container(
                             height: 30,
                             width: 30,
@@ -90,7 +91,7 @@ class sezioniParteQuarta extends StatelessWidget {
                               borderRadius:
                               const BorderRadius.all(Radius.circular(5))),
                           child: Center(
-                              child: Text(com.getDescription(i, updrs, valori)))),
+                              child: Text(getValPdmEddt(i)))),
                     ),
                   ],
                 ),
@@ -100,6 +101,20 @@ class sezioniParteQuarta extends StatelessWidget {
     );
   }
 
+  String getValPdmEddt(int i){
+    final val = com.getValue(i, updrs, valori);
+    final desc = com.getDescription(i, updrs, valori);
+
+    if(valori.containsKey('pdmeddt') && val != ""){
+      return '${getFormatData(val)} - $desc';
+    }
+    return desc;
+  }
+
+  bool showText1(int i){
+    final val = com.getValue(i, updrs, valori);
+    return (val != "" && !valori.containsKey('pdmeddt'));
+  }
 
 
 }
