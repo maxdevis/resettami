@@ -55,67 +55,67 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
   };
 
   late Map sezRegidita = {
-    "c303a": "3.3A Rigidità del collo",
-    "c303b": "3.3B Rigidità del braccio destro",
-    "c303c": "3.3C Rigidità del braccio sinistro",
-    "c303d": "3.3D Rigidità della gamba destra",
-    "c303e": "3.3E Rigidità della gamba sinistra",
+    'c303a': '3.3A Rigidità del collo',
+    'c303b': '3.3B Rigidità del braccio destro',
+    'c303c': '3.3C Rigidità del braccio sinistro',
+    'c303d': '3.3D Rigidità della gamba destra',
+    'c303e': '3.3E Rigidità della gamba sinistra',
   };
 
   late Map sezMovRipMano = {
-    "c304a": "3.4A Movimenti ripetuti dita mano destra",
-    "c304b": "3.4B Movimenti ripetuti dita mano sinistra",
+    'c304a': '3.4A Movimenti ripetuti dita mano destra',
+    'c304b': '3.4B Movimenti ripetuti dita mano sinistra',
   };
 
   late Map sezMovMano = {
-    "c305a": "3.5A Movimenti della mano destra",
-    "c305b": "3.5B Movimenti della mano sinistra",
+    'c305a': '3.5A Movimenti della mano destra',
+    'c305b': '3.5B Movimenti della mano sinistra',
   };
 
   late Map sezPronoSup = {
-    "c306a": "3.6A Movimenti prono-supinazione mano destra",
-    "c306b": "3.6B Movimenti prono-supinazione mano sinistra",
+    'c306a': '3.6A Movimenti prono-supinazione mano destra',
+    'c306b': '3.6B Movimenti prono-supinazione mano sinistra',
   };
 
   late Map sezMovRipPiede = {
-    "c307a": "3.7A Movimenti ripetuti dita piede destro",
-    "c307b": "3.7B Movimenti ripetuti dita piede sinistro",
+    'c307a': '3.7A Movimenti ripetuti dita piede destro',
+    'c307b': '3.7B Movimenti ripetuti dita piede sinistro',
   };
 
   late Map sezAgGamba = {
-    "c308a": "3.8A Agilità gamba destra",
-    "c308b": "3.8B Agilità gamba sinistra",
+    'c308a': '3.8A Agilità gamba destra',
+    'c308b': '3.8B Agilità gamba sinistra',
   };
 
   late Map sezAltro = {
-    "c309": "3.9 Alzarsi dalla sedia",
-    "c310": "3.10 Marcia",
-    "c311": "3.11 Blocco della marcia",
-    "c312": "3.12 Stabilità posturale",
-    "c313": "3.13 Postura",
-    "c314": "3.14 Spontaneità dei movimenti ( bradicinesia )",
+    'c309': '3.9 Alzarsi dalla sedia',
+    'c310': '3.10 Marcia',
+    'c311': '3.11 Blocco della marcia',
+    'c312': '3.12 Stabilità posturale',
+    'c313': '3.13 Postura',
+    'c314': '3.14 Spontaneità dei movimenti ( bradicinesia )',
   };
 
   late Map sezTremPostMani = {
-    "c315a": "3.15A Tremore posturale - mano destra",
-    "c315b": "3.15B Tremore posturale - mano sinistra",
+    'c315a': '3.15A Tremore posturale - mano destra',
+    'c315b': '3.15B Tremore posturale - mano sinistra',
   };
 
   late Map sezTremCineticoMani = {
-    "c316a": "3.16A Tremore cinetico - mano destra",
-    "c316b": "3.16B Tremore cinetico - mano sinistra",
+    'c316a': '3.16A Tremore cinetico - mano destra',
+    'c316b': '3.16B Tremore cinetico - mano sinistra',
   };
 
   late Map sezAmpTremRip = {
-    "c317a": "3.17A Ampiezza del tremore a riposo - braccio destro",
-    "c317b": "3.17B Ampiezza del tremore a riposo - braccio sinistro",
-    "c317c": "3.17C Ampiezza del tremore a riposo - gamba destra",
-    "c317d": "3.17D Ampiezza del tremore a riposo - gamba sinistra",
-    "c317e": "3.17E Ampiezza del tremore a riposo - labbra/mandibola",
+    'c317a': '3.17A Ampiezza del tremore a riposo - braccio destro',
+    'c317b': '3.17B Ampiezza del tremore a riposo - braccio sinistro',
+    'c317c': '3.17C Ampiezza del tremore a riposo - gamba destra',
+    'c317d': '3.17D Ampiezza del tremore a riposo - gamba sinistra',
+    'c317e': '3.17E Ampiezza del tremore a riposo - labbra/mandibola',
   };
 
   late Map sezContTremRip = {
-    "c318": "3.18 Continuità del tremore a riposo",
+    'c318': '3.18 Continuità del tremore a riposo',
   };
 
   @override

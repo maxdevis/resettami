@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:resettami_app/Models/Updrs.dart';
@@ -13,7 +14,7 @@ class Common {
     final ret = json[0].containsKey(keyVal);
     final exlude = listExlude?.contains(keyVal);
 
-    if (ret && (exlude == null || !exlude)) {
+    if (ret && json[0][keyVal] != null && (exlude == null || !exlude)) {
       var t = json[0][keyVal];
       switch (t) {
         case '0':
@@ -38,7 +39,7 @@ class Common {
     final json = updrs.model!.map((v) => v.toJson()).toList();
     final ret = json[0].containsKey(keyVal);
 
-    if (ret) {
+    if (ret && json[0][keyVal] != null) {
       var t = json[0][keyVal];
       switch (t) {
         case '0':
@@ -55,7 +56,7 @@ class Common {
     final json = updrs.model!.map((v) => v.toJson()).toList();
     final ret = json[0].containsKey(keyVal);
 
-    if (ret) {
+    if (ret && json[0][keyVal] != null) {
       var t = json[0][keyVal];
       switch (t) {
         case '0':
@@ -79,14 +80,21 @@ class Common {
   }
 
   String getValue(int index, Updrs updrs, Map valori) {
-    final keyVal = valori.keys.elementAt(index);
-    final json = updrs.model!.map((v) => v.toJson()).toList();
-    final ret = json[0].containsKey(keyVal);
+    try {
+      final keyVal = valori.keys.elementAt(index);
+      final json = updrs.model!.map((v) => v.toJson()).toList();
+      final ret = json[0].containsKey(keyVal);
 
-    if (ret) {
-      return json[0][keyVal];
+      if (ret && json[0][keyVal] != null) {
+        return json[0][keyVal];
+      }
+      return "";
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      return "";
     }
-    return "";
   }
 
   String getTitle(Updrs updrs) {
@@ -103,7 +111,10 @@ class Common {
 
   String getDescription(int index, Updrs updrs, Map valori) {
     final desc = valori.values.elementAt(index);
-    return desc;
+    if(desc != null){
+      return desc;
+    }
+    return "";
   }
 
 }
