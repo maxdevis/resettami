@@ -55,24 +55,27 @@ class sezioniParteQuarta extends StatelessWidget {
                   children: [
                     Expanded(
                       flex: 1,
-                      child: Container(
-                          height: 30,
-                          width: 30,
-                          margin:
-                              const EdgeInsets.only(top: 10, left: 5),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              border: Border.all(
-                                width: 2,
-                                color: Colors.black,
-                              ),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(5))),
-                          child: Center(
-                              heightFactor: 3.5,
-                              child: Text(com.getValue(i, updrs, valori),
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(fontWeight: FontWeight.bold)))),
+                      child: Visibility(
+                        visible: (com.getValue(i, updrs, valori) != ""),
+                        child:  Container(
+                            height: 30,
+                            width: 30,
+                            margin:
+                            const EdgeInsets.only(top: 10, left: 5),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(
+                                  width: 2,
+                                  color: Colors.black,
+                                ),
+                                borderRadius:
+                                const BorderRadius.all(Radius.circular(5))),
+                            child: Center(
+                                heightFactor: 3.5,
+                                child: Text(com.getValue(i, updrs, valori),
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(fontWeight: FontWeight.bold))))
+                      ),
                     ),
                     Expanded(
                       flex: 9,
