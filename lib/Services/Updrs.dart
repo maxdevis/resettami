@@ -4,11 +4,10 @@ import 'package:resettami_app/utils/HttpService.dart';
 
 class UpdrsService extends HttpService {
 
-
-  Future<dynamic> getUpdrsOff(int servizio_id) async {
+  Future<dynamic> getDatabyServizioId(int servizio_id) async {
     try {
 
-      const url = '/app/getDataUpdrsOff';
+      const url = '/app/getDataUpdrs';
 
       Map<String, dynamic> data = {
         'servizio_id': servizio_id.toString(),
@@ -32,14 +31,16 @@ class UpdrsService extends HttpService {
     }
   }
 
-  Future<dynamic> getUpdrsOn(int paziente_id, DateTime dataComp) async {
+
+  Future<dynamic> getDataUpdrs(int paziente_id, DateTime dataComp, String c213b) async {
     try {
 
-      const url = '/app/getDataUpdrsOn';
+      const url = '/app/getDataUpdrs';
 
       Map<String, dynamic> data = {
         'paziente_id': paziente_id.toString(),
         'data_comp': dataComp.toString(),
+        'c213b': c213b
       };
 
       var response = await getData(url, data);

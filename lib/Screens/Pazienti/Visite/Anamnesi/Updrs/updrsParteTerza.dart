@@ -392,7 +392,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                               onChanged: (bool value) {
                                 // This is called when the user toggles the switch.
                                 setState(() async {
-                                  await _getData();
+                                  await _getData(value);
                                 });
                               },
                             ),
@@ -408,15 +408,11 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
         ));
   }
 
-  Future<dynamic> _getData() async {
+  Future<dynamic> _getData(bool value) async {
     dynamic ret;
-    if(_updrs.model![0].countOnOff > 1 && _updrs.model![0].c213b == 'Off'){
-      ret = await com.getUpdrsOn(_updrs.model![0].pazienteId, _updrs.model![0].dataComp);
-    }
-    else{
-      ret = await com.getUpdrs(_updrs.model![0].id);
-    }
-    if(ret != null){
+     String c213b = value ? 'On' : 'Off';
+     ret = await com.getDataUpdrs(_updrs.model![0].pazienteId, _updrs.model![0].dataComp, c213b);
+     if(ret != null){
       _updrs = ret;
       setState(() {});
     }

@@ -135,10 +135,10 @@ class Common {
     return "";
   }
 
-  Future<dynamic> getUpdrsOn(int pazienteId, DateTime dataComp) async {
+  Future<dynamic> getDataUpdrs(int pazienteId, DateTime dataComp, String c213b) async {
     EasyLoading.show(status: 'wait'.i18n());
     UpdrsService api = UpdrsService();
-    var res = await api.getUpdrsOn(pazienteId, dataComp);
+    var res = await api.getDataUpdrs(pazienteId, dataComp, c213b);
     EasyLoading.dismiss();
     if (res == null) {
       showMyDialog('Errore caricamento dati');
@@ -147,16 +147,6 @@ class Common {
     return res;
   }
 
-  Future<dynamic> getUpdrs(int servizio_id) async {
-    EasyLoading.show(status: 'wait'.i18n());
-    UpdrsService api = UpdrsService();
-    var res = await api.getUpdrsOff(servizio_id);
-    EasyLoading.dismiss();
-    if (res == null) {
-      showMyDialog('Errore caricamento dati');
-    }
 
-    return res;
-  }
 
 }

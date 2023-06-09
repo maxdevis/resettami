@@ -87,7 +87,8 @@ class listaVisiteScreen extends StatelessWidget {
                         color: Colors.white,
                         icon: const Icon(Icons.medical_information),
                         onPressed: () async {
-                          var ret = await com.getUpdrs(visite.model![index].id);
+                          var api = UpdrsService();
+                          var ret = await api.getDatabyServizioId(visite.model![index].id);
                           if (ret != null && context.mounted) {
                             Navigator.push(
                                 context,
