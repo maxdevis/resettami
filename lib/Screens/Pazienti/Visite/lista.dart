@@ -87,14 +87,19 @@ class listaVisiteScreen extends StatelessWidget {
                         color: Colors.white,
                         icon: const Icon(Icons.medical_information),
                         onPressed: () async {
+                          EasyLoading.show(status: 'wait'.i18n());
                           var api = UpdrsService();
                           var ret = await api.getDatabyServizioId(visite.model![index].id);
+                          EasyLoading.dismiss();
                           if (ret != null && context.mounted) {
+                            EasyLoading.dismiss();
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => updrsMainScreen(updrs: ret),
                                 ));
+                          }else{
+                            showMyDialog('Errore caricamento dati');
                           }
                         },
                       ),
