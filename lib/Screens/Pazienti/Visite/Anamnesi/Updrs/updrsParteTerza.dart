@@ -18,7 +18,7 @@ class updrsParteTerzaScreen extends StatefulWidget {
 
 class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
   late Common com = const Common();
-  late Updrs _updrs = Updrs();
+  late Updrs _updrs = widget.updrs;
 
   late List<String> exSezMain = [
     'c1a',
@@ -125,7 +125,6 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
   @override
   void initState() {
     super.initState();
-    _updrs = widget.updrs;
   }
 
   @override
