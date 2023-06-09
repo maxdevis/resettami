@@ -84,21 +84,14 @@ class Common {
   }
 
   String getValue(int index, Updrs updrs, Map valori) {
-    try {
-      final keyVal = valori.keys.elementAt(index);
-      final json = updrs.model!.map((v) => v.toJson()).toList();
-      final ret = json[0].containsKey(keyVal);
+    final keyVal = valori.keys.elementAt(index);
+    final json = updrs.model!.map((v) => v.toJson()).toList();
+    final ret = json[0].containsKey(keyVal);
 
-      if (ret && json[0][keyVal] != null) {
-        return json[0][keyVal];
-      }
-      return "";
-    } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
-      return "";
+    if (ret && json[0][keyVal] != null) {
+      return json[0][keyVal];
     }
+    return "";
   }
 
   String getTitle(Updrs updrs, int sezione) {
