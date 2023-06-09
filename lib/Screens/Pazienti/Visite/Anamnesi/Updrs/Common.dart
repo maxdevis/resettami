@@ -1,7 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:intl/intl.dart';
+import 'package:localization/localization.dart';
 import 'package:resettami_app/Models/Updrs.dart';
+import 'package:resettami_app/Services/Updrs.dart';
+import 'package:resettami_app/utils/Uty.dart';
 
 class Common {
   const Common();
@@ -100,7 +104,7 @@ class Common {
   String getTitle(Updrs updrs, int sezione) {
     String ret = "";
     if (updrs.model!.isNotEmpty) {
-      DateTime dt = DateTime.parse(updrs.model![0].dataComp ?? "");
+      DateTime dt = updrs.model![0].dataComp;
       ret = 'Data Comp.: ${DateFormat('dd-MM-yyyy').format(dt)}';
       switch(sezione){
         case 1:
@@ -129,6 +133,30 @@ class Common {
       return desc;
     }
     return "";
+  }
+
+  Future<dynamic> getUpdrsOn(int pazienteId, DateTime dataComp) async {
+    EasyLoading.show(status: 'wait'.i18n());
+    UpdrsService api = UpdrsService();
+    var res = await api.getUpdrsOn(pazienteId, dataComp);
+    EasyLoading.dismiss();
+    if (res == null) {
+      showMyDialog('Errore caricamento dati');
+    }
+
+    return res;
+  }
+
+  Future<dynamic> getUpdrs(int servizio_id) async {
+    EasyLoading.show(status: 'wait'.i18n());
+    UpdrsService api = UpdrsService();
+    var res = await api.getUpdrsOff(servizio_id);
+    EasyLoading.dismiss();
+    if (res == null) {
+      showMyDialog('Errore caricamento dati');
+    }
+
+    return res;
   }
 
 }

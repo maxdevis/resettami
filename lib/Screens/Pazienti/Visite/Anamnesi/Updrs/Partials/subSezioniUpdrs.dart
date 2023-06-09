@@ -62,7 +62,7 @@ class subSezioniUpdrs extends StatelessWidget {
                             height: 30,
                             width: 30,
                             margin:
-                            const EdgeInsets.only(top: 10, left: 5),
+                            const EdgeInsets.only(top: 5, left: 5),
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 border: Border.all(

@@ -25,7 +25,7 @@ class Visite {
 }
 
 class Model {
-  String? id;
+  int id = 0;
   String? pazienteId;
   String? strutturaId;
   String? operatoreId;
@@ -54,7 +54,7 @@ class Model {
         });
 
   Model.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = int.parse(json['id']);
     pazienteId = json['paziente_id'];
     strutturaId = json['struttura_id'];
     operatoreId = json['operatore_id'];

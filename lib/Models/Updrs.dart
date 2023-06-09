@@ -25,10 +25,10 @@ class Updrs {
 }
 
 class Model {
-  String? id;
-  String? servizioId;
-  String? pazienteId;
-  String? dataComp;
+  int id = 0;
+  int servizioId = 0;
+  int pazienteId = 0;
+  DateTime dataComp = DateTime.now();
   String? c1a;
   String? c101;
   String? c102;
@@ -57,7 +57,7 @@ class Model {
   String? c212;
   String? c213;
   String? c213a;
-  String? c213b;
+  int c213b = 0;
   String? c213c;
   String? c213c1;
   String? c301;
@@ -236,10 +236,10 @@ class Model {
         np4dystnpct, countOnOff});
 
   Model.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    servizioId = json['servizio_id'];
-    pazienteId = json['paziente_id'];
-    dataComp = json['data_comp'];
+    id = int.parse(json['id']);
+    servizioId = int.parse(json['servizio_id']);
+    pazienteId = int.parse(json['paziente_id']);
+    dataComp = DateTime.parse(json['data_comp']);
     c1a = json['c1a'];
     c101 = json['c101'];
     c102 = json['c102'];
@@ -268,7 +268,7 @@ class Model {
     c212 = json['c212'];
     c213 = json['c213'];
     c213a = json['c213a'];
-    c213b = json['c213b'];
+    c213b = int.parse(json['c213b']);
     c213c = json['c213c'];
     c213c1 = json['c213c1'];
     c301 = json['c301'];

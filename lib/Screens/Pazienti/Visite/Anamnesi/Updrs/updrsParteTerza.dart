@@ -3,6 +3,7 @@ import 'package:resettami_app/Component/myDrawer.dart';
 import 'package:resettami_app/Models/Updrs.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/Common.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/Partials/subSezioniUpdrs.dart';
+import 'package:resettami_app/utils/Uty.dart';
 
 class updrsParteTerzaScreen extends StatefulWidget {
   const updrsParteTerzaScreen({super.key, required this.updrs});
@@ -15,6 +16,9 @@ class updrsParteTerzaScreen extends StatefulWidget {
 
 class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
   late Common com = const Common();
+  late bool _sitchStateOff = false;
+  late Updrs _updrs = Updrs();
+
   late List<String> exSezMain = [
     'c1a',
     'scala_hoen_yahr_id',
@@ -31,6 +35,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
     'hrdbson',
     'hrdbsoff'
   ];
+
   late Map sezMain = {
     'c1a': 'Fonte primaria d\'informazione',
     'scala_hoen_yahr_id': 'Stadio Hoehn & Yahr',
@@ -121,6 +126,8 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
   @override
   void initState() {
     super.initState();
+    _updrs = widget.updrs;
+    _sitchStateOff = (_updrs.model![0].c213b > 0);
   }
 
   @override
@@ -152,7 +159,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             child: Column(
                               children: <Widget>[
                                 subSezioniUpdrs(
-                                    updrs: widget.updrs,
+                                    updrs: _updrs,
                                     valori: sezMain,
                                     title: 'Info Principali',
                                     exlude: exSezMain),
@@ -169,7 +176,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             child: Column(
                               children: <Widget>[
                                 subSezioniUpdrs(
-                                    updrs: widget.updrs,
+                                    updrs: _updrs,
                                     valori: sezEloquio,
                                     title: 'Eloquio/Mimica facciale'),
                               ],
@@ -185,7 +192,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             child: Column(
                               children: <Widget>[
                                 subSezioniUpdrs(
-                                    updrs: widget.updrs,
+                                    updrs: _updrs,
                                     valori: sezRegidita,
                                     title: 'Rigidità'),
                               ],
@@ -201,7 +208,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             child: Column(
                               children: <Widget>[
                                 subSezioniUpdrs(
-                                    updrs: widget.updrs,
+                                    updrs: _updrs,
                                     valori: sezMovRipMano,
                                     title: '3.4 Movimenti ripetuti dita mano'),
                               ],
@@ -217,7 +224,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             child: Column(
                               children: <Widget>[
                                 subSezioniUpdrs(
-                                    updrs: widget.updrs,
+                                    updrs: _updrs,
                                     valori: sezMovMano,
                                     title: '3.5 Movimenti della mano'),
                               ],
@@ -233,7 +240,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             child: Column(
                               children: <Widget>[
                                 subSezioniUpdrs(
-                                    updrs: widget.updrs,
+                                    updrs: _updrs,
                                     valori: sezPronoSup,
                                     title: '3.6 Movimenti prono-supinazione'),
                               ],
@@ -249,7 +256,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             child: Column(
                               children: <Widget>[
                                 subSezioniUpdrs(
-                                    updrs: widget.updrs,
+                                    updrs: _updrs,
                                     valori: sezMovRipPiede,
                                     title: '3.7 Movimenti ripetuti dita piede'),
                               ],
@@ -265,7 +272,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             child: Column(
                               children: <Widget>[
                                 subSezioniUpdrs(
-                                    updrs: widget.updrs,
+                                    updrs: _updrs,
                                     valori: sezAgGamba,
                                     title: '3.8 Agilità gamba'),
                               ],
@@ -281,7 +288,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             child: Column(
                               children: <Widget>[
                                 subSezioniUpdrs(
-                                    updrs: widget.updrs,
+                                    updrs: _updrs,
                                     valori: sezAltro,
                                     title: 'Altro'),
                               ],
@@ -297,7 +304,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             child: Column(
                               children: <Widget>[
                                 subSezioniUpdrs(
-                                    updrs: widget.updrs,
+                                    updrs: _updrs,
                                     valori: sezTremPostMani,
                                     title: '3.15 Tremore posturale delle mani'),
                               ],
@@ -313,7 +320,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             child: Column(
                               children: <Widget>[
                                 subSezioniUpdrs(
-                                    updrs: widget.updrs,
+                                    updrs: _updrs,
                                     valori: sezTremCineticoMani,
                                     title: '3.16 Tremore cinetico delle mani'),
                               ],
@@ -329,7 +336,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             child: Column(
                               children: <Widget>[
                                 subSezioniUpdrs(
-                                    updrs: widget.updrs,
+                                    updrs: _updrs,
                                     valori: sezAmpTremRip,
                                     title:
                                         '3.17 Ampiezza del tremore a riposo'),
@@ -346,7 +353,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             child: Column(
                               children: <Widget>[
                                 subSezioniUpdrs(
-                                    updrs: widget.updrs,
+                                    updrs: _updrs,
                                     valori: sezContTremRip,
                                     title:
                                         '3.18 Continuità del tremore a riposo'),
@@ -365,9 +372,39 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                       color: const Color(0xff00A19B),
                       border: Border.all(color: Colors.white),
                       borderRadius: const BorderRadius.all(Radius.circular(5))),
-                  child: Center(
-                    child: Text(com.getTitle(widget.updrs, 3),
-                        style: const TextStyle(color: Colors.white)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        flex: 8,
+                        child: Center(
+                            child: Text(com.getTitle(_updrs, 3),
+                                style: const TextStyle(color: Colors.white))
+                        ),
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: Visibility(
+                          visible: (_updrs.model![0].countOnOff > 1),
+                          child: Center(
+                            child: Switch(
+                              value: _sitchStateOff,
+                              inactiveTrackColor: Colors.grey,
+                              activeColor: Colors.white,
+                              onChanged: (bool value) {
+                                // This is called when the user toggles the switch.
+                                setState(() async {
+                                  _sitchStateOff = value;
+                                  await _getData(value);
+                                });
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -375,4 +412,22 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
           ],
         ));
   }
+
+  Future<dynamic> _getData(bool value) async {
+    dynamic ret;
+    if(!value && _updrs.model![0].countOnOff > 1){
+      ret = await com.getUpdrsOn(_updrs.model![0].pazienteId, _updrs.model![0].dataComp);
+    }
+    else{
+      ret = await com.getUpdrs(_updrs.model![0].id);
+    }
+    if(ret != null){
+      _updrs = ret;
+      setState(() {});
+    }
+    else{
+      showMyDialog('Errore caricamento dati');
+    }
+  }
+
 }

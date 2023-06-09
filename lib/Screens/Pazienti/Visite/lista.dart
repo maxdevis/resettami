@@ -4,13 +4,14 @@ import 'package:localization/localization.dart';
 import 'package:resettami_app/Component/myAppBar.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
 import 'package:resettami_app/Models/Visite.dart';
+import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/Common.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/updrsMain.dart';
 import 'package:resettami_app/Services/Updrs.dart';
 import 'package:resettami_app/utils/Uty.dart';
 
 class listaVisiteScreen extends StatelessWidget {
   const listaVisiteScreen({super.key, required this.visite});
-
+  final Common com = const Common();
   final Visite visite;
 
   @override
@@ -86,7 +87,7 @@ class listaVisiteScreen extends StatelessWidget {
                         color: Colors.white,
                         icon: const Icon(Icons.medical_information),
                         onPressed: () async {
-                          var ret = await _getUpdrs(visite.model?[index].id ?? '0');
+                          var ret = await com.getUpdrs(visite.model![index].id);
                           if (ret != null && context.mounted) {
                             Navigator.push(
                                 context,
@@ -105,21 +106,5 @@ class listaVisiteScreen extends StatelessWidget {
     );
   }
 
-  Future<dynamic> _getUpdrs(String id) async {
-    if(int.parse(id) > 0) {
-      EasyLoading.show(status: 'wait'.i18n());
-      UpdrsService api = UpdrsService();
-      var res = await api.getUpdrsOff(id);
-      EasyLoading.dismiss();
-      if (res == null) {
-        showMyDialog('Errore caricamento dati');
-      }
 
-      return res;
-    }
-    else{
-      showMyDialog('ID Servizio non trovato');
-    }
-    return null;
-  }
 }
