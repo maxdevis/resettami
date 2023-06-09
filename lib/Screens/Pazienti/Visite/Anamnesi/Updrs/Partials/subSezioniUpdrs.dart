@@ -50,14 +50,13 @@ class subSezioniUpdrs extends StatelessWidget {
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Expanded(
                       flex: 1,
                       child: Visibility(
-                        visible: (showText1(i)),
+                        visible: (showText1(i, exlude)),
                         child:  Container(
                             height: 30,
                             width: 30,
@@ -75,13 +74,13 @@ class subSezioniUpdrs extends StatelessWidget {
                                 heightFactor: 3.5,
                                 child: Text(com.getValue(i, updrs, valori),
                                     textAlign: TextAlign.center,
-                                    style: const TextStyle(fontWeight: FontWeight.bold))))
+                                    style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black))))
                       ),
                     ),
                     Expanded(
                       flex: 9,
                       child: Container(
-                          height: 50,
+                          height: 70,
                           decoration: BoxDecoration(
                               color: com.getColor(i, updrs, valori, exlude),
                               border: Border.all(
@@ -91,7 +90,9 @@ class subSezioniUpdrs extends StatelessWidget {
                               borderRadius:
                               const BorderRadius.all(Radius.circular(5))),
                           child: Center(
-                              child: Text(getValPdmEddt(i)))),
+                              child: Flexible(
+                                child:Text(getValCustom(i, exlude)
+                          ) ))),
                     ),
                   ],
                 ),
@@ -101,19 +102,38 @@ class subSezioniUpdrs extends StatelessWidget {
     );
   }
 
-  String getValPdmEddt(int i){
+  String getValCustom(int i, [List<String>? listExlude]){
+    final keyVal = valori.keys.elementAt(i);
     final val = com.getValue(i, updrs, valori);
     final desc = com.getDescription(i, updrs, valori);
+    bool exlude = false;
 
-    if(valori.containsKey('pdmeddt') && val != ""){
+    if(listExlude != null){
+      exlude = listExlude.contains(keyVal);
+    }
+
+    if(keyVal == 'pdmeddt' && val != ""){
       return '${getFormatData(val)} - $desc';
     }
+
+    if(exlude && val != ""){
+      return "$val - $desc";
+    }
+
     return desc;
   }
 
-  bool showText1(int i){
+  bool showText1(int i, [List<String>? listExlude]){
     final val = com.getValue(i, updrs, valori);
-    return (val != "" && !valori.containsKey('pdmeddt'));
+    final keyVal = valori.keys.elementAt(i);
+    bool exlude = false;
+
+    if(listExlude != null){
+      exlude = listExlude.contains(keyVal);
+    }
+
+    return (!exlude && val != "");
+
   }
 
 

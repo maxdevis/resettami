@@ -18,10 +18,8 @@ class UpdrsService extends HttpService {
 
       if(response != null) {
         Updrs data = Updrs.fromJson(response);
-        if(data.op) {
-          if(data.model!.isNotEmpty){
-            return data;
-          }
+        if(data.op && data.model!.isNotEmpty) {
+          return data;
         }
       }
       return null;
@@ -48,7 +46,7 @@ class UpdrsService extends HttpService {
 
       if(response != null) {
         Updrs data = Updrs.fromJson(response);
-        if(data.op) {
+        if(data.op && data.model!.isNotEmpty) {
           return data;
         }
       }

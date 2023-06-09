@@ -16,7 +16,6 @@ class updrsParteTerzaScreen extends StatefulWidget {
 
 class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
   late Common com = const Common();
-  late bool _sitchStateOff = false;
   late Updrs _updrs = Updrs();
 
   late List<String> exSezMain = [
@@ -26,8 +25,6 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
     'c213b',
     'c213c',
     'c213c1',
-    'c318a',
-    'c318b',
     'pdmeddt',
     'dbs_status',
     'dbsontm',
@@ -127,7 +124,6 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
   void initState() {
     super.initState();
     _updrs = widget.updrs;
-    _sitchStateOff = (_updrs.model![0].c213b > 0);
   }
 
   @override
@@ -390,14 +386,13 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                           visible: (_updrs.model![0].countOnOff > 1),
                           child: Center(
                             child: Switch(
-                              value: _sitchStateOff,
+                              value: (_updrs.model![0].c213b == 'On'),
                               inactiveTrackColor: Colors.grey,
                               activeColor: Colors.white,
                               onChanged: (bool value) {
                                 // This is called when the user toggles the switch.
                                 setState(() async {
-                                  _sitchStateOff = value;
-                                  await _getData(value);
+                                  await _getData();
                                 });
                               },
                             ),
@@ -413,9 +408,9 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
         ));
   }
 
-  Future<dynamic> _getData(bool value) async {
+  Future<dynamic> _getData() async {
     dynamic ret;
-    if(!value && _updrs.model![0].countOnOff > 1){
+    if(_updrs.model![0].countOnOff > 1 && _updrs.model![0].c213b == 'Off'){
       ret = await com.getUpdrsOn(_updrs.model![0].pazienteId, _updrs.model![0].dataComp);
     }
     else{

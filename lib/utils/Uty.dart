@@ -33,7 +33,6 @@ Future<void> showMyDialog(String message, {String title = 'Attenzione'}) async {
 
 String getFormatData(String? data, [String format = 'dd-MM-yyyy']) {
   try {
-    String ret = "";
     if (data != null) {
       DateTime dt = DateTime.parse(data);
       return DateFormat(format).format(dt);

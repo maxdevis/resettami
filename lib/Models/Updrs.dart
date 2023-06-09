@@ -57,7 +57,7 @@ class Model {
   String? c212;
   String? c213;
   String? c213a;
-  int c213b = 0;
+  String c213b = "Off";
   String? c213c;
   String? c213c1;
   String? c301;
@@ -268,7 +268,7 @@ class Model {
     c212 = json['c212'];
     c213 = json['c213'];
     c213a = json['c213a'];
-    c213b = int.parse(json['c213b']);
+    c213b = json['c213b'];
     c213c = json['c213c'];
     c213c1 = json['c213c1'];
     c301 = json['c301'];
