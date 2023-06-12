@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
 import 'package:resettami_app/Models/Updrs.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/Common.dart';
-import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/Partials/subSezioniUpdrs.dart';
+import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/sezioni/sezioneParteQuarta.dart';
 
 
 class updrsParteQuartaScreen extends StatefulWidget {
@@ -16,42 +16,8 @@ class updrsParteQuartaScreen extends StatefulWidget {
 
 class _updrsParteQuartaState extends State<updrsParteQuartaScreen> {
   late Common com = const Common();
-  late List<String> exSez1 = ['np4wdysknum', 'np4wdyskden', 'np4wdyskpct'];
-  late List<String> exSez3 = ['np4offnum', 'np4offden', 'np4offpct'];
-  late List<String> exSez6 = ['np4dystnnum', 'np4dystnden', 'np4dystnpct'];
-
-  late Map sez1 = {
-    'c401': 'Tempo trascorso con discinesie',
-    'np4wdysknum': 'Numeratore (Numero ore discinesia)',
-    'np4wdyskden': 'Denominatore (Numero ore sveglio)',
-    'np4wdyskpct': '% Punteggio',
-  };
-
-  late Map sez2 = {
-    'c402': 'Impatto funzionale delle discinesie',
-  };
-
-  late Map sez3 = {
-    'c403': 'Tempo trascorso in fase OFF',
-    'np4offnum': 'Numeratore (numero ore in stato OFF)',
-    'np4offden': 'Denominatore (Numero ore sveglio)',
-    'np4offpct': 'Camminare ed equilibrio',
-  };
-
-  late Map sez4 = {
-    'c404': 'Impatto funzionale delle fluttuazioni motorie',
-  };
-
-  late Map sez5 = {
-    'c405': 'Complessità delle fluttuazioni motorie',
-  };
-
-  late Map sez6 = {
-    'c406': 'Distonia dolorosa in fase OFF',
-    'np4dystnnum': 'Numeratore (numero ore in OFF)',
-    'np4dystnden': 'Denominatore (Numero ore sveglio)',
-    'np4dystnpct': '% Punteggio',
-  };
+  late sezioneParteQuarta comSez = sezioneParteQuarta();
+  late final Updrs _updrs = widget.updrs;
 
   @override
   void initState() {
@@ -60,139 +26,93 @@ class _updrsParteQuartaState extends State<updrsParteQuartaScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        drawer: const MyDrawer(title: 'Resettami Parkylon'),
-        body: Stack(
-          children: [
-            Positioned(
-                top: 55, //display after the height of top widtet
-                bottom: 0, //display untill the height of bottom widget
-                left:0, right:0,
-                child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Wrap(
-                      children: <Widget>[
-                        Card(
-                            elevation: 10,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                              side: const BorderSide(
-                                color: Color(0xff00A19B),
-                              ),
-                            ),
-                            child: Column(
-                              children: <Widget>[
-                                subSezioniUpdrs(
-                                    updrs: widget.updrs,
-                                    valori: sez1,
-                                    title: 'Sezione 4.1',
-                                    exlude: exSez1),
-                              ],
-                            )),
-                        Card(
-                            elevation: 10,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                              side: const BorderSide(
-                                color: Color(0xff00A19B),
-                              ),
-                            ),
-                            child: Column(
-                              children: <Widget>[
-                                subSezioniUpdrs(
-                                    updrs: widget.updrs,
-                                    valori: sez2,
-                                    title: 'Sezione 4.2'),
-                              ],
-                            )),
-                        Card(
-                            elevation: 10,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                              side: const BorderSide(
-                                color: Color(0xff00A19B),
-                              ),
-                            ),
-                            child: Column(
-                              children: <Widget>[
-                                subSezioniUpdrs(
-                                    updrs: widget.updrs,
-                                    valori: sez3,
-                                    title: 'Sezione 4.3',
-                                    exlude: exSez3),
-                              ],
-                            )),
-                        Card(
-                            elevation: 10,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                              side: const BorderSide(
-                                color: Color(0xff00A19B),
-                              ),
-                            ),
-                            child: Column(
-                              children: <Widget>[
-                                subSezioniUpdrs(
-                                    updrs: widget.updrs,
-                                    valori: sez4,
-                                    title: 'Sezione 4.4'),
-                              ],
-                            )),
-                        Card(
-                            elevation: 10,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                              side: const BorderSide(
-                                color: Color(0xff00A19B),
-                              ),
-                            ),
-                            child: Column(
-                              children: <Widget>[
-                                subSezioniUpdrs(
-                                    updrs: widget.updrs,
-                                    valori: sez5,
-                                    title: 'Sezione 4.5'),
-                              ],
-                            )),
-                        Card(
-                            elevation: 10,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                              side: const BorderSide(
-                                color: Color(0xff00A19B),
-                              ),
-                            ),
-                            child: Column(
-                              children: <Widget>[
-                                subSezioniUpdrs(
-                                    updrs: widget.updrs,
-                                    valori: sez6,
-                                    title: 'Sezione 4.6',
-                                    exlude: exSez6),
-                              ],
-                            ))
-                      ],
-                    ))),
-            Positioned( //position at top
-                top: 0,
-                left:0, right:0, //set left right to 0 for 100% width
-                child:  Card(
-                  child: Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                        color: const Color(0xff00A19B),
-                        border: Border.all(color: Colors.white),
-                        borderRadius:
-                        const BorderRadius.all(Radius.circular(5))),
-                    child: Center(
-                      child: Text(com.getTitle(widget.updrs, 4),
-                          style: const TextStyle(color: Colors.white)),
-                    ),
-                  ),
-                ),
-            ),
-          ],
-        ));
+    return Container(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Expanded(
+            child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: comSez.sezioni.length,
+                itemBuilder: (BuildContext context, int iParent) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Card(
+                        semanticContainer: true,
+                        margin: const EdgeInsets.all(10),
+                        color: Colors.white,
+                        shadowColor: const Color(0xff00A19B),
+                        elevation: 10,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                                height: 40,
+                                width: double.infinity,
+                                color: const Color(0xff00A19B),
+                                child: Center(
+                                  child: Text(
+                                      comSez.sezioni.values
+                                          .elementAt(iParent),
+                                      style: const TextStyle(
+                                        fontSize: 12.0,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      )),
+                                )),
+                            ListView.builder(
+                                itemCount: comSez.getData(iParent).length,
+                                physics: const ClampingScrollPhysics(),
+                                shrinkWrap: true,
+                                itemBuilder:
+                                    (BuildContext context, int iChild) {
+                                  final data = comSez.getData(iParent);
+                                  final extSezioni = comSez.getExSezioni(iChild);
+                                  return Card(
+                                      margin: const EdgeInsets.all(5),
+                                      color: com.getColor(iChild, _updrs, data),
+                                      shadowColor: Colors.grey,
+                                      elevation: 5,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(10),
+                                            child: Text(com.getDescription(
+                                                iChild, _updrs, data)),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(10),
+                                            child: Text(
+                                              com.getValue(iChild, _updrs,
+                                                  data, extSezioni),
+                                              style: TextStyle(
+                                                fontSize: 12.0,
+                                                color: com.getTextColor(
+                                                    iChild,
+                                                    _updrs,
+                                                    data,
+                                                    extSezioni),
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ));
+                                }),
+                          ],
+                        ),
+                      ),
+                    ],
+                  );
+                }),
+          )
+        ],
+      ),
+    );
   }
 }

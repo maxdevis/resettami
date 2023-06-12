@@ -51,6 +51,7 @@ dependencies:
   intl: ^0.18.0
   sticky_headers: ^0.3.0+2
   sizer: ^2.0.15
+  flutter_sticky_header: ^0.6.5
 
 dev_dependencies:
   flutter_test:

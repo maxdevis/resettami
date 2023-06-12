@@ -115,7 +115,7 @@ class _updrsParteSecondaState extends State<updrsParteSecondaScreen> {
                                   Expanded(
                                       child: Flexible(
                                           child: Text(
-                                            com.getGradiMalattia(
+                                            com.getValue(
                                                 index, widget.updrs, valori),
                                             style: TextStyle(
                                                 fontSize: 12.0,

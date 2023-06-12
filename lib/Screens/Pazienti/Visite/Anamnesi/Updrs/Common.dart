@@ -58,30 +58,6 @@ class Common {
     return Colors.black;
   }
 
-  String getGradiMalattia(int index, Updrs updrs, Map valori, [List<String>? listExlude]) {
-    final keyVal = valori.keys.elementAt(index);
-    final json = updrs.model!.map((v) => v.toJson()).toList();
-    final ret = json[0].containsKey(keyVal);
-    final exlude = listExlude?.contains(keyVal);
-
-    if (ret && json[0][keyVal] != null && (exlude == null || !exlude)) {
-      var t = json[0][keyVal];
-      switch (t) {
-        case '0':
-          return "0 - Normale";
-        case '1':
-          return "1 - Minimo";
-        case '2':
-          return "2 - Lieve";
-        case '3':
-          return "3 - Moderato";
-        case '4':
-          return "4 - Grave";
-      }
-    }
-
-    return getValue(index, updrs, valori);
-  }
 
   Color getColorIcon(int index, Updrs updrs, Map valori) {
     final keyVal = valori.keys.elementAt(index);
@@ -100,15 +76,38 @@ class Common {
     return Colors.black;
   }
 
-  String getValue(int index, Updrs updrs, Map valori) {
+  String getValue(int index, Updrs updrs, Map valori, [List<String>? listExlude]) {
     final keyVal = valori.keys.elementAt(index);
     final json = updrs.model!.map((v) => v.toJson()).toList();
     final ret = json[0].containsKey(keyVal);
+    String val = "";
+    bool exlude = false;
 
-    if (ret && json[0][keyVal] != null) {
-      return json[0][keyVal];
+    if (listExlude != null) {
+      exlude = listExlude.contains(keyVal);
     }
-    return "";
+
+    if (ret && json[0][keyVal] != null && !exlude) {
+      val = json[0][keyVal];
+      switch (val) {
+        case '0':
+          return "0 - Normale";
+        case '1':
+          return "1 - Minimo";
+        case '2':
+          return "2 - Lieve";
+        case '3':
+          return "3 - Moderato";
+        case '4':
+          return "4 - Grave";
+      }
+    }
+
+    if (keyVal == 'pdmeddt' && val != "") {
+      return getFormatData(val);
+    }
+
+    return val;
   }
 
   String getTitle(Updrs updrs, int sezione) {
@@ -138,11 +137,18 @@ class Common {
   }
 
   String getDescription(int index, Updrs updrs, Map valori) {
-    final desc = valori.values.elementAt(index);
-    if(desc != null){
-      return desc;
+    try {
+      final desc = valori.values.elementAt(index);
+      if(desc != null){
+        return desc;
+      }
+      return "";
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      return "";
     }
-    return "";
   }
 
   Future<dynamic> getDataUpdrs(int pazienteId, DateTime dataComp, String c213b) async {
@@ -156,8 +162,6 @@ class Common {
 
     return res;
   }
-
-
 
 
 
