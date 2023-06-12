@@ -106,6 +106,11 @@ class Common {
     if (keyVal == 'pdmeddt' && val != "") {
       return getFormatData(val);
     }
+    else{
+      if (ret && json[0][keyVal] != null) {
+        val = json[0][keyVal];
+      }
+    }
 
     return val;
   }

@@ -82,7 +82,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                                             child: Text(com.getDescription(
                                                 iChild, _updrs, data),
                                               style: TextStyle(
-                                                  fontSize: 12.0,
+                                                  fontSize: 13.0,
                                                   color: com.getTextColor(
                                                       iChild,
                                                       _updrs,
