@@ -38,6 +38,51 @@ class Common {
     return Colors.white;
   }
 
+  Color getTextColor(int index, Updrs updrs, Map valori, [List<String>? listExlude]) {
+    final keyVal = valori.keys.elementAt(index);
+    final json = updrs.model!.map((v) => v.toJson()).toList();
+    final ret = json[0].containsKey(keyVal);
+    final exlude = listExlude?.contains(keyVal);
+
+    if (ret && json[0][keyVal] != null && (exlude == null || !exlude)) {
+      var t = json[0][keyVal];
+      switch (t) {
+        case '0':
+        case '2':
+        case '3':
+          return Colors.black;
+        default:
+          return Colors.white;
+      }
+    }
+    return Colors.black;
+  }
+
+  String getGradiMalattia(int index, Updrs updrs, Map valori, [List<String>? listExlude]) {
+    final keyVal = valori.keys.elementAt(index);
+    final json = updrs.model!.map((v) => v.toJson()).toList();
+    final ret = json[0].containsKey(keyVal);
+    final exlude = listExlude?.contains(keyVal);
+
+    if (ret && json[0][keyVal] != null && (exlude == null || !exlude)) {
+      var t = json[0][keyVal];
+      switch (t) {
+        case '0':
+          return "0 - Normale";
+        case '1':
+          return "1 - Minimo";
+        case '2':
+          return "2 - Lieve";
+        case '3':
+          return "3 - Moderato";
+        case '4':
+          return "4 - Grave";
+      }
+    }
+
+    return getValue(index, updrs, valori);
+  }
+
   Color getColorIcon(int index, Updrs updrs, Map valori) {
     final keyVal = valori.keys.elementAt(index);
     final json = updrs.model!.map((v) => v.toJson()).toList();
@@ -53,34 +98,6 @@ class Common {
       }
     }
     return Colors.black;
-  }
-
-  IconData getIcon(int index, Updrs updrs, Map valori) {
-    final keyVal = valori.keys.elementAt(index);
-    final json = updrs.model!.map((v) => v.toJson()).toList();
-    final ret = json[0].containsKey(keyVal);
-
-    if (ret && json[0][keyVal] != null) {
-      var t = json[0][keyVal];
-      switch (t) {
-        case '0':
-          return Icons.exposure_zero;
-        case '1':
-          return Icons.looks_one_rounded;
-        case '2':
-          return Icons.looks_two_rounded;
-        case '3':
-          return Icons.looks_3_rounded;
-        case '4':
-          return Icons.looks_4_rounded;
-        case '5':
-          return Icons.looks_5_rounded;
-        default:
-          return Icons.looks_5_rounded;
-      }
-    }
-
-    return Icons.exposure_zero;
   }
 
   String getValue(int index, Updrs updrs, Map valori) {
@@ -139,6 +156,8 @@ class Common {
 
     return res;
   }
+
+
 
 
 

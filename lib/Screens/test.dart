@@ -21,7 +21,7 @@ class test extends StatelessWidget {
         itemCount: valori.length,
         itemBuilder: (context, index) {
           return SizedBox(
-              height: 60,
+              height: 70,
               width: double.infinity,
               child: Card(
                 margin: const EdgeInsets.all(5),
@@ -31,40 +31,32 @@ class test extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(6),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.max,
+                child: const Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                          height: 30,
-                          width: 30,
-                          margin: const EdgeInsets.only(top: 10, left: 5),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              border: Border.all(
-                                width: 2,
-                                color: Colors.black,
-                              ),
-                              borderRadius: const BorderRadius.all(Radius.circular(5))
-                          ),
-                          child: const Center(
-                            heightFactor: 3.5,
-                            child: Text('17', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold))
-                          )
+                    Padding(
+                      padding: EdgeInsets.only(top: 7, left: 7, right: 7, bottom: 0),
+                      child: Text(
+                        "Moderato",
+                        style: TextStyle(
+                            fontSize: 12.0,
+                            color: Color(0xFF000000),
+                            fontWeight: FontWeight.w200,
+                            fontFamily: "Roboto"),
                       ),
                     ),
-                    Expanded(
-                      flex: 9,
-                      child: Container(
-                          height: 50,
-                          child: const Center(
-                              child: Text('xxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
-                          )
-                      ),
-                    ),
+                    Padding(
+                        padding: EdgeInsets.only(top: 2, left: 7, right: 7, bottom: 7),
+                        child: Flexible(
+                            child: Text(
+                          "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+                          style: TextStyle(
+                              fontSize: 12.0,
+                              color: Color(0xFF000000),
+                              fontWeight: FontWeight.w200,
+                              fontFamily: "Roboto"),
+                        ))),
                   ],
                 ),
               ));

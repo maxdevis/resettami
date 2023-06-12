@@ -8,7 +8,8 @@ class subSezioniUpdrs extends StatelessWidget {
       {super.key,
       required this.updrs,
       required this.valori,
-      required this.title, this.exlude});
+      required this.title,
+      this.exlude});
 
   final Updrs updrs;
   final Map valori;
@@ -36,7 +37,7 @@ class subSezioniUpdrs extends StatelessWidget {
         ),
         for (int i = 0; i < valori.length; i++) ...[
           SizedBox(
-              height: 60,
+              height: 70,
               width: double.infinity,
               child: Card(
                 margin: const EdgeInsets.all(5),
@@ -49,50 +50,45 @@ class subSezioniUpdrs extends StatelessWidget {
                   ),
                   borderRadius: BorderRadius.circular(6),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Expanded(
-                      flex: 1,
-                      child: Visibility(
-                        visible: (showText1(i, exlude)),
-                        child:  Container(
-                            height: 30,
-                            width: 30,
-                            margin:
-                            const EdgeInsets.only(top: 5, left: 5),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(
-                                  width: 2,
-                                  color: Colors.black,
-                                ),
-                                borderRadius:
-                                const BorderRadius.all(Radius.circular(5))),
-                            child: Center(
-                                heightFactor: 3.5,
-                                child: Text(com.getValue(i, updrs, valori),
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black))))
+                    Padding(
+                      padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              com.getDescription(i, updrs, valori),
+                              style: TextStyle(
+                                  fontSize: 12.0,
+                                  color: com.getTextColor(i, updrs, valori, exlude),
+                                  fontWeight: FontWeight.w200,
+                                  fontFamily: "Roboto"),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    Expanded(
-                      flex: 9,
-                      child: Container(
-                          height: 70,
-                          decoration: BoxDecoration(
-                              color: com.getColor(i, updrs, valori, exlude),
-                              border: Border.all(
-                                width: 2,
-                                color: com.getColor(i, updrs, valori, exlude),
-                              ),
-                              borderRadius:
-                              const BorderRadius.all(Radius.circular(5))),
-                          child: Center(
+                    Padding(
+                      padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Expanded(
                               child: Flexible(
-                                child:Text(getValCustom(i, exlude)
-                          ) ))),
+                                  child: Text(
+                            com.getGradiMalattia(i, updrs, valori, exlude),
+                            style: TextStyle(
+                                fontSize: 12.0,
+                                color: com.getTextColor(i, updrs, valori, exlude),
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "Roboto"),
+                          ))),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -102,39 +98,36 @@ class subSezioniUpdrs extends StatelessWidget {
     );
   }
 
-  String getValCustom(int i, [List<String>? listExlude]){
+  String getValCustom(int i, [List<String>? listExlude]) {
     final keyVal = valori.keys.elementAt(i);
     final val = com.getValue(i, updrs, valori);
     final desc = com.getDescription(i, updrs, valori);
     bool exlude = false;
 
-    if(listExlude != null){
+    if (listExlude != null) {
       exlude = listExlude.contains(keyVal);
     }
 
-    if(keyVal == 'pdmeddt' && val != ""){
+    if (keyVal == 'pdmeddt' && val != "") {
       return '${getFormatData(val)} - $desc';
     }
 
-    if(exlude && val != ""){
+    if (exlude && val != "") {
       return "$val - $desc";
     }
 
     return desc;
   }
 
-  bool showText1(int i, [List<String>? listExlude]){
+  bool showText1(int i, [List<String>? listExlude]) {
     final val = com.getValue(i, updrs, valori);
     final keyVal = valori.keys.elementAt(i);
     bool exlude = false;
 
-    if(listExlude != null){
+    if (listExlude != null) {
       exlude = listExlude.contains(keyVal);
     }
 
     return (!exlude && val != "");
-
   }
-
-
 }
