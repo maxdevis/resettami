@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:localization/localization.dart';
 import 'package:resettami_app/Models/Updrs.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/Common.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/sezioni/sezioneParteTerza.dart';
+import 'package:resettami_app/utils/Uty.dart';
 
 class updrsParteTerzaScreen extends StatefulWidget {
   const updrsParteTerzaScreen({super.key, required this.updrs});
@@ -15,7 +18,7 @@ class updrsParteTerzaScreen extends StatefulWidget {
 class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
   late Common com = const Common();
   late sezioneParteTerza sezione = sezioneParteTerza();
-  late final Updrs _updrs = widget.updrs;
+  late Updrs _updrs = widget.updrs;
 
   @override
   void initState() {
@@ -28,6 +31,55 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
+          Positioned(
+            //position at top
+            top: 0,
+            left: 0, right: 0, //set left right to 0 for 100% width
+            child: Card(
+              child: Container(
+                height: 50,
+                decoration: BoxDecoration(
+                    color: const Color(0xff00A19B),
+                    border: Border.all(color: Colors.white),
+                    borderRadius: const BorderRadius.all(Radius.circular(5))),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      flex: 8,
+                      child: Center(
+                          child: Text(com.getTitle(_updrs, 3),
+                              style: const TextStyle(color: Colors.white))
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Visibility(
+                        visible: (_updrs.model![0].countOnOff > 1),
+                        child: Center(
+                          child: Switch(
+                            value: (_updrs.model![0].c213b == 'On'),
+                            inactiveTrackColor: Colors.grey,
+                            activeColor: Colors.white,
+                            onChanged: (bool value) {
+                              // This is called when the user toggles the switch.
+                              setState(() async {
+                                EasyLoading.show(status: 'wait'.i18n());
+                                await _getData(value);
+                                EasyLoading.dismiss();
+                              });
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
           Expanded(
             child: ListView.builder(
                 shrinkWrap: true,
@@ -122,7 +174,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
     );
   }
 
-/*Future<dynamic> _getData(bool value) async {
+Future<dynamic> _getData(bool value) async {
     dynamic ret;
      String c213b = value ? 'On' : 'Off';
      ret = await com.getDataUpdrs(_updrs.model![0].pazienteId, _updrs.model![0].dataComp, c213b);
@@ -133,5 +185,6 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
     else{
       showMyDialog('Errore caricamento dati');
     }
-  }*/
+  }
 }
+

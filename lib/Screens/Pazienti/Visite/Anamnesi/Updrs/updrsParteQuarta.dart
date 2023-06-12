@@ -30,6 +30,33 @@ class _updrsParteQuartaState extends State<updrsParteQuartaScreen> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
+          Positioned(
+            top: 0,
+            left: 0, right: 0,
+            child: Card(
+              child: Container(
+                height: 50,
+                decoration: BoxDecoration(
+                    color: const Color(0xff00A19B),
+                    border: Border.all(color: Colors.white),
+                    borderRadius: const BorderRadius.all(Radius.circular(5))),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      flex: 10,
+                      child: Center(
+                          child: Text(com.getTitle(_updrs, 4),
+                              style: const TextStyle(color: Colors.white))
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
           Expanded(
             child: ListView.builder(
                 shrinkWrap: true,
