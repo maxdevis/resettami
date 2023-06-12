@@ -56,7 +56,7 @@ class _updrsParteQuartaState extends State<updrsParteQuartaScreen> {
                                       sezione.sezioni.values
                                           .elementAt(iParent),
                                       style: const TextStyle(
-                                        fontSize: 12.0,
+                                        fontSize: 14,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
                                       )),

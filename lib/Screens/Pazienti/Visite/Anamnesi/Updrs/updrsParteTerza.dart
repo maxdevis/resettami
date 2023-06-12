@@ -54,7 +54,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                                       sezione.sezioni.values
                                           .elementAt(iParent),
                                       style: const TextStyle(
-                                        fontSize: 12.0,
+                                        fontSize: 14,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
                                       )),
