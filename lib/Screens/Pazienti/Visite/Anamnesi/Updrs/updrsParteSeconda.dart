@@ -16,6 +16,8 @@ class updrsParteSecondaScreen extends StatefulWidget {
 
 class _updrsParteSecondaState extends State<updrsParteSecondaScreen> {
   late Common com = const Common();
+  late final Updrs _updrs = widget.updrs;
+
   late Map valori = {
     'c201': 'Eloquio',
     'c202': 'Salivazione e perdita di saliva',
@@ -64,74 +66,54 @@ class _updrsParteSecondaState extends State<updrsParteSecondaScreen> {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: valori.length,
-                itemBuilder: (context, index) {
-                  return SizedBox(
-                      height: 60,
-                      width: double.infinity,
-                      child: Card(
+                  itemCount: valori.length,
+                  physics: const ClampingScrollPhysics(),
+                  shrinkWrap: true,
+                  itemBuilder:
+                      (BuildContext context, int index) {
+                    var data = valori;
+                    return Card(
                         margin: const EdgeInsets.all(5),
-                        color: com.getColor(index, widget.updrs, valori),
-                        shadowColor: const Color(0xff00A19B),
-                        elevation: 10,
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(
-                            color: com.getColor(index, widget.updrs, valori),
-                          ),
-                          borderRadius: BorderRadius.circular(6),
-                        ),
+                        color: com.getColor(index, _updrs, data),
+                        shadowColor: Colors.grey,
+                        elevation: 5,
                         child: Column(
-                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment:
+                          MainAxisAlignment.start,
+                          crossAxisAlignment:
+                          CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  8, 8, 8, 0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      com.getDescription(
-                                          index, widget.updrs, valori),
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: com.getTextColor(
-                                              index, widget.updrs, valori),
-                                          fontWeight: FontWeight.w200,
-                                          fontFamily: "Roboto"),
-                                    ),
-                                  ),
-                                ],
+                              padding: const EdgeInsets.all(10),
+                              child: Text(com.getDescription(
+                                  index, _updrs, data),
+                                  style: TextStyle(
+                                      fontSize: 13.0,
+                                      color: com.getTextColor(
+                                          index,
+                                          _updrs,
+                                          data)
+                                  )
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  8, 8, 8, 0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Expanded(
-                                      child: Flexible(
-                                          child: Text(
-                                            com.getValue(
-                                                index, widget.updrs, valori),
-                                            style: TextStyle(
-                                                fontSize: 12.0,
-                                                color: com.getTextColor(
-                                                    index, widget.updrs, valori),
-                                                fontWeight: FontWeight.bold,
-                                                fontFamily: "Roboto"),
-                                          ))),
-                                ],
+                              padding: const EdgeInsets.all(10),
+                              child: Text(
+                                com.getValue(index, _updrs,
+                                    data),
+                                style: TextStyle(
+                                  fontSize: 14.0,
+                                  color: com.getTextColor(
+                                      index,
+                                      _updrs,
+                                      data),
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
+                            )
                           ],
-                        ),
-                      ));
-                },
-              ),
+                        ));
+                  }),
             ),
           ],
         ));

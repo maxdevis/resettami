@@ -83,7 +83,16 @@ class _updrsParteQuartaState extends State<updrsParteQuartaScreen> {
                                           Padding(
                                             padding: const EdgeInsets.all(10),
                                             child: Text(com.getDescription(
-                                                iChild, _updrs, data)),
+                                                iChild, _updrs, data),
+                                                style: TextStyle(
+                                                    fontSize: 13.0,
+                                                    color: com.getTextColor(
+                                                        iChild,
+                                                        _updrs,
+                                                        data,
+                                                        extSezioni)
+                                                )
+                                            ),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.all(10),
@@ -91,7 +100,7 @@ class _updrsParteQuartaState extends State<updrsParteQuartaScreen> {
                                               com.getValue(iChild, _updrs,
                                                   data, extSezioni),
                                               style: TextStyle(
-                                                fontSize: 12.0,
+                                                fontSize: 14.0,
                                                 color: com.getTextColor(
                                                     iChild,
                                                     _updrs,
