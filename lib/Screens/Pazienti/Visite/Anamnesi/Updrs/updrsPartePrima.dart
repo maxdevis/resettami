@@ -80,52 +80,52 @@ class _updrsPartePrimaState extends State<updrsPartePrimaScreen> {
                           ),
                           borderRadius: BorderRadius.circular(6),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
                           children: [
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                  height: 30,
-                                  width: 30,
-                                  margin:
-                                      const EdgeInsets.only(top: 10, left: 5),
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      border: Border.all(
-                                        width: 2,
-                                        color: Colors.black,
-                                      ),
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(5))),
-                                  child: Center(
-                                      heightFactor: 3.5,
-                                      child: Text(
-                                          com.getValue(
-                                              index, widget.updrs, valori),
-                                          textAlign: TextAlign.center,
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.bold)))),
-                            ),
-                            Expanded(
-                              flex: 9,
-                              child: Container(
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                      color: com.getColor(
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  8, 8, 8, 0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      com.getDescription(
                                           index, widget.updrs, valori),
-                                      border: Border.all(
-                                        width: 2,
-                                        color: com.getColor(
+                                      style: TextStyle(
+                                          fontSize: 12.0,
+                                          color: com.getTextColor(
+                                              index, widget.updrs, valori),
+                                          fontWeight: FontWeight.w200,
+                                          fontFamily: "Roboto"),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  8, 8, 8, 0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                      child: Flexible(
+                                          child: Text(
+                                    com.getGradiMalattia(
+                                        index, widget.updrs, valori),
+                                    style: TextStyle(
+                                        fontSize: 12.0,
+                                        color: com.getTextColor(
                                             index, widget.updrs, valori),
-                                      ),
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(5))),
-                                  child: Center(
-                                      child: Text(com.getDescription(
-                                          index, widget.updrs, valori)))),
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: "Roboto"),
+                                  ))),
+                                ],
+                              ),
                             ),
                           ],
                         ),
