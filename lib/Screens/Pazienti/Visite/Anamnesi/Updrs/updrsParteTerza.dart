@@ -14,7 +14,7 @@ class updrsParteTerzaScreen extends StatefulWidget {
 
 class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
   late Common com = const Common();
-  late ConstantsUpdrs comUpdrs = ConstantsUpdrs();
+  late sezioneParteTerza sezione = sezioneParteTerza();
   late final Updrs _updrs = widget.updrs;
 
   @override
@@ -31,7 +31,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
           Expanded(
             child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: comUpdrs.sezioni.length,
+                itemCount: sezione.sezioni.length,
                 itemBuilder: (BuildContext context, int iParent) {
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -51,7 +51,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                                 color: const Color(0xff00A19B),
                                 child: Center(
                                   child: Text(
-                                      comUpdrs.sezioni.values
+                                      sezione.sezioni.values
                                           .elementAt(iParent),
                                       style: const TextStyle(
                                         fontSize: 12.0,
@@ -60,12 +60,12 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                                       )),
                                 )),
                             ListView.builder(
-                                itemCount: comUpdrs.getData(iParent).length,
+                                itemCount: sezione.getData(iParent).length,
                                 physics: const ClampingScrollPhysics(),
                                 shrinkWrap: true,
                                 itemBuilder:
                                     (BuildContext context, int iChild) {
-                                  final data = comUpdrs.getData(iParent);
+                                  final data = sezione.getData(iParent);
                                   return Card(
                                       margin: const EdgeInsets.all(5),
                                       color: com.getColor(iChild, _updrs, data),
@@ -87,7 +87,7 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                                                       iChild,
                                                       _updrs,
                                                       data,
-                                                      comUpdrs.exSezMain)
+                                                      sezione.exSezMain)
                                               )
                                             ),
                                           ),
@@ -95,14 +95,14 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                                             padding: const EdgeInsets.all(10),
                                             child: Text(
                                               com.getValue(iChild, _updrs,
-                                                  data, comUpdrs.exSezMain),
+                                                  data, sezione.exSezMain),
                                               style: TextStyle(
                                                 fontSize: 14.0,
                                                 color: com.getTextColor(
                                                     iChild,
                                                     _updrs,
                                                     data,
-                                                    comUpdrs.exSezMain),
+                                                    sezione.exSezMain),
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),

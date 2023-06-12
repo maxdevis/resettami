@@ -16,7 +16,7 @@ class updrsParteQuartaScreen extends StatefulWidget {
 
 class _updrsParteQuartaState extends State<updrsParteQuartaScreen> {
   late Common com = const Common();
-  late sezioneParteQuarta comSez = sezioneParteQuarta();
+  late sezioneParteQuarta sezione = sezioneParteQuarta();
   late final Updrs _updrs = widget.updrs;
 
   @override
@@ -33,7 +33,7 @@ class _updrsParteQuartaState extends State<updrsParteQuartaScreen> {
           Expanded(
             child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: comSez.sezioni.length,
+                itemCount: sezione.sezioni.length,
                 itemBuilder: (BuildContext context, int iParent) {
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -53,7 +53,7 @@ class _updrsParteQuartaState extends State<updrsParteQuartaScreen> {
                                 color: const Color(0xff00A19B),
                                 child: Center(
                                   child: Text(
-                                      comSez.sezioni.values
+                                      sezione.sezioni.values
                                           .elementAt(iParent),
                                       style: const TextStyle(
                                         fontSize: 12.0,
@@ -62,13 +62,13 @@ class _updrsParteQuartaState extends State<updrsParteQuartaScreen> {
                                       )),
                                 )),
                             ListView.builder(
-                                itemCount: comSez.getData(iParent).length,
+                                itemCount: sezione.getData(iParent).length,
                                 physics: const ClampingScrollPhysics(),
                                 shrinkWrap: true,
                                 itemBuilder:
                                     (BuildContext context, int iChild) {
-                                  final data = comSez.getData(iParent);
-                                  final extSezioni = comSez.getExSezioni(iChild);
+                                  final data = sezione.getData(iParent);
+                                  final extSezioni = sezione.getExSezioni(iChild);
                                   return Card(
                                       margin: const EdgeInsets.all(5),
                                       color: com.getColor(iChild, _updrs, data),
