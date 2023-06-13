@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:resettami_app/Screens/Home.dart';
 import 'package:resettami_app/Services/Auth.dart';
 import 'package:resettami_app/utils/Constants.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:localization/localization.dart';
-import '../Library/SecureStorage.dart';
-import '../Models/User.dart';
-import '../utils/Uty.dart';
+import 'package:resettami_app/Library/SecureStorage.dart';
+import 'package:resettami_app/Models/User.dart';
+import 'package:resettami_app/utils/Uty.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -15,7 +15,6 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-
 class _LoginPageState extends State<LoginPage> {
   static const Color primaryColor = Color(0xFF13B5A2);
 
@@ -23,11 +22,10 @@ class _LoginPageState extends State<LoginPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final SecureStorage _sessionStorage = SecureStorage();
 
-
   final TextEditingController _usernameController =
-  TextEditingController(text: "CCCCCC11C11C111C");
+      TextEditingController(text: "CCCCCC11C11C111C");
   final TextEditingController _passwordController =
-  TextEditingController(text: "Max12021970!");
+      TextEditingController(text: "Max12021970!");
 
   bool passwordHidden = true;
   bool _remember = true;
@@ -87,7 +85,11 @@ class _LoginPageState extends State<LoginPage> {
                       decoration: InputDecoration(
                         labelText: "Username",
                         labelStyle: const TextStyle(color: primaryColor),
-                        focusedBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(0), borderSide: const BorderSide(color: primaryColor, width: 2),),
+                        focusedBorder: UnderlineInputBorder(
+                          borderRadius: BorderRadius.circular(0),
+                          borderSide:
+                              const BorderSide(color: primaryColor, width: 2),
+                        ),
                       ),
                       controller: _usernameController,
                       validator: (value) {
@@ -111,7 +113,11 @@ class _LoginPageState extends State<LoginPage> {
                       decoration: InputDecoration(
                         labelText: "Password",
                         labelStyle: const TextStyle(color: Color(0xFF95989A)),
-                        focusedBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(0), borderSide: const BorderSide(color: primaryColor, width: 2),),
+                        focusedBorder: UnderlineInputBorder(
+                          borderRadius: BorderRadius.circular(0),
+                          borderSide:
+                              const BorderSide(color: primaryColor, width: 2),
+                        ),
                         suffixIcon: InkWell(
                           onTap: () {
                             setState(() {
@@ -130,7 +136,6 @@ class _LoginPageState extends State<LoginPage> {
                       controller: _passwordController,
                       obscureText: passwordHidden,
                       enableSuggestions: false,
-
                     ),
                   ],
                 ),
@@ -169,8 +174,7 @@ class _LoginPageState extends State<LoginPage> {
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: primaryColor,
-                      textStyle: const TextStyle(fontSize: 18)
-                  ),
+                      textStyle: const TextStyle(fontSize: 18)),
                   child: Text("signIn".i18n()),
                 ),
               ),
@@ -219,36 +223,40 @@ class _LoginPageState extends State<LoginPage> {
 
   // Read values
   Future<void> _readFromStorage() async {
-    _usernameController.text = (await _sessionStorage.readData(eLogin.KEY_USERNAME.toString()))!;
-    _passwordController.text = (await _sessionStorage.readData(eLogin.KEY_PASSWORD.toString()))!;
+    _usernameController.text =
+        (await _sessionStorage.readData(eLogin.KEY_USERNAME.toString()))!;
+    _passwordController.text =
+        (await _sessionStorage.readData(eLogin.KEY_PASSWORD.toString()))!;
     setState(() {});
   }
 
   Future<bool> _login(BuildContext context) async {
     if (_formKey.currentState?.validate() ?? false) {
-        EasyLoading.show(status: 'wait'.i18n());
-        AuthService api = AuthService();
-        var res = await api.login(_usernameController.text, _passwordController.text);
-        if(res != null){
-          await _sessionStorage.saveData(eLogin.KEY_TOKEN.toString(), res.token ?? '');
-          await _sessionStorage.saveData(eLogin.KEY_TYPE_AUTH.toString(), res.type ?? '');
-          await _sessionStorage.saveData(eLogin.KEY_USER.toString(), User.serialize(res.user as User));
-          if (_remember) {
-            await _sessionStorage.saveData(eLogin.KEY_USERNAME.toString(), _usernameController.text);
-            await _sessionStorage.saveData(eLogin.KEY_PASSWORD.toString(), _passwordController.text);
-          }
-          EasyLoading.dismiss();
-          return true;
+      waitDialog();
+      AuthService api = AuthService();
+      var res =
+          await api.login(_usernameController.text, _passwordController.text);
+      if (res != null) {
+        await _sessionStorage.saveData(
+            eLogin.KEY_TOKEN.toString(), res.token ?? '');
+        await _sessionStorage.saveData(
+            eLogin.KEY_TYPE_AUTH.toString(), res.type ?? '');
+        await _sessionStorage.saveData(
+            eLogin.KEY_USER.toString(), User.serialize(res.user as User));
+        if (_remember) {
+          await _sessionStorage.saveData(
+              eLogin.KEY_USERNAME.toString(), _usernameController.text);
+          await _sessionStorage.saveData(
+              eLogin.KEY_PASSWORD.toString(), _passwordController.text);
         }
-        else{
-          EasyLoading.dismiss();
-          showMyDialog('Error Login');
-        }
-        setState(() {});
+        SmartDialog.dismiss();
+        return true;
+      } else {
+        SmartDialog.dismiss();
+        showMyDialog('Error Login');
+      }
+      setState(() {});
     }
     return false;
   }
-
-
-
 }

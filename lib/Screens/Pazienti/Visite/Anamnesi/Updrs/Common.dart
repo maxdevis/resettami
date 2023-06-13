@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:intl/intl.dart';
 import 'package:localization/localization.dart';
 import 'package:resettami_app/Models/Updrs.dart';
@@ -157,10 +157,10 @@ class Common {
   }
 
   Future<dynamic> getDataUpdrs(int pazienteId, DateTime dataComp, String c213b) async {
-    EasyLoading.show(status: 'wait'.i18n());
+    SmartDialog.showLoading(msg: 'wait'.i18n());
     UpdrsService api = UpdrsService();
     var res = await api.getDataUpdrs(pazienteId, dataComp, c213b);
-    EasyLoading.dismiss();
+    SmartDialog.dismiss();
     if (res == null) {
       showMyDialog('Errore caricamento dati');
     }

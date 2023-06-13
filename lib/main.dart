@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:resettami_app/Screens/Splash.dart';
 import 'package:resettami_app/utils/Constants.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:localization/localization.dart';
 
@@ -26,9 +26,10 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData.dark(),
       navigatorKey: navigatorKey,
       home: const SplashScreen(),
+      navigatorObservers: [FlutterSmartDialog.observer],
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
-      builder: EasyLoading.init(),
+      builder: FlutterSmartDialog.init(),
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,

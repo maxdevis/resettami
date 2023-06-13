@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:intl/intl.dart';
+import 'package:localization/localization.dart';
 import 'Constants.dart';
 
 Future<void> showMyDialog(String message, {String title = 'Attenzione'}) async {
@@ -30,6 +32,12 @@ Future<void> showMyDialog(String message, {String title = 'Attenzione'}) async {
     },
   );
 }
+
+void waitDialog([String text = ""]){
+   text = text == "" ? 'wait'.i18n() : text;
+  SmartDialog.showLoading(msg: text, maskColor: const Color(0xFF13B5A2));
+}
+
 
 String getFormatData(String? data, [String format = 'dd-MM-yyyy']) {
   try {

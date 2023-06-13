@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:localization/localization.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:resettami_app/Component/myAppBar.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
 import 'package:resettami_app/Models/Paziente.dart';
-import 'package:resettami_app/Models/Visite.dart';
 import 'package:resettami_app/Screens/Pazienti/SchedaPaziente.dart';
-import 'package:resettami_app/Screens/Pazienti/Visite/InfoGenerali/anamnesi.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/lista.dart';
 import 'package:resettami_app/Services/Visite.dart';
 import 'package:resettami_app/utils/Uty.dart';
@@ -127,10 +124,10 @@ class searchListScreen extends StatelessWidget {
   }
 
   Future<dynamic> _getVisite(String id) async {
-    EasyLoading.show(status: 'wait'.i18n());
+    waitDialog();
     VisiteService api = VisiteService();
     var res = await api.getVisite(id);
-    EasyLoading.dismiss();
+    SmartDialog.dismiss();
     if(res == null){
       showMyDialog('Errore caricamento dati');
     }

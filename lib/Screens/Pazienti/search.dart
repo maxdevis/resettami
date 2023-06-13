@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:resettami_app/Component/myAppBar.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
 import 'package:resettami_app/Models/Paziente.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:localization/localization.dart';
 import 'package:resettami_app/Screens/Pazienti/searchList.dart';
 import 'package:resettami_app/Services/Pazienti.dart';
 import 'package:resettami_app/utils/Uty.dart';
@@ -236,11 +235,11 @@ class _SearchScreen extends State<SearchAssScreen> {
 
   Future<dynamic> _search(BuildContext context) async {
     if (_formKey.currentState?.validate() ?? false) {
-      EasyLoading.show(status: 'wait'.i18n());
+      waitDialog();
       PazientiService api = PazientiService();
       var res = await api.search(_codiceController.text,
           _codfController.text, _cognomeController.text, _nomeController.text);
-      EasyLoading.dismiss();
+      SmartDialog.dismiss();
       if(res == null){
         showMyDialog('Errore caricamento dati');
       }

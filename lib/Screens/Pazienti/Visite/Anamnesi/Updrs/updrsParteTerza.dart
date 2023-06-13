@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:localization/localization.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:resettami_app/Models/Updrs.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/Common.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/sezioni/sezioneParteTerza.dart';
@@ -66,9 +65,9 @@ class _updrsParteTerzaState extends State<updrsParteTerzaScreen> {
                             onChanged: (bool value) {
                               // This is called when the user toggles the switch.
                               setState(() async {
-                                EasyLoading.show(status: 'wait'.i18n());
+                                waitDialog();
                                 await _getData(value);
-                                EasyLoading.dismiss();
+                                SmartDialog.dismiss();
                               });
                             },
                           ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:localization/localization.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:resettami_app/Component/myAppBar.dart';
 import 'package:resettami_app/Component/myDrawer.dart';
 import 'package:resettami_app/Models/Visite.dart';
@@ -87,12 +86,12 @@ class listaVisiteScreen extends StatelessWidget {
                         color: Colors.white,
                         icon: const Icon(Icons.medical_information),
                         onPressed: () async {
-                          EasyLoading.show(status: 'wait'.i18n());
+                          waitDialog();
                           var api = UpdrsService();
                           var ret = await api.getDatabyServizioId(visite.model![index].id);
-                          EasyLoading.dismiss();
+                          SmartDialog.dismiss();
                           if (ret != null && context.mounted) {
-                            EasyLoading.dismiss();
+                            SmartDialog.dismiss();
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
