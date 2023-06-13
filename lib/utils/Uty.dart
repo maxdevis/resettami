@@ -6,36 +6,46 @@ import 'package:localization/localization.dart';
 import 'Constants.dart';
 
 Future<void> showMyDialog(String message, {String title = 'Attenzione'}) async {
-  return showDialog<void>(
-    context: navigatorKey.currentContext!,
-    barrierDismissible: false, // user must tap button!
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text(title),
-        content: SingleChildScrollView(
-          child: ListBody(
-            children: <Widget>[
-              //Text('This is a demo alert dialog.'),
-              Text(message),
-            ],
-          ),
-        ),
-        actions: <Widget>[
-          TextButton(
-            child: const Text('OK'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
-    },
-  );
+  SmartDialog.show(builder: (context) {
+    return Container(
+      height: 80,
+      width: 180,
+      decoration: BoxDecoration(
+        color: const Color(0xFF13B5A2),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      alignment: Alignment.center,
+      child:
+      Text(message, style: const TextStyle(color: Colors.white)),
+    );
+  });
 }
 
-void waitDialog([String text = ""]){
-   text = text == "" ? 'wait'.i18n() : text;
-  SmartDialog.showLoading(msg: text, maskColor: const Color(0xFF13B5A2));
+void waitDialog([String msg = ""]){
+  msg = msg == "" ? 'wait'.i18n() : msg;
+  SmartDialog.showLoading(builder: (context) {
+    return Container(
+      height: 100,
+      width: 180,
+      decoration: BoxDecoration(
+        color: const Color(0xFF13B5A2),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      alignment: Alignment.center,
+      child: Column(
+        children: [
+          const SizedBox(height: 5),
+          Image.asset(
+            'assets/images/loader.gif',
+            height: 50.0,
+            width: 50.0,
+          ),
+          const SizedBox(height: 10),
+          Text(msg, style: const TextStyle(color: Colors.white)),
+        ],
+      )
+    );
+  });
 }
 
 
