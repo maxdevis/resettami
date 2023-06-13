@@ -3,22 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:intl/intl.dart';
 import 'package:localization/localization.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'Constants.dart';
 
-Future<void> showMyDialog(String message, {String title = 'Attenzione'}) async {
-  SmartDialog.show(builder: (context) {
-    return Container(
-      height: 80,
-      width: 180,
-      decoration: BoxDecoration(
+Future<void> showMyDialog(String message, { AlertType alertType = AlertType.error ,String title = 'Attenzione'}) async {
+  Alert(
+    context: navigatorKey.currentContext!,
+    type: alertType,
+    title: title,
+    desc: message,
+    buttons: [
+      DialogButton(
         color: const Color(0xFF13B5A2),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      alignment: Alignment.center,
-      child:
-      Text(message, style: const TextStyle(color: Colors.white)),
-    );
-  });
+        onPressed: () => Navigator.pop(navigatorKey.currentContext!),
+        width: 120,
+        child: const Text(
+          "Ok",
+          style: TextStyle(color: Colors.white, fontSize: 20),
+        ),
+      )
+    ],
+  ).show();
 }
 
 void waitDialog([String msg = ""]){
