@@ -7,6 +7,7 @@ import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/updrsParteQ
 import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/updrsParteSeconda.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/updrsParteTerza.dart';
 import 'package:resettami_app/Services/SpeechToTextService.dart';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 class updrsMainScreen extends StatefulWidget {
   const updrsMainScreen({super.key, required this.updrs});
@@ -19,16 +20,17 @@ class updrsMainScreen extends StatefulWidget {
 
 class _updrsMainState extends State<updrsMainScreen> {
   int _selectedIndex = 0;
-  late SpeechToTextService _speechToTextService;
+  //late SpeechToTextService _speechToTextService;
+  final stt.SpeechToText _speech = stt.SpeechToText();
   String _text = '';
   late final Updrs _updrs;
 
   @override
   void initState() {
     super.initState();
-    _speechToTextService = SpeechToTextService();
+    //_speechToTextService = SpeechToTextService();
     _updrs = widget.updrs;
-    _toggleListening();
+    initSpeechToText();
   }
 
   /*static const TextStyle optionStyle =
@@ -40,11 +42,7 @@ class _updrsMainState extends State<updrsMainScreen> {
     updrsParteQuartaScreen(updrs: _updrs),
   ];
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -90,16 +88,48 @@ class _updrsMainState extends State<updrsMainScreen> {
         ));
   }
 
-  void _toggleListening() {
-    if (_speechToTextService.isListening) {
-      _speechToTextService.stopListening();
-    } else {
-      _speechToTextService.startListening((result) {
-        setState(() {
-          _text = result;
-        });
+  void initSpeechToText() async {
+    bool available = await _speech.initialize();
+    if (available) {
+      setState(() {
+        // L'inizializzazione è stata completata con successo, puoi avviare il riconoscimento del discorso
+        startListening();
       });
+    } else {
+      print('Riconoscimento del discorso non disponibile');
     }
+  }
+
+  void startListening() {
+    _speech.listen(
+      onResult: (result) {
+        setState(() {
+          if(_selectedIndex != 0 && (result.recognizedWords.contains("parte 1") || result.recognizedWords.contains("parte uno")
+              || result.recognizedWords.contains("parte prima"))){
+            _onItemTapped(0);
+          }
+          if(_selectedIndex != 1 && (result.recognizedWords.contains("parte 2") || result.recognizedWords.contains("parte due")
+              || result.recognizedWords.contains("parte seconda"))){
+            _onItemTapped(1);
+          }
+          if(_selectedIndex != 2 && (result.recognizedWords.contains("parte 3") || result.recognizedWords.contains("parte tre")
+              || result.recognizedWords.contains("parte terza"))){
+            _onItemTapped(2);
+          }
+          if(_selectedIndex != 3 && (result.recognizedWords.contains("parte 4") || result.recognizedWords.contains("parte quattro")
+              || result.recognizedWords.contains("parte quarta"))){
+            _onItemTapped(3);
+          }
+        });
+      },
+    );
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    startListening();
   }
 
 }
