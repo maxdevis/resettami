@@ -6,6 +6,7 @@ import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/updrsParteP
 import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/updrsParteQuarta.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/updrsParteSeconda.dart';
 import 'package:resettami_app/Screens/Pazienti/Visite/Anamnesi/Updrs/updrsParteTerza.dart';
+import 'package:resettami_app/Services/SpeechToTextService.dart';
 
 class updrsMainScreen extends StatefulWidget {
   const updrsMainScreen({super.key, required this.updrs});
@@ -18,12 +19,16 @@ class updrsMainScreen extends StatefulWidget {
 
 class _updrsMainState extends State<updrsMainScreen> {
   int _selectedIndex = 0;
+  late SpeechToTextService _speechToTextService;
+  String _text = '';
   late final Updrs _updrs;
 
   @override
   void initState() {
     super.initState();
+    _speechToTextService = SpeechToTextService();
     _updrs = widget.updrs;
+    _toggleListening();
   }
 
   /*static const TextStyle optionStyle =
@@ -84,4 +89,17 @@ class _updrsMainState extends State<updrsMainScreen> {
           ),
         ));
   }
+
+  void _toggleListening() {
+    if (_speechToTextService.isListening) {
+      _speechToTextService.stopListening();
+    } else {
+      _speechToTextService.startListening((result) {
+        setState(() {
+          _text = result;
+        });
+      });
+    }
+  }
+
 }

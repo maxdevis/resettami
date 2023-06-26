@@ -233,6 +233,12 @@ class _LoginPageState extends State<LoginPage> {
   Future<bool> _login(BuildContext context) async {
     if (_formKey.currentState?.validate() ?? false) {
       waitDialog();
+      bool ret = await checkConn();
+      if(!ret){
+        SmartDialog.dismiss();
+        showMyDialog('Errore di connessione');
+        return false;
+      }
       AuthService api = AuthService();
       var res =
           await api.login(_usernameController.text, _passwordController.text);
