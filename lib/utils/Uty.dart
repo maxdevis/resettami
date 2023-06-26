@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
@@ -66,5 +69,17 @@ String getFormatData(String? data, [String format = 'dd-MM-yyyy']) {
       print(e);
     }
     return "";
+  }
+}
+
+Future<bool> checkConn() async {
+  try {
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    bool ret = (connectivityResult == ConnectivityResult.wifi
+        || connectivityResult == ConnectivityResult.mobile);
+
+    return ret;
+  } on SocketException catch (_) {
+    return false;
   }
 }
