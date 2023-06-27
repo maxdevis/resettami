@@ -154,7 +154,6 @@ class _testMainState extends State<testScreen> {
     debugPrint("status $status");
     if (status == "done" && _speechEnabled) {
       setState(() {
-        _currentWords += " $_currentWords";
         _currentWords = "";
         _speechEnabled = false;
       });
