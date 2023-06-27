@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:resettami_app/Models/User.dart';
-import 'package:resettami_app/utils/HttpService.dart';
-import 'package:resettami_app/utils/Uty.dart';
+import 'package:resettami_app/Services/HttpService.dart';
 
 class AuthService extends HttpService {
   Future<dynamic> login(String username, String password) async {
