@@ -20,6 +20,37 @@ class _testMainState extends State<testScreen> {
   bool _speechAvailable = false;
   String _currentWords = '';
   final String _selectedLocaleId = 'it_IT';
+  final List<String> _sez1 = [
+    'parte 1',
+    'parte uno',
+    'parte prima',
+    'prima',
+    'uno',
+  ];
+  final List<String> _sez2 = [
+    'parte 2',
+    'parte due',
+    'parte seconda',
+    'seconda',
+    'due',
+  ];
+  final List<String> _sez3 = [
+    'parte 3',
+    'parte tre',
+    'parte terza',
+    'terza',
+    'tre',
+    'ttre',
+    'ttrre',
+    'trre',
+  ];
+  final List<String> _sez4 = [
+    'parte 4',
+    'parte quattro',
+    'parte quarta',
+    'quarta',
+    'quattro',
+  ];
 
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
@@ -110,37 +141,31 @@ class _testMainState extends State<testScreen> {
     await _startListening();
   }
 
-  bool _activateSection(){
-    if (_selectedIndex != 0 &&
-        (_currentWords.contains("parte 1") ||
-            _currentWords.contains("parte uno")
-            || _currentWords.contains("parte prima"))) {
+  void _activateSection(){
+    if (_selectedIndex != 0 && containsAnyWord(_currentWords.toLowerCase(), _sez1)){
       _onItemTapped(0);
-      return true;
     }
-    if (_selectedIndex != 1 &&
-        (_currentWords.contains("parte 2") ||
-            _currentWords.contains("parte due")
-            || _currentWords.contains("parte seconda"))) {
+    if (_selectedIndex != 1 && containsAnyWord(_currentWords.toLowerCase(), _sez2)){
       _onItemTapped(1);
-      return true;
     }
-    if (_selectedIndex != 2 &&
-        (_currentWords.contains("parte 3") ||
-            _currentWords.contains("parte tre")
-            || _currentWords.contains("parte terza"))) {
+    if (_selectedIndex != 2 && containsAnyWord(_currentWords.toLowerCase(), _sez3)){
       _onItemTapped(2);
-      return true;
     }
-    if (_selectedIndex != 3 &&
-        (_currentWords.contains("parte 4") ||
-            _currentWords.contains("parte quattro")
-            || _currentWords.contains("parte quarta"))) {
+    if (_selectedIndex != 3 && containsAnyWord(_currentWords.toLowerCase(), _sez4)){
       _onItemTapped(3);
-      return true;
+    }
+  }
+
+  bool containsAnyWord(String input, List<String> words) {
+    for (String word in words) {
+      if (input.contains(word)) {
+        return true;
+      }
     }
     return false;
   }
+
+  ///sezione SpeechToText
 
   void errorListener(SpeechRecognitionError error) {
     debugPrint(error.errorMsg.toString());
@@ -174,18 +199,25 @@ class _testMainState extends State<testScreen> {
   /// Each time to start a speech recognition session
   Future _startListening() async {
     debugPrint("=================================================");
-    await _stopListening();
-    await Future.delayed(const Duration(milliseconds: 200));
-    await _speechToText.listen(
-        onResult: _onSpeechResult,
-        localeId: _selectedLocaleId,
-        cancelOnError: false,
-        partialResults: true,
-        listenMode: ListenMode.dictation
-    );
-    setState(() {
-      _speechEnabled = true;
-    });
+    try {
+      await _stopListening();
+      await Future.delayed(const Duration(milliseconds: 200));
+      await _speechToText.listen(
+          onResult: _onSpeechResult,
+          localeId: _selectedLocaleId,
+          cancelOnError: false,
+          partialResults: true,
+          listenMode: ListenMode.dictation
+      );
+      setState(() {
+        _speechEnabled = true;
+      });
+    } catch (e) {
+      debugPrint(e.toString());
+      await _stopListening();
+      await Future.delayed(const Duration(milliseconds: 200));
+      await _startListening();
+    }
   }
 
   /// Manually stop the active speech recognition session
