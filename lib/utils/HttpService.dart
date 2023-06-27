@@ -7,7 +7,7 @@ import 'package:resettami_app/utils/Constants.dart';
 
 class HttpService {
   final SecureStorage _sessionStorage = SecureStorage();
-  static const urlApi = 'http://resettami_tcpi.local/api';
+  static const urlApi = 'https://ticp_svil.resettami.it/api';
   static const xdebug = 'XDEBUG_SESSION_START=PHPSTORM';
 
   Future<Map<String, String>> getOptions() async {

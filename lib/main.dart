@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:resettami_app/Screens/Splash.dart';
+import 'package:resettami_app/Screens/test.dart';
 import 'package:resettami_app/utils/Constants.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       navigatorKey: navigatorKey,
-      home: const SplashScreen(),
+      home: const testScreen(),
       navigatorObservers: [FlutterSmartDialog.observer],
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
