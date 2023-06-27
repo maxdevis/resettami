@@ -164,8 +164,12 @@ class _testMainState extends State<testScreen> {
         onError: errorListener,
         onStatus: statusListener
     );
+
+    if(_speechAvailable) {
+      await _startListening();
+    }
+
     setState(() {});
-    await _startListening();
   }
 
   /// Each time to start a speech recognition session
