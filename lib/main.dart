@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       navigatorKey: navigatorKey,
-      home: testScreen2(),
+      home: TestScreen2(),
       navigatorObservers: [FlutterSmartDialog.observer],
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
