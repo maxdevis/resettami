@@ -92,9 +92,6 @@ class testStateScreen2 extends State<testScreen2> {
   bool containsAnyWord(String input, List<String> words) {
     for (String word in words) {
       if (input.toLowerCase().contains(word.toLowerCase())) {
-        setState(() {
-          _currentWords = word;
-        });
         return true;
       }
     }
@@ -105,6 +102,7 @@ class testStateScreen2 extends State<testScreen2> {
     for (MyItem item in _dropdownItems) {
       if (item.text.toLowerCase().contains(voiceInput.toLowerCase())) {
         setState(() {
+          _currentWords = item.text;
           _selectedItem = item;
         });
         break;
@@ -175,7 +173,7 @@ class testStateScreen2 extends State<testScreen2> {
 
   Future _onSpeechResult(SpeechRecognitionResult result) async {
     final recognizedWords = result.recognizedWords;
-    if (_currentWords != recognizedWords &&
+    if (_currentWords.toLowerCase() != recognizedWords.toLowerCase() &&
         containsAnyWord(recognizedWords.toLowerCase(), _vocabolario)) {
       _selectItemWithVoice(recognizedWords);
       await _stopAndStart();
