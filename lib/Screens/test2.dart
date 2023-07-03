@@ -1,7 +1,9 @@
+import 'package:decorated_dropdownbutton/decorated_dropdownbutton.dart';
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
+
 
 class TestScreen2 extends StatefulWidget {
   @override
@@ -9,8 +11,8 @@ class TestScreen2 extends StatefulWidget {
 }
 
 class _TestStateScreen2 extends State<TestScreen2> {
-  late MyItem _selectedItemCompCogn;
-  late MyItem _selectedItemAllPsicosi;
+  late String _selectedItemCompCogn;
+  late String _selectedItemAllPsicosi;
   final SpeechToText _speechToText = SpeechToText();
   bool _speechEnabled = false;
   bool _speechAvailable = false;
@@ -18,17 +20,28 @@ class _TestStateScreen2 extends State<TestScreen2> {
   bool _placeHolderPsicosi = false;
   final String _textCompCogn = "Compromissione cognitiva";
   final String _textAllPsico = "Allucinazioni e psicosi";
-  Color _dropdownBackgroundColor = Colors.white;
-  Color _dropdownTextColor = Colors.black;
+  Color _dbgComp = Colors.white;
+  Color _txtComp = Colors.black;
+  Color _dbgAll = Colors.white;
+  Color _txtAll = Colors.white;
 
   final String _selectedLocaleId = 'it_IT';
-  final List<MyItem> _dropdownItems = [
-    MyItem(value: '0', text: 'Normale'),
-    MyItem(value: '1', text: 'Minimo'),
-    MyItem(value: '2', text: 'Lieve'),
-    MyItem(value: '3', text: 'Moderato'),
-    MyItem(value: '4', text: 'Grave'),
+
+  final List<DropdownMenuItem<String>> _dropdownItems = [
+    const DropdownMenuItem(value: '0', child: Text('Normale')),
+    const DropdownMenuItem(value: '1', child: Text('Minimo')),
+    const DropdownMenuItem(value: '2', child: Text('Lieve')),
+    const DropdownMenuItem(value: '3', child: Text('Moderato')),
+    const DropdownMenuItem(value: '4', child: Text('Grave')),
   ];
+
+  /*final List<String> _dropdownItems = [
+    'Normale',
+    'Minimo',
+    'Lieve',
+    'Moderato',
+    'Grave',
+  ];*/
 
   final List<String> _vocabolario = [
     'Normale',
@@ -46,7 +59,8 @@ class _TestStateScreen2 extends State<TestScreen2> {
     'Compromissione cognitiva',
     'Compromissione',
     'cognitiva',
-    'comporo', 'cogni'
+    'comporo',
+    'cogni'
   ];
 
   final List<String> _vcPhAllPsicosi = [
@@ -61,8 +75,12 @@ class _TestStateScreen2 extends State<TestScreen2> {
   @override
   void initState() {
     super.initState();
-    _selectedItemCompCogn = _dropdownItems[0];
-    _selectedItemAllPsicosi = _dropdownItems[0];
+    _selectedItemCompCogn = "0";
+    _selectedItemAllPsicosi = "0";
+    _dbgComp = getDropdownBackgroundColor(_selectedItemCompCogn);
+    _txtComp = getDropdownTextColor(_selectedItemCompCogn);
+    _dbgAll = getDropdownBackgroundColor(_selectedItemAllPsicosi);
+    _txtAll = getDropdownTextColor(_selectedItemAllPsicosi);
     _initSpeech();
   }
 
@@ -83,60 +101,72 @@ class _TestStateScreen2 extends State<TestScreen2> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const SizedBox(height: 20),
-            Text(_textCompCogn, style: TextStyle(fontSize: 20, fontWeight: _placeHolderComp ? FontWeight.bold : FontWeight.normal),),
-            DropdownButton<MyItem?>(
-              hint: Text(_textCompCogn),
+            Text(
+              _textCompCogn,
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight:
+                  _placeHolderComp ? FontWeight.bold : FontWeight.normal),
+            ),
+            DecoratedDropdownButton(
               value: _selectedItemCompCogn,
-              onChanged: (MyItem? newValue) async {
+              items: _dropdownItems,
+              onChanged: (value) async {
                 setState(() {
-                  _selectedItemCompCogn = newValue!;
-                  _dropdownBackgroundColor = getDropdownBackgroundColor(_selectedItemCompCogn);
-                  _dropdownTextColor = getDropdownTextColor(_selectedItemCompCogn);
+                  _selectedItemCompCogn = value.toString();
+                  _dbgComp =
+                      getDropdownBackgroundColor(value.toString());
+                  _txtComp =
+                      getDropdownTextColor(value.toString());
                 });
-                if (newValue != null) {
-                  await _stopAndStart();
+                if (value != null) {
+                  await _onDropdownChanged(value.toString(), "ddbAll");
                 }
               },
-              dropdownColor: _dropdownBackgroundColor,
-              items: _dropdownItems.map((MyItem item) {
-                return DropdownMenuItem<MyItem?>(
-                  value: item,
-                  child: Text(
-                    item.text,
-                    style: TextStyle(
-                      color: item == _selectedItemCompCogn ? _dropdownTextColor : Colors.black,
-                    ),
-                  ),
-                );
-              }).toList(),
+              color: _dbgComp,
+              border: Border.all(color: Colors.black, width: 2),
+              borderRadius: BorderRadius.circular(5),
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+              ),
+              icon: const Icon(Icons.arrow_downward),
+              iconEnableColor: Colors.black,
+              dropdownColor: _dbgComp,
             ),
             const SizedBox(height: 20),
-            Text(_textAllPsico, style: TextStyle(fontSize: 20, fontWeight: _placeHolderPsicosi ? FontWeight.bold : FontWeight.normal),),
-            DropdownButton<MyItem?>(
-              hint: Text(_textAllPsico),
+            Text(
+              _textAllPsico,
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight:
+                  _placeHolderPsicosi ? FontWeight.bold : FontWeight.normal),
+            ),
+            DecoratedDropdownButton(
               value: _selectedItemAllPsicosi,
-              onChanged: (MyItem? newValue) async {
+              items: _dropdownItems,
+              onChanged: (value) async {
                 setState(() {
-                  _selectedItemAllPsicosi = newValue!;
-                  _dropdownBackgroundColor = getDropdownBackgroundColor(_selectedItemAllPsicosi);
-                  _dropdownTextColor = getDropdownTextColor(_selectedItemAllPsicosi);
+                  _selectedItemAllPsicosi =  value.toString();
+                  _dbgAll =
+                      getDropdownBackgroundColor(value.toString());
+                  _txtAll =
+                      getDropdownTextColor(value.toString());
                 });
-                if (newValue != null) {
-                  await _stopAndStart();
+                if (value != null) {
+                  await _onDropdownChanged(value.toString(), "ddbAll");
                 }
               },
-              dropdownColor: _dropdownBackgroundColor,
-              items: _dropdownItems.map((MyItem item) {
-                return DropdownMenuItem<MyItem?>(
-                  value: item,
-                  child: Text(
-                    item.text,
-                    style: TextStyle(
-                      color: item == _selectedItemAllPsicosi ? _dropdownTextColor : Colors.black,
-                    ),
-                  ),
-                );
-              }).toList(),
+              color: _dbgAll,
+              border: Border.all(color: Colors.black, width: 1),
+              borderRadius: BorderRadius.circular(5),
+              style: TextStyle(
+                color: _txtAll,
+                fontSize: 20,
+              ),
+              icon: const Icon(Icons.arrow_downward),
+              iconEnableColor: Colors.black,
+              dropdownColor: _dbgAll,
             ),
           ],
         ),
@@ -144,8 +174,9 @@ class _TestStateScreen2 extends State<TestScreen2> {
     );
   }
 
-  Color getDropdownBackgroundColor(MyItem item){
-    switch(item.value){
+  Color getDropdownBackgroundColor(String value) {
+    debugPrint("getDropdownBackgroundColor: $value");
+    switch (value) {
       case '1':
         return Colors.green;
       case '2':
@@ -159,8 +190,9 @@ class _TestStateScreen2 extends State<TestScreen2> {
     }
   }
 
-  Color getDropdownTextColor(MyItem item){
-    switch(item.value){
+  Color getDropdownTextColor(String value) {
+    debugPrint("getDropdownTextColor: $value");
+    switch (value) {
       case '1':
       case '2':
       case '3':
@@ -170,6 +202,27 @@ class _TestStateScreen2 extends State<TestScreen2> {
       default:
         return Colors.black;
     }
+  }
+
+  Future _onDropdownChanged(String value, String dropName) async {
+    switch(dropName){
+      case "ddbComp":
+        setState(() {
+          _selectedItemCompCogn =  value.toString();
+          _dbgComp = getDropdownBackgroundColor(value);
+          _txtComp = getDropdownTextColor(value);
+        });
+        break;
+      case "ddbAll":
+        setState(() {
+          _selectedItemAllPsicosi =  value.toString();
+          _dbgAll = getDropdownBackgroundColor(value);
+          _txtAll = getDropdownTextColor(value);
+        });
+        break;
+    }
+
+    await _stopAndStart();
   }
 
   bool containsAnyWord(String input, List<String> words) {
@@ -182,19 +235,28 @@ class _TestStateScreen2 extends State<TestScreen2> {
   }
 
   Future<void> _selectItemWithVoice(String voiceInput) async {
-    for (MyItem item in _dropdownItems) {
-      if (item.text.toLowerCase().contains(voiceInput.toLowerCase())) {
-        setState(() {
-          if (_placeHolderComp) {
-            _selectedItemCompCogn = item;
-          }
-          if (_placeHolderPsicosi) {
-            _selectedItemAllPsicosi = item;
-          }
-        });
+    for (DropdownMenuItem<String> item in _dropdownItems) {
+      final String itemText = (item.child as Text).data ?? '';
+      if (itemText.toLowerCase().contains(voiceInput.toLowerCase())) {
+        if (_placeHolderComp && _selectedItemCompCogn != item.value.toString()) {
+          //_selectedItemCompCogn = item.value.toString();
+          setState(() {
+            _selectedItemCompCogn = item.value.toString();
+          });
+          _onDropdownChanged(item.value.toString(), "ddbComp");
+        }
+        if (_placeHolderPsicosi && _selectedItemAllPsicosi != item.value.toString()) {
+          //_selectedItemAllPsicosi = item.value.toString();
+          setState(() {
+            _selectedItemAllPsicosi = item.value.toString();
+          });
+          _onDropdownChanged(item.value.toString(), "ddbAll");
+        }
+
         break;
       }
     }
+
   }
 
   void errorListener(SpeechRecognitionError error) {
@@ -226,7 +288,7 @@ class _TestStateScreen2 extends State<TestScreen2> {
   }
 
   Future<void> _startListening() async {
-    debugPrint("=================================================");
+    //debugPrint("=================================================");
     if (!_isListening) {
       try {
         await _speechToText.listen(
@@ -282,10 +344,9 @@ class _TestStateScreen2 extends State<TestScreen2> {
         }
       }
 
-      if(_placeHolderComp || _placeHolderPsicosi){
+      if (_placeHolderComp || _placeHolderPsicosi) {
         _selectItemWithVoice(recognizedWords);
       }
-
     } catch (e) {
       debugPrint(e.toString());
     } finally {

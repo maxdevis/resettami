@@ -56,6 +56,7 @@ dependencies:
   connectivity_plus: ^4.0.1
   speech_to_text: ^6.2.0
   permission_handler: ^10.3.0
+  decorated_dropdownbutton: ^0.0.3
 
 dev_dependencies:
   flutter_test:
