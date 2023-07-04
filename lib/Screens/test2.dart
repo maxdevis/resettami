@@ -250,14 +250,12 @@ class _TestStateScreen2 extends State<TestScreen2> {
       final String itemText = (item.child as Text).data ?? '';
       if (itemText.toLowerCase().contains(voiceInput.toLowerCase())) {
         if (_placeHolderComp && _selectedItemCompCogn != item.value.toString()) {
-          //_selectedItemCompCogn = item.value.toString();
           setState(() {
             _selectedItemCompCogn = item.value.toString();
           });
           _onDropdownChanged(item.value.toString(), "ddbComp");
         }
         if (_placeHolderPsicosi && _selectedItemAllPsicosi != item.value.toString()) {
-          //_selectedItemAllPsicosi = item.value.toString();
           setState(() {
             _selectedItemAllPsicosi = item.value.toString();
           });
