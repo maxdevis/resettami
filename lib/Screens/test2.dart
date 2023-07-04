@@ -96,80 +96,91 @@ class _TestStateScreen2 extends State<TestScreen2> {
       appBar: AppBar(
         title: const Text('Pagina con Dropdown'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const SizedBox(height: 20),
-            Text(
-              _textCompCogn,
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight:
-                  _placeHolderComp ? FontWeight.bold : FontWeight.normal),
-            ),
-            DecoratedDropdownButton(
-              value: _selectedItemCompCogn,
-              items: _dropdownItems,
-              onChanged: (value) async {
-                setState(() {
-                  _selectedItemCompCogn = value.toString();
-                  _dbgComp =
-                      getDropdownBackgroundColor(value.toString());
-                  _txtComp =
-                      getDropdownTextColor(value.toString());
-                });
-                if (value != null) {
-                  await _onDropdownChanged(value.toString(), "ddbAll");
-                }
-              },
-              color: _dbgComp,
-              border: Border.all(color: Colors.black, width: 2),
-              borderRadius: BorderRadius.circular(5),
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 20,
+      body: Container(
+        padding: const EdgeInsets.all(5.0),
+        child:  Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              const SizedBox(height: 20),
+              Text(
+                _textCompCogn,
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight:
+                    _placeHolderComp ? FontWeight.bold : FontWeight.normal),
               ),
-              icon: const Icon(Icons.arrow_downward),
-              iconEnableColor: Colors.black,
-              dropdownColor: _dbgComp,
-            ),
-            const SizedBox(height: 20),
-            Text(
-              _textAllPsico,
-              style: TextStyle(
+              DecoratedDropdownButton(
+                value: _selectedItemCompCogn,
+                items: _dropdownItems,
+                onChanged: (value) async {
+                  setState(() {
+                    _selectedItemCompCogn = value.toString();
+                    _dbgComp =
+                        getDropdownBackgroundColor(value.toString());
+                    _txtComp =
+                        getDropdownTextColor(value.toString());
+                  });
+                  if (value != null) {
+                    await _onDropdownChanged(value.toString(), "ddbAll");
+                  }
+                },
+                color: _dbgComp,
+                border: Border.all(color: Colors.black, width: 2),
+                borderRadius: BorderRadius.circular(5),
+                style: TextStyle(
+                  color: _txtComp,
                   fontSize: 20,
-                  fontWeight:
-                  _placeHolderPsicosi ? FontWeight.bold : FontWeight.normal),
-            ),
-            DecoratedDropdownButton(
-              value: _selectedItemAllPsicosi,
-              items: _dropdownItems,
-              onChanged: (value) async {
-                setState(() {
-                  _selectedItemAllPsicosi =  value.toString();
-                  _dbgAll =
-                      getDropdownBackgroundColor(value.toString());
-                  _txtAll =
-                      getDropdownTextColor(value.toString());
-                });
-                if (value != null) {
-                  await _onDropdownChanged(value.toString(), "ddbAll");
-                }
-              },
-              color: _dbgAll,
-              border: Border.all(color: Colors.black, width: 1),
-              borderRadius: BorderRadius.circular(5),
-              style: TextStyle(
-                color: _txtAll,
-                fontSize: 20,
+                ),
+                icon: const Icon(Icons.arrow_drop_down),
+                iconEnableColor: Colors.black,
+                dropdownColor: _dbgComp,
               ),
-              icon: const Icon(Icons.arrow_downward),
-              iconEnableColor: Colors.black,
-              dropdownColor: _dbgAll,
-            ),
-          ],
+              const SizedBox(height: 20),
+              Text(
+                _textAllPsico,
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight:
+                    _placeHolderPsicosi ? FontWeight.bold : FontWeight.normal),
+              ),
+              DecoratedDropdownButton(
+                value: _selectedItemAllPsicosi,
+                items: _dropdownItems,
+                onChanged: (value) async {
+                  setState(() {
+                    _selectedItemAllPsicosi =  value.toString();
+                    _dbgAll =
+                        getDropdownBackgroundColor(value.toString());
+                    _txtAll =
+                        getDropdownTextColor(value.toString());
+                  });
+                  if (value != null) {
+                    await _onDropdownChanged(value.toString(), "ddbAll");
+                  }
+                },
+                color: _dbgAll,
+                border: Border.all(color: Colors.black, width: 1),
+                borderRadius: BorderRadius.circular(5),
+                style: TextStyle(
+                  color: _txtAll,
+                  fontSize: 20,
+                ),
+                icon: const Icon(Icons.arrow_drop_down),
+                iconEnableColor: Colors.black,
+                dropdownColor: _dbgAll,
+              ),
+            ],
+          ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed:
+        // If not yet listening for speech start, otherwise stop
+        _speechToText.isNotListening ? _startListening : _stopListening,
+        tooltip: 'Listen',
+        child: Icon(_speechToText.isNotListening ? Icons.mic_off : Icons.mic),
       ),
     );
   }
@@ -193,10 +204,10 @@ class _TestStateScreen2 extends State<TestScreen2> {
   Color getDropdownTextColor(String value) {
     debugPrint("getDropdownTextColor: $value");
     switch (value) {
-      case '1':
       case '2':
       case '3':
         return Colors.black;
+      case '1':
       case '4':
         return Colors.white;
       default:
@@ -356,7 +367,7 @@ class _TestStateScreen2 extends State<TestScreen2> {
 
   Future<void> _stopAndStart() async {
     await _stopListening();
-    await Future.delayed(const Duration(milliseconds: 200));
+    await Future.delayed(const Duration(milliseconds: 500));
     await _startListening();
   }
 }
